@@ -1,0 +1,29 @@
+.cover{
+	height: 150px;
+	margin-top: 30px;
+	border: 1px solid #8470ff;
+}
+.cover1{
+	height: 250px;
+	margin-top: 50px;
+	border: 1px solid #8470ff;
+}
+
+.toplabel{
+	position: absolute;
+	padding:10px;
+	background-color: #fff;
+	margin-top: -20px;
+}
+
+#size{
+
+	margin-top: 30px;
+}
+.size1{
+
+}
+
+.mtop{
+	margin-top: 32px;
+}

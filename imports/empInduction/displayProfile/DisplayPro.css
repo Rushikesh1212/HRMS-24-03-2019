@@ -1,0 +1,22 @@
+.profile-box{
+  background-color: skyblue;
+}
+.profile-box p{
+  font-size: 12px;
+}
+.text-blue{
+  color: blue;
+}
+.text-bold{
+  font-weight: bold
+}
+.text-grey{
+  color: grey;
+}
+.org-chart{
+  background-color:#ADD8E6;
+  height: 389px;
+}
+.org-chart-header{
+  height: 60px;
+}

@@ -1,0 +1,99 @@
+.size{
+	margin-top: 10px;
+}
+/*.tablinks{
+	height: 50px;
+	font-size: 5px;
+
+}*/
+.link{
+	height: 21px;
+    width: 36px;
+    margin-left: 23px
+	
+}
+
+a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+.tab .nav-tabs{ border: none; }
+.tab .nav-tabs li a{
+    padding: 12px 15px;
+    margin-right: 10px;
+    font-size: 10px;
+    font-weight: 800;
+    color: #9b9b9c;
+    text-transform: uppercase;
+    border: 2px solid #e5e7e9;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    width: 150px;
+    text-align: center;
+    margin-top: 20px;
+}
+.tab .nav-tabs li a:hover,
+.tab .nav-tabs li a:focus,
+.tab .nav-tabs li.active a{
+    background: transparent;
+    border: 2px solid #3a506b;
+    color: #fff;
+}
+.tab .nav-tabs li a:before{
+    content: "";
+    width: 520%;
+    height: 0;
+    background: #58bad7;
+    position: absolute;
+    top: 56%;
+    left: 35%;
+    opacity: 0;
+    z-index: -1;
+    transform: translateX(-49%) translateY(-72%) rotate(45deg);
+    transition: all 0.3s ease-in-out 0s;
+}
+.tab .nav-tabs li a:hover:before,
+.tab .nav-tabs li.active a:before{
+    height: 233%;
+    opacity: 1;
+}
+.tab .tab-content{
+    padding: 20px 30px;
+    margin-top: 10px;
+    font-size: 15px;
+    color: #fff;
+    line-height: 27px;
+    letter-spacing: 1px;
+    background: #3a506b;
+    position: relative;
+}
+.tab .tab-content:before{
+    content: "";
+    border-top: 30px solid #fff;
+    border-bottom: 30px solid transparent;
+    border-right: 30px solid transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.tab .tab-content:after{
+    content: "";
+    border-bottom: 30px solid #fff;
+    border-top: 30px solid transparent;
+    border-left: 30px solid transparent;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+@media only screen and (max-width: 479px){
+    .tab .nav-tabs li{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .tab .nav-tabs li:last-child{ margin-bottom: 0; }
+    .tab .nav-tabs li a:hover:before,
+    .tab .nav-tabs li.active a:before{ height: 400%; }
+}

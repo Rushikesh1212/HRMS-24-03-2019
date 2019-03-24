@@ -1,0 +1,33 @@
+.userImg{
+	height: 100px;
+}
+
+.actionIcon{
+	padding: 10px;
+	cursor: pointer;
+}
+
+.actionIcon:hover{
+	background-color: #eee;
+}
+
+.container {
+    width: 0px !important;
+}
+.borderCustom{
+	border: transparent;
+	background: transparent;
+}
+.dataAbsentTable{
+	overflow-y: hidden;
+	margin-top: 20px;
+	padding-left: 20px;
+
+}
+
+/*
+.header{
+	margin-top: 20px;
+}
+*/
+

@@ -1,0 +1,109 @@
+/*---------Global Css---------*/
+
+/*---------Leave Policy Settings Css---------*/
+
+/*.ReactTable .rt-th{
+	font-family: Montserrat-Regular;
+	font-size: 14px;
+
+}
+
+.ReactTable .rt-td{
+	color: #111;
+	font-family: Montserrat-Regular;
+	font-size: 14px;
+	text-align: center !important;
+}
+.ReactTable .tr:nth-child(even){
+	background-color: #999 !important;
+	
+}
+
+.ReactTable .rt-tr {
+  flex: 1 0 auto;
+  padding: 10px;
+  display: inline-flex;
+}
+
+.ReactTable .rt-thead.-header {
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.15);
+/*  background-color: #17a2b8;
+*/}*/
+
+
+.centerText{
+	font-family: Montserrat-Regular;
+	display: block;
+	text-align: center;
+	background-color: #2a88bc;
+	color: #fff;
+	height: 40px;
+	padding-top: 8px;
+
+}	
+.formHead{
+	font-family: Montserrat-Regular;
+	padding-top:10px;
+	padding-bottom: 10px;
+	height: 110px;
+}
+.formHeadContent{
+	font-family: Montserrat-Regular;
+	padding-top:10px;
+	padding-left: 30px;
+	border: 1px solid #979797;
+	height: 90px;
+}
+.formcontainer{
+	font-family: Montserrat-Regular;
+	background-color: #fff;
+	padding-top: 20px;
+	height: 400px;
+	font-weight:200;
+	border: 1px solid #979797;
+}
+
+.tabs{
+	padding-top: 20px;
+}
+.selectLeave{
+	padding: 8px;
+	padding-right: 66px;
+}
+.selectLocation{
+	padding: 8px;
+	padding-right: 80px;
+}
+.descTable{
+	border: 1px solid #979797;
+	padding: 20px;
+}
+.actionDiv button{
+
+	text-align: center;
+	background-color: transparent;
+	border: none;
+
+}
+/*===========================list of subordinates==============================*/
+
+.formcontainer1{
+	font-family: Montserrat-Regular;
+	background-color: #fff;
+	padding-top: 20px;
+	height: 320px;
+	font-weight:200;
+	border: 1px solid #979797;
+}
+.formcontainer1 label{
+	font-family: Montserrat-Regular;
+	height: 25px;
+	color: #333333;
+
+}
+
+.headLabel{
+	font-family: Montserrat-Regular;
+	color: #4253f4 !important;
+	font-weight: bold
+}

@@ -1,0 +1,9 @@
+body {
+  font-family: sans-serif;
+  background color:#eeeeee;
+}
+
+@font-face{
+  font-family:'Montserrat-Regular';
+  src: url("/fonts/Montserrat-Regular.ttf");
+}

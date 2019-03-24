@@ -1,0 +1,24 @@
+.fz14{
+	font-size: 14px;
+}
+
+.mt30{
+	margin-top: 30px;
+}
+
+.sbmt:hover{
+	background-color: #337ab7;
+	border:1px solid #337ab7;
+}
+
+.mb30{
+	margin-bottom:30px;
+}
+
+.h350{
+	height: 340px;
+}
+
+.br1{
+	border:1px solid #979797;
+}

@@ -1,0 +1,15 @@
+.heightBig
+{
+	height: 500px;
+}
+
+
+.cancelBtn{
+	padding-top: 25px;
+
+}
+.cancelBtn i{
+	font-size: 20px;
+	color: #f00;
+
+}

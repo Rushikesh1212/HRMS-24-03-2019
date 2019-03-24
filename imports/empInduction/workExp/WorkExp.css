@@ -1,0 +1,32 @@
+.userImg{
+	height: 100px;
+}
+
+.actionIcon{
+	padding: 10px;
+	cursor: pointer;
+}
+
+.actionIcon:hover{
+	background-color: #eee;
+}
+
+.new-task{
+	font-weight: 400;
+	color: #000;
+	height: 70px;
+	/*text-align: center;*/
+}
+
+.box{
+	border: solid 1px #eee;
+}
+
+.box1{
+	margin-top: 10px;
+}
+/*.btn{
+	margin-top: 70px;
+}
+*/
+
