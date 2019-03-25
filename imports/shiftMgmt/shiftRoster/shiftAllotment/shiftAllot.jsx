@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import { EmpMaster } from '/imports/shiftMgmt/shiftRoster/empTemp/empMaster.js';
 import { ShiftSetting } from '/imports/shiftMgmt/shiftRoster/shiftSetting/shiftSetting.js';
 import { ShiftAllocation } from '/imports/shiftMgmt/shiftRoster/shiftAllotment/shiftAllocation.js';
+import './shiftAllot.css';
 
 class ShiftAllot extends Component{
 	constructor(props){
@@ -379,6 +380,7 @@ class ShiftAllot extends Component{
 		}
 
 		const data = this.props.allEmp;
+		console.log("data",data)
 
 			return (
 
@@ -427,6 +429,7 @@ class ShiftAllot extends Component{
 											<tr key={index}>
 												<td> {index+1} </td>
 												<td className="text-left" data-toggle="modal" data-target="#empShiftHistory" onClick={this.displayEmpShiftHistory.bind(this)} > {emp.firstName} {emp.middleName} {emp.lastName} </td>
+												
 												<td className="checkboxContainer"> <input type="checkbox" id={"E"+(index+1)} data-index={"E"+(index+1)} onChange={this.checkAll.bind(this)} /><span className="checkmark1 text-center"></span> </td>
 													{this.getDateHeader().map(
 														(index,dt)=>{return (<th key={dt} className="checkboxContainer"> <input type="checkbox" className={"E"+empid()+" D"+(dt+1)} align="center" name="check" data-index={"E"+empid()+" D"+(dt+1)} data-toggle="modal" data-target="#shiftChangeModal"  onChange={this.deselectCheckbox.bind(this)}/><span className={this.state.selectCheck}>{this.state.valOfShift}</span></th>)}
@@ -597,7 +600,7 @@ class ShiftAllot extends Component{
 export default ShiftAllotContainer = withTracker(()=>{
 
 	
-	const shiftSubHandle2 = Meteor.subscribe("allEmpData");
+	const shiftSubHandle2 = Meteor.subscribe("allEmpData1");
 	const allEmpData = EmpMaster.find({}).fetch()||[{}];
 
 	const shiftSubHandle1 = Meteor.subscribe("allShiftData");

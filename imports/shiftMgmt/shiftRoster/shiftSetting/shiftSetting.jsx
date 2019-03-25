@@ -3,6 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import swal from 'sweetalert';
 
 import { ShiftSetting } from '/imports/shiftMgmt/shiftRoster/shiftSetting/shiftSetting.js';
+import './shiftSetting.css';
 
 class shiftSetting extends Component{
 	constructor(props){
