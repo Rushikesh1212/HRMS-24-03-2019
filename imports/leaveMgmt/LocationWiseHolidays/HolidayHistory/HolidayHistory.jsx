@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import "/imports/leaveMgmt/LocationWiseHolidays/HolidayHistory/HolidayHistory.css";
 import { LwhMaster } from '/imports/leaveMgmt/LocationWiseHolidays/lwhMaster.js';
-import Holiday from './Holiday.jsx'
+import Holiday from './HolidayHistoryTable/HolidayHistoryTable.jsx'
 
 
 
@@ -11,12 +11,11 @@ class HolidayHistory extends Component{
 	constructor(props){
 		
 		super(props);
-		this.state = {
-				yearValue:"",
-				
-		};		
-		this.yearvalue=this.yearvalue.bind(this);
 	
+		this.state = {
+				yearValue:2020,				
+		};		
+		this.yearvalue=this.yearvalue.bind(this);	
 	}
 
 
@@ -27,18 +26,15 @@ class HolidayHistory extends Component{
 		for(let i=1;i<=count;i++){
 			cityCount.push(i);
 		}
-
 		return cityCount;
 	}
-
-
 
 
 	//=========================================================================================================
 	                                               // Get year value
 	// ========================================================================================================
 
-		yearvalue(event)
+	yearvalue(event)
 	{
 		event.preventDefault();
 		var yearvalue = event.currentTarget.value;
@@ -56,12 +52,9 @@ class HolidayHistory extends Component{
 
 	render(){
 
-
+		
 		return (
-
-
 			<div>
-
 	{/*=========================================================================================================
 	                                             Years without duplicates
 	========================================================================================================*/}
@@ -77,17 +70,13 @@ class HolidayHistory extends Component{
 						<div className="col-lg-12  col-md-12  col-sm-12  col-xs-12   tabbable"> 
 							<ul className="nav nav-tabs">
 							{ 
-							 	this.props.year_without_duplicates.map((item,index) => {
-       						 	return(
-        						
-		
-									<li key={index} ref="year" value={item} onClick={this.yearvalue.bind(this)}><a href="#tab" data-toggle="tab">{item}</a></li>		
-        						);
-        						
-    	 					 })
-   						 }
-						
-							
+							 	this.props.year_without_duplicates.map((item,index) => 
+							 	{
+       						 		return(
+       										<li key={index} ref="year" value={item} onClick={this.yearvalue.bind(this)}><a href="#tab" data-toggle="tab">{item}</a></li>		
+        								  );
+        					 	})
+   						 	}
 							</ul>
 							<div className="tab-content">
 								<div className="tab-pane active" id="tab">
@@ -105,8 +94,6 @@ export default withTracker((props)=>{
 	const yearSubHandle = Meteor.subscribe("allLwhData");
 	const allyearData = LwhMaster.find({}).fetch()||[{}];
 
-
-
 //==================Year WIthout Duplicates ==================================
 		var year=[];
 
@@ -115,9 +102,8 @@ export default withTracker((props)=>{
 		}	
 
 		let year_without_duplicates1 = Array.from(new Set(year));
-		let year_without_duplicates =year_without_duplicates1.sort((a, b) => (b - a))
+		let year_without_duplicates =year_without_duplicates1.sort((a, b) => (b - a));
 
-	
 
 //======================================================================
 	

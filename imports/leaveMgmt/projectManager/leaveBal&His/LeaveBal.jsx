@@ -116,7 +116,7 @@ export default class LeaveBal extends Component{
         	
 		return (
 
-			<div className="col-lg-12 col-lg-offset-2">
+			<div className="col-lg-12 ">
 				<div className="row">
 
 		    		<div className="col-lg-12 tabs">

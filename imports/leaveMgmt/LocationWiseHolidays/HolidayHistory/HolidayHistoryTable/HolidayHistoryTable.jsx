@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import "/imports/leaveMgmt/LocationWiseHolidays/HolidayHistory/HolidayHistory.css";
+import "/imports/leaveMgmt/LocationWiseHolidays/HolidayHistory/HolidayHistoryTable/HolidayHistoryTable.css";
 import { LwhMaster } from '/imports/leaveMgmt/LocationWiseHolidays/lwhMaster.js';
 
 
@@ -26,10 +26,8 @@ class Holiday extends Component{
 		for(let i=1;i<=count;i++){
 			cityCount.push(i);
 		}
-
 		return cityCount;
 	}
-
 
 
 	//=========================================================================================================
@@ -57,8 +55,6 @@ class Holiday extends Component{
 
 
 	render(){
-
-
 		return (
 			<div>				
 				<div className="tab-pane" id="tab2">
@@ -69,70 +65,63 @@ class Holiday extends Component{
 						<div className="tab-content">
 							<div className="tab-pane active" id="tab3">
 									
-{/*
-	=========================================================================================================
+{/*=========================================================================================================
 	                                      Location Wise Holidays table
 	========================================================================================================*/}
 								<table id="table-to-xls"  className="table  table-bordered table-hovered table-striped holiday-history-mt">
-											<thead>
+									<thead>
 
-												<tr> 
-													<th> LIST OF HOLIDAYS</th> 
-													 { 
-													 	this.props.location_without_duplicates.map((item,index) => {
-					           						 	return(
-					            						
-					            							<th key={index} className="text-center">{item}</th>			
-														
-					            						);
-					            						
-					        	 					 })
-					       						 }
-												</tr>
-											</thead>
+										<tr> 
+											<th> LIST OF HOLIDAYS</th> 
+											 { 
+											 	this.props.location_without_duplicates.map((item,index) => {
+			           						 	return(
+			            							<th key={index} className="text-center">{item}</th>				
+			            						);
+			            						
+			        	 					 })
+			       						 }
+										</tr>
 
-											<tbody>
-												 { 
-													 	this.props.holiday_without_duplicates.map((item,index1) => {
-					           						 	return(
-					            							<tr key={index1}>
-					            							<td key={index1}>{item}</td>	
+									</thead>
 
-															{this.props.location_without_duplicates.map((data,i)=>
-															{
+									<tbody>
+										 { 
+											 	this.props.holiday_without_duplicates.map((item,index1) => {
+			           						 	return(
+			            							<tr key={index1}>
+			            							<td key={index1}>{item}</td>	
 
-																return (<td key={i}> <div className="text-center"> {this.getHolidayExistData(item, data) ?  <i className="fa fa-check fa-1x "></i> : <i className="fa fa-minus fa-1x"></i>}   </div> </td>)}
-															)}
-															</tr>
+													{this.props.location_without_duplicates.map((data,i)=>
+													{
 
-					            						);
-					            						
-					        	 					 })
-					       						 }
-											</tbody>
+														return (<td key={i}> <div className="text-center"> {this.getHolidayExistData(item, data) ?  <i className="fa fa-check fa-1x "></i> : <i className="fa fa-minus fa-1x"></i>}   </div> </td>)}
+													)}
+													</tr>
+
+			            						);
+			            						
+			        	 					 })
+			       						 }
+									</tbody>
 								</table>
-						</div>
+							</div>
 						</div>
 					</div>	
 				</div>	
-	
 			</div>
 		);
 	};
 }
 
+
 export default withTracker((props)=>{
 	const yearSubHandle = Meteor.subscribe("allLwhData");
 	const allyearData = LwhMaster.find({}).fetch()||[{}];
 
-
-
+	//===================Fetech Year wise Data======================
 	var year=props.year;
-//===================Fetech Year wise Data======================
-	
 	const yearData = LwhMaster.find({"year":year}).fetch()||[{}];
-	// console.log("yearData=",yearData);
-
 
 	//=========================================================================================================
 	                                       // Create dummy array

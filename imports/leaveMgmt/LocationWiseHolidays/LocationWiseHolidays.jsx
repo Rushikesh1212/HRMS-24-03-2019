@@ -17,8 +17,6 @@ import Calender from '/imports/leaveMgmt/LocationWiseHolidays/Calender/Calender.
 class LocationWiseHolidays extends Component{
 	constructor(props){
 	
-	
-
 		var newDate = new Date();
 		super(props);
 		this.state = {
@@ -75,7 +73,6 @@ class LocationWiseHolidays extends Component{
 												}else{
 													swal("Congrats!","Your Information Submitted Successfully.","success");
 													console.log("latest id = ",result);
-																									// this.setState({"inputValue":""});
 												}
 											});	
 			}
@@ -122,15 +119,6 @@ class LocationWiseHolidays extends Component{
 										});	
 		
 
-	}
-	displayRecord(event){
-		event.preventDefault();
-		empId1 = event.currentTarget.id;
-		this.setState({
-			empID : empId1,
-		},()=>{
-		console.log("new emoid="+this.state.empID);
-		})
 	}
 	
 
@@ -212,8 +200,7 @@ class LocationWiseHolidays extends Component{
 
 		this.setState({"mlocation" : mlocation});
 		this.setState({"mholidayName" : mholidayName});
-		this.setState({"mdate" : mdate});
-	
+		this.setState({"mdate" : mdate});	
 	}
 
 
@@ -225,7 +212,6 @@ class LocationWiseHolidays extends Component{
 
 	 isTextKey(evt)
       {
-
          var charCode = (evt.which) ? evt.which : event.keyCode
     console.log("Charcode",charCode);
          if (charCode > 32 && (charCode < 65 || charCode > 90) )
@@ -235,8 +221,7 @@ class LocationWiseHolidays extends Component{
           }
           else{
           	return true;
-          }
-   
+          }   
       }
 
 	validate(event)
@@ -252,8 +237,6 @@ class LocationWiseHolidays extends Component{
 		{
 			document.getElementById('holidayDate').innerHTML="";
 		}
-
-
 
 
 		var lname = document.getElementById('holidayFor1').value;
@@ -304,8 +287,9 @@ const columns = [{
 					        
 			         
 	}]
-return (
 
+
+return (
 	//=========================================================================================================
 	                                               // Holiday Form
 	// ========================================================================================================
@@ -371,9 +355,9 @@ return (
 {/*=========================================================================================================
 	                                               // React Table fetching all data
  ========================================================================================================*/}
- <br/>
-  <br/>
- <h3>Recently Added Holidays</h3>
+				 <br/>
+				  <br/>
+				 <h3>Recently Added Holidays</h3>
 			  		<ReactTable
 					    data={data}
 					    columns={columns}
