@@ -34,9 +34,7 @@ class ShiftAllot extends Component{
 			"Month": "",
 			"isChecked": false,
 			"checked": false,
-			"weekdays": "",
-			"weekNum1": "",
-			"weekNum2": "",
+			"weekdays": "",			
 			"year":"",
 			"dates"  : [],
 			"wDays" : [],
@@ -45,9 +43,12 @@ class ShiftAllot extends Component{
 			"selectCheck":"checkmark1",
 			"valOfShift":"",
 			"curTarget":"",
-			"weekValDefault" : "",
-			"weekVal" : "",
-
+			"fromDate": "",
+			"toDate": "",
+			"weeklyOff": "",
+			"createdAt": new Date(),
+			"createdBy": "",
+			"shiftDetails": [],
 		};
 	}	
 
@@ -142,25 +143,25 @@ class ShiftAllot extends Component{
 
 	}
 
-	autoWeekFetch(event){
-		event.preventDefault();
-		var today = moment().format("MM-DD-YYYY");
-        var weeknumber = moment(today).week();
-        if(weeknumber<=9){
-          weeknumber="0"+weeknumber;
-        }
-        var yyyy = moment(today).format("YYYY");
-        var weekValDefault = yyyy+"-W"+weeknumber;
-        var weekVal = this.refs.dateFromWeek.value;
+	// autoWeekFetch(event){
+	// 	event.preventDefault();
+	// 	var today = moment().format("MM-DD-YYYY");
+ //        var weeknumber = moment(today).week();
+ //        if(weeknumber<=9){
+ //          weeknumber="0"+weeknumber;
+ //        }
+ //        var yyyy = moment(today).format("YYYY");
+ //        var weekValDefault = yyyy+"-W"+weeknumber;
+ //        var weekVal = this.refs.dateFromWeek.value;
 
-        this.setState({
-			weekVal:weekVal,
-			weekValDefault:weekValDefault
-		},()=>{
-			console.log("weekVal=============================="+this.state.weekVal)
-			console.log("weekValDefault=============================="+this.state.weekValDefault)
-		});
-	}
+ //        this.setState({
+	// 		weekVal:weekVal,
+	// 		weekValDefault:weekValDefault
+	// 	},()=>{
+	// 		console.log("weekVal=============================="+this.state.weekVal)
+	// 		console.log("weekValDefault=============================="+this.state.weekValDefault)
+	// 	});
+	// }
 
 	dateFromWeek(event){
 
@@ -223,7 +224,7 @@ class ShiftAllot extends Component{
 			tDates.push(i);
 		}
 		return tDates;
-		// console.log("tDates",tDates)
+		console.log("tDates",tDates)
 	}
 	
 	getDayHeader(){
@@ -274,97 +275,97 @@ class ShiftAllot extends Component{
           if (splitval) {
 
 	    	console.log("event.target.checked",event.target.checked);
+	    	console.log("splitval",splitval);
 
 	    	console.log("shiftCheck",shiftCheck);
 	    	this.setState({
 	    		checkedIndex:shiftCheck,
 	    		curTarget:event.target.checked,
+	    	},()=>{
+	    		console.log("curTarget====",this.state.curTarget);
 	    	});
 
-		 	if(!this.state.curTarget){
+		 	
+		 	if(this.state.curTarget){
 		 		$("#"+splitval[0]).prop("checked",false);
 		 		$("#"+splitval[1]).prop("checked",false);
+		 	
 		 	}else{
-		 		$("#"+splitval[0]).prop("checked",true);
-		 		$("#"+splitval[1]).prop("checked",true);
+		 		$("#"+splitval[0]).prop("checked",false);
+		 		$("#"+splitval[1]).prop("checked",false)
+		 		
 		 	}
 
 
           }
     	}
+
 	}
 
 	getShiftValue(){
 		var getSvalue = event.target.getAttribute('data-index');
 		console.log("shiftValue="+getSvalue)
 		this.setState({
-				"getSvalue" : getSvalue,
+				"shift" : getSvalue,
 			},()=>{
 				// console.log("getSvalue :",this.state.getSvalue)
 			});
 	}
 
-	replaceCheckbox(event){
-    	var shiftCheck = this.state.checkedIndex;
-    	var shift=this.state.getSvalue;
-	    console.log("shiftCheck=",shiftCheck);
-	    console.log("shift=",shift);
-	    
+	submitShiftValue(event){
 		
-		if(this.state.curTarget)
-		{
-			// $("."+shiftCheck).setState({selectCheck:""});
-			
-	    	// this.setState({valOfShift:shift});
-	    	console.log("Inside if...........");
-	    	
-			// $("."+shiftCheck)=(+getvalue);
-			// $("."+shiftCheck).(this.state.getSvalue).val().show();
-			
-			// $("."+shiftCheck).show((this.state.getSvalue).val());
+		event.preventDefault();
+		
+		var shiftDetails = {
+
+    		shiftCheck      : this.state.checkedIndex,
+			allocatedShift  : this.state.shift,
+			// fromDate        : this.refs.fromDate.value,
+			// toDate          : this.refs.toDate.value,
+			// weeklyOff       : this.refs.weeklyOff.value,
+			createdAt      	   : this.state.createdAt,
+			// createdBy       : this.refs.createdBy.value,
+
+	
+
+		};
+		// var empShift = shiftCheck.concat(shift);
+		// console.log("empShift = ",empShift);
+
+
+		if(this.state.action == "Submit"){
+				Meteor.call("insertShiftDetails",shiftDetails,
+											(error,result)=>{
+												if(error){
+												
+
+													console.log("Something went wrong! Error = ", error);
+												}else{
+													
+													// swal("Congrats!","Your Information Submitted Successfully.","success");
+													console.log("latest id = ",result);
+													// $(".modal-backdrop").remove();
+												}
+											});
 		}else{
-			// $("."+shiftCheck).(this.state.getSvalue).val().hide();
+			shiftDetails._id = this.state.empId;
+			Meteor.call("updateShiftDetails",shiftDetails,
+										(error,result)=>{
+											if(error){
+												console.log("Something went wrong! Error = ", error);
+											}else{
+												swal("Congrats!","Employee Profile Updated Successfully.","success");
+												console.log("latest id = ",result);
+											}
+										});	
 		}
+
 	}
-	// submitShiftValue(event){
-
-	// 	event.preventDefault();
-
-	// 	var shiftCheck = this.state.checkedIndex;
- //    	var shift=this.state.getSvalue;
-	//     console.log("shiftCheck=",shiftCheck);
-	//     console.log("shift=",shift);
-
-	// 	if(this.state.action == "Submit"){
-	// 			Meteor.call("insertShiftValue",formValues,
-	// 										(error,result)=>{
-	// 											if(error){
-	// 												console.log("Something went wrong! Error = ", error);
-	// 											}else{
-	// 												swal("Congrats!","Your Information Submitted Successfully.","success");
-	// 												console.log("latest id = ",result);
-	// 												$(".modal-backdrop").remove();
-	// 											}
-	// 										});
-	// 	}else{
-	// 		formValues._id = this.state.empId;
-	// 		Meteor.call("updateBasicInfo2",formValues,
-	// 									(error,result)=>{
-	// 										if(error){
-	// 											console.log("Something went wrong! Error = ", error);
-	// 										}else{
-	// 											swal("Congrats!","Employee Profile Updated Successfully.","success");
-	// 											console.log("latest id = ",result);
-	// 										}
-	// 									});	
-	// 	}
-
-	// }
-	// hideModal(event) {
-	//   if (!event.target == modal) {
-	//     modal.style.display = "none";
-	//   }
-	// }
+	hideModal(event) {
+	  if (!event.target == modal) {
+	    modal.style.display = "none";
+	  }
+	}
 
 
 	render(){
@@ -380,8 +381,7 @@ class ShiftAllot extends Component{
 		}
 
 		const data = this.props.allEmp;
-		console.log("data",data)
-
+		// console.log("data",data)
 			return (
 
 				<div className="row">
@@ -428,8 +428,7 @@ class ShiftAllot extends Component{
 										return(
 											<tr key={index}>
 												<td> {index+1} </td>
-												<td className="text-left" data-toggle="modal" data-target="#empShiftHistory" onClick={this.displayEmpShiftHistory.bind(this)} > {emp.firstName} {emp.middleName} {emp.lastName} </td>
-												
+												<td className="text-left" data-toggle="modal" data-target="#empShiftHistory"  data-index={"E"+(index+1)} onClick={this.displayEmpShiftHistory.bind(this)} > {emp.firstName} {emp.middleName} {emp.lastName} </td>
 												<td className="checkboxContainer"> <input type="checkbox" id={"E"+(index+1)} data-index={"E"+(index+1)} onChange={this.checkAll.bind(this)} /><span className="checkmark1 text-center"></span> </td>
 													{this.getDateHeader().map(
 														(index,dt)=>{return (<th key={dt} className="checkboxContainer"> <input type="checkbox" className={"E"+empid()+" D"+(dt+1)} align="center" name="check" data-index={"E"+empid()+" D"+(dt+1)} data-toggle="modal" data-target="#shiftChangeModal"  onChange={this.deselectCheckbox.bind(this)}/><span className={this.state.selectCheck}>{this.state.valOfShift}</span></th>)}
@@ -463,7 +462,7 @@ class ShiftAllot extends Component{
 									})
 								}	
 							
-								<button className="col-lg-2 btn btn-primary customWidthBtn customBottomMargin30 customMargin15 pull-right" onClick={this.replaceCheckbox.bind(this)}> {this.state.action} </button>
+								<button className="col-lg-2 btn btn-primary customWidthBtn customBottomMargin30 customMargin15 pull-right" onClick={this.submitShiftValue.bind(this)}> {this.state.action} </button>
 							</div>
 				  	</div>
 {/********************************************shift Change Modal Start***********************************************
@@ -620,7 +619,9 @@ export default ShiftAllotContainer = withTracker(()=>{
 		"allShift" 		: allShiftData,
 		"allShifts" 	: allShiftsData,
 		
+		
 	}
+
 })(ShiftAllot);
 
 

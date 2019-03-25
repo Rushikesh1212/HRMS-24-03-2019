@@ -13,19 +13,24 @@ if(Meteor.isServer){
 }
 
 Meteor.methods({
-	"insertBasicInfo3" : function(formValues){
-		console.log(formValues);
+
+	
+	"insertShiftDetails" : function(shiftDetails){
+		console.log("shiftDetails=",shiftDetails);
 
 		var emp_id = ShiftAllocation.insert({
-										
-									"shiftName" 		: formValues.shiftName,	        
-							        "startTime" 		: formValues.startTime,	        
-							        "startTimeAmPm" 	: formValues.startTimeAmPm,	        
-							        "endTime" 			: formValues.endTime,	        
-							        "endTimeAmPm" 		: formValues.endTimeAmPm,	        
-							        "effectiveFrom" 	: formValues.effectiveFrom,	   
-							        "tillDate" 			: formValues.tillDate,					
+
+    								"shiftCheck"     : shiftDetails.shiftCheck,									
+									"allocatedShift" : shiftDetails.allocatedShift,
+									// "fromDate"   	 : shiftDetails.fromDate,
+									// "toDate" 		 : shiftDetails.toDate,
+									// "weeklyOff" 	 : shiftDetails.weeklyOff,
+									"createdAt" 	 : shiftDetails.createdAt,
+									"createdBy" 	 : shiftDetails.createdBy,
+									
+								
 								}, 
+
 								(error,result)=>{
 									if(error){
 										console.log(error);
@@ -40,46 +45,51 @@ Meteor.methods({
 		return emp_id;
 	},	
 
-	"updateBasicInfo2" : function(formValues){
-		console.log(formValues);
+	// "updateShiftDetails" : function(shiftDetails){
+	// 	console.log(shiftDetails);
 
-		var emp_id = ShiftAllocation.update(
-								{"_id": formValues._id},
-								{$set : {
-													"shiftName" 		: formValues.shiftName,	        
-											        "startTime" 		: formValues.startTime,	        
-											        "startTimeAmPm" 	: formValues.startTimeAmPm,	        
-											        "endTime" 			: formValues.endTime,	        
-											        "endTimeAmPm" 		: formValues.endTimeAmPm,	        
-											        "effectiveFrom" 	: formValues.effectiveFrom,	   
-											        "tillDate" 			: formValues.tillDate,					
-												}
-								},
-								(error,result)=>{
-									if(error){
-										console.log(error);
-										return;
-									}else{
-										console.log(result);
-										return;
-									}
-								}
-							);
+	// 	var emp_id = ShiftAllocation.update(
+	// 							{"_id": formValues._id},
+	// 							{$set : {
+ //    								// 			"shiftCheck"     : shiftDetails.shiftCheck,
+	// 											// "allocatedShift" : shiftDetails.allocatedShift,
+	// 											"fromDate"   	 : shiftDetails.fromDate,
+	// 											"toDate" 		 : shiftDetails.toDate,
+	// 											"weeklyOff" 	 : shiftDetails.weeklyOff,
+	// 											"createdAt" 	 : shiftDetails.createdAt,
+	// 											"createdBy" 	 : shiftDetails.createdBy,			
+	// 									}
+	// 							},
+	// 							(error,result)=>{
+	// 								if(error){
+	// 									console.log(error);
+	// 									return;
+	// 								}else{
+	// 									console.log(result);
+	// 									return;
+	// 								}
+	// 							}
+	// 						);
 
-		return emp_id;
-	},
+	// 	return emp_id;
+	// },
 
-	"deleteAllotedShift2" : function(empid){
-		ShiftAllocation.remove({"_id":empid}, (error,result)=>{
-				if(error){
-					return error;
-					console.log(error);
-				}else{
-					return result;
-				}
-		});
+	// "deleteAllotedShift2" : function(empid){
+	// 	ShiftAllocation.remove({"_id":empid}, (error,result)=>{
+	// 			if(error){
+	// 				return error;
+	// 				console.log(error);
+	// 			}else{
+	// 				return result;
+	// 			}
+	// 	});
 
-		return;
-	}
+	// 	return;
+	// }
 
 });
+
+
+
+
+
