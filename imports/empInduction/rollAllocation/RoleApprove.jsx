@@ -102,7 +102,7 @@ class RoleApprove extends Component{
 
 export default withTracker(()=>{
 	
-	const empSubHandle = Meteor.subscribe("allEmpData1");
+	const empSubHandle = Meteor.subscribe("allEmpData");
 	const EmpData = EmpMaster.find({}).fetch()||[{}];
 	
 	let data =EmpData;

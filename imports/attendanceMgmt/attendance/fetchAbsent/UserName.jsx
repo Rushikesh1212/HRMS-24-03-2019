@@ -52,15 +52,15 @@ export default class UserName extends Component{
 				<div className="row">
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						
-						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-primary text-center header">
+						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-primary text-center m-header">
 				    		<h3> Absentee Attendance Record For Manager For Specific Employee </h3>
 						</div>
 					</div>
 			
 
-							 <div className="col-lg-10 col-md-2 col-sm-2 col-xs-2 form-group">
+							 <div className="col-lg-10 col-md-2 col-sm-2 col-xs-2 m-form-group m-form-group">
       							<p>Employee Name
-      							<input type="employee" className="form-control" id="employee" ref="empName" placeholder="Xxxxx xxxx" name="employeename" onChange={this.getUserName.bind(this)}>
+      							<input type="employee" className="m-form-control form-control" id="employee" ref="empName" placeholder="Xxxxx xxxx" name="employeename" onChange={this.getUserName.bind(this)}>
    								</input></p>
    									<DataAbsent  userName={this.state.userName}/>
       							</div>

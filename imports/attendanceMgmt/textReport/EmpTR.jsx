@@ -120,7 +120,19 @@ class EmpTR extends Component{
 							<p className="form_label pull-left">Employee Id :</p>
 							
 							<div className="col-lg-2 pull-left form_text">
-								<div> dev_101 </div>
+
+								{ 
+										 	this.props.firstTable.map((no,i) => {
+		           						 	return(
+
+		           						 		<div key={i}>{no.E_Code}</div>
+		            					
+		            						);
+            						
+        	 					 			})
+       						 			}	
+
+								
 								
 							</div>
 						</div>
@@ -130,10 +142,10 @@ class EmpTR extends Component{
 						
 						<div className=" pull-left">
 
-							 <div className="dropdown">
-								  <button className="btn btn-primary dropdown-toggle form_text" type="button" data-toggle="dropdown">Monthly
-								  <span className="caret"></span></button>
-								  <ul className="dropdown-menu">
+							 <div class="dropdown">
+								  <button class="btn btn-primary dropdown-toggle form_text" type="button" data-toggle="dropdown">Monthly
+								  <span class="caret"></span></button>
+								  <ul class="dropdown-menu">
 								    <li><a href="#" className="form_text">Jan</a></li>
 								    <li><a href="#"  className="form_text">Feb</a></li>
 								    <li><a href="#"  className="form_text">Mar</a></li>
@@ -161,14 +173,29 @@ class EmpTR extends Component{
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr>
-				        <td>21 Days</td>
-				        <td>2 Days</td>
-				        <td>3 Days</td>
-				        <td>10 Days</td>
-				        <td>5 Days</td>
-				      </tr>
-				     
+
+				    					{ 
+										 	this.props.firstTable.map((no,i) => {
+		           						 	return(
+
+		           						 		<tr key={i}>
+
+		           						 		<td>{no.presentCount} days</td>
+		           						 		<td>{no.leaveCount} days</td>
+		           						 		<td>{no.absenteCount} days</td>
+		           						 		<td>{no.publicHoliCount} days</td>
+		           						 		<td>{no.companyHoliCount} days</td>
+
+		           						 		</tr>
+		            						
+		            									
+											
+		            						);
+            						
+        	 					 			})
+       						 			}	
+
+				      
 				    </tbody>
 				  </table>
 				</div>
@@ -177,7 +204,7 @@ class EmpTR extends Component{
 					
 						
 			    	<div className="row col-lg-12" >
-					<table   className="table table-striped text-center col-lg-10 col-lg-offset-2">
+					<table   className="table table-striped text-center">
 						<thead className="t_head">
 							<tr> 
 								
@@ -221,21 +248,7 @@ class EmpTR extends Component{
         	 					 			})
        						 			}	
 											
-												
-												
-
-												
-												
-											
-
-											 
-
-										
-
-									
-							
-								
-							
+			
 						</tbody>
 
 					</table>
@@ -284,6 +297,15 @@ export default withTracker(()=>{
 		let attendance=[];
 
 	let dailyAtt=[];
+	// above table
+	let firstTable=[];
+	let presentCount=0;
+	let leaveCount=0;
+	let absenteCount=0;
+	let publicHoliCount=0;
+	let companyHoliCount=0;
+
+	//
 
 	
 	
@@ -314,7 +336,7 @@ export default withTracker(()=>{
 			let DailyRecord = 
 			{
 				Date: data[i].dailyAttendance[j].Date,
-				shift: data[i].dailyAttendance[j].shift,
+				shift: data[i].dailyAttendance[j].Shift,
 				InTime: data[i].dailyAttendance[j].InTime,
 				OutTime : data[i].dailyAttendance[j].OutTime,
 				Status: data[i].dailyAttendance[j].Status,
@@ -332,8 +354,33 @@ export default withTracker(()=>{
 
 			
 		}
+			let upperTable={
+						E_Code:data[i].E_Code,
+						presentCount:presentCount,
+						leaveCount:leaveCount,
+						absenteCount:absenteCount,
+						publicHoliCount:publicHoliCount,
+						companyHoliCount:companyHoliCount,
+
+					}
+
+					presentCount=0;
+					leaveCount=0;
+					absenteCount=0;
+					publicHoliCount=0;
+					companyHoliCount=0;
+
+
+
+
+					if(upperTable.presentCount){
+						firstTable.push(upperTable)
+					}
 
 	}
+
+	console.log("here attendance data",dailyAtt);
+	console.log("firstTable",firstTable);
 
 	// console.log("here attendance data",dailyAtt);
 
@@ -345,6 +392,7 @@ export default withTracker(()=>{
 		"oneEmp" 			: oneEmpData,
 		"dailyAttendance"	: dailyAtt,
 		"netHours"			: netHours,
+		"firstTable"		: firstTable,
 	
 	}
 })(EmpTR);

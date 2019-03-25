@@ -1,11 +1,14 @@
-/*body {
-  background-color: white;
-  font-family: sans-serif;
+.calendar {
+    display: block;
+    padding-left: 1px;
+    position: absolute;
+    width: auto;
+    background: var(--neutral-color);
+    border: 1px solid #171616;
 }
-
 table.calendar {
   border-collapse: inherit;
-
+  /*margin: auto;*/
 }
 
 table.calendar thead {
@@ -21,7 +24,7 @@ table.calendar thead th {
   font-weight: bolder;
     padding: 10px 12px;
     border-right: 0.2px solid black;
-
+    /* border-left: 0.2px solid black; */
     border-top: 0.4px solid black;
     border-bottom: 0.4px solid black;
 }
@@ -77,7 +80,12 @@ table.calendar td.half {
   background-color: #f0ad4e;
    color: black;
 }
-
+/*table.calendar td.summer {
+  background-color: rgba(255, 232, 91, 0.32);
+}
+table.calendar td.autumn {
+  background-color: rgba(246, 151, 60, 0.32);
+}*/
 table.calendar td.present {
   font-weight: bold;
    color: black;
@@ -144,6 +152,8 @@ div.calendar-controls .today {
   text-transform: uppercase;
 }
 
+/* Demo */
+
 div#calendar {
   position: relative;
      border-radius: 5px; 
@@ -157,25 +167,6 @@ div#root {
   margin: 50px auto;
 }
 
-h2,h3,h4,h5 {
-  text-align: center;
-  color: #404040;
-}
-
-h1 {
-  text-align: center;
-  color: #B10909;
-}
-
-a {
-  color: #B10909;
-  font-weight: bolder;
-  text-decoration: none;
-}
-
-a.demoLink {
-  text-decoration: underline;
-}
 
 div.options {
   border: 1px solid #B9B9B9;
@@ -220,4 +211,3 @@ p.interactiveDemo i {
   font-family: monospace;
   padding: 2px 5px;
 }
-*/

@@ -5,12 +5,12 @@ export const EmpMaster = new Mongo.Collection('empMasterA');
 
 
 if(Meteor.isServer){
-	Meteor.publish("empData1",function(empid){
+	Meteor.publish("empData",function(empid){
 		var empprof = EmpMaster.find({"_id":empid});
 		return empprof;
 	});
 
-		Meteor.publish("allEmpData1",function(){
+		Meteor.publish("allEmpData",function(){
 		var allEmp = EmpMaster.find({});
 		console.log("data",allEmp);
 		return allEmp;

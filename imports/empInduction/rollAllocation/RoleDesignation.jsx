@@ -279,13 +279,13 @@ export default withTracker(()=>{
 	}else{
 		var urlEmpId = 0;
 	}
-	var empSub = Meteor.subscribe("empData1",urlEmpId);
+	var empSub = Meteor.subscribe("empData",urlEmpId);
 
 	var empIdCont = FlowRouter.getParam("empid");
 	Meteor.subscribe("empData",empIdCont);
 
 	
-	const empSubHandle = Meteor.subscribe("allEmpData1");
+	const empSubHandle = Meteor.subscribe("allEmpData");
 	const EmpData = EmpMaster.find({}).fetch()||[{}];
 	
 

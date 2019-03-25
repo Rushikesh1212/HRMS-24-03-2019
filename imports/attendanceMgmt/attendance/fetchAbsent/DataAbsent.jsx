@@ -88,7 +88,7 @@ class DataAbsent extends Component{
 							
                         
 
-						<table id="table-to-xls" className="col-lg-2  table table-bordered table-condensed w-auto table-hovered table-striped absentDataTable">
+						<table id="table-to-xls" className="col-lg-2  table m-table table-bordered table-condensed w-auto table-hovered table-striped absentDataTable">
 							<thead>
 								<tr className="bg-primary"> 
 									  

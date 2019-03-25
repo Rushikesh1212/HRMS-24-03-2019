@@ -11,9 +11,7 @@
 	background-color: #eee;
 }
 
-.container {
-    width: 0px !important;
-}
+
 .borderCustom{
 	border: transparent;
 	background: transparent;
@@ -25,9 +23,55 @@
 
 }
 
-/*
-.header{
+/*input.placeholder,
+textarea.placeholder {
+  color: gray;
+  font-style: italic;
+}*/
+
+
+/*.input-group{
+	height: 180px;
+	width: 110px;
+
+}
+
+.form-control{
+    margin-top: 88px;
+    margin-left: -936px;
+}*/
+
+.m-header{
 	margin-top: 20px;
 }
-*/
 
+p{
+	font-weight: normal;
+}
+
+.m-form-group{
+display: inline-block;
+margin-bottom: 0;
+vertical-align: middle;
+margin-left: 5px;
+margin-top: 7px;
+}
+
+.m-form-control {
+
+    display: inline;
+    width: 9%;
+    height: 33px;
+    padding: 1px 9px;
+    margin-left: 10px;
+    }
+
+.m-table {
+
+    width: 30%;
+    max-width: 100%;
+    margin-bottom: 20px;
+
+    margin-top: 35px;
+    margin-left: 398px;
+}

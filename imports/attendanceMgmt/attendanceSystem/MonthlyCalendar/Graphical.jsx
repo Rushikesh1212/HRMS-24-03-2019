@@ -21,14 +21,14 @@ class Graphical extends React.Component {
       <div className="header row1 flex-middle">
         <div className="col col-start">
           <div className="icon" onClick={this.prevMonth}>
-            <i className="fas fa-chevron-left"></i>
+            <i className="fa fa-chevron-left"></i>
           </div>
         </div>
         <div className="col col-center">
           <span>{dateFns.format(this.state.currentMonth, dateFormat)}</span>
         </div>
         <div className="col col-end" onClick={this.nextMonth}>
-          <div className="icon"><i className="fas fa-chevron-right"></i></div>
+          <div className="icon"><i className="fa fa-chevron-right"></i></div>
         </div>
       </div>
     );
@@ -64,25 +64,26 @@ class Graphical extends React.Component {
     let days = [];
     let adays = [];
     let pdays = [];
+    let hdays = [];
+    let wodays = [];
     let day = startDate;
     let formattedDate = "";
-    console.log("day",day);
-    console.log("endday",endDate);
-    console.log("monthStart",monthStart);
-    console.log("monthEnd",monthEnd);
-    console.log("startDate",startDate);
+
     for(let j=0;j<this.props.presentDays.length;j++){
-       pdays[j] = dateFns.format(this.props.presentDays[j], "ddd MMM DD YYYY"); 
+       pdays[j] = this.props.presentDays[j]; 
     } 
     for(let j=0;j<this.props.absentDays.length;j++){
-       adays[j] = dateFns.format(this.props.absentDays[j], "ddd MMM DD YYYY"); 
+       adays[j] = this.props.absentDays[j]; 
+    } 
+    for(let j=0;j<this.props.halfDays.length;j++){
+       hdays[j] = this.props.halfDays[j]; 
+    } 
+    for(let j=0;j<this.props.weekOffDays.length;j++){
+       wodays[j] = this.props.weekOffDays[j]; 
     } 
     
          while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
-              console.log("pdays[",i,"] = ", pdays[i]);
-              console.log("adays[",i,"] = ", adays[i]);
-              console.log("day = ", day);
 
               formattedDate = dateFns.format(day, "D");
               days.push(
@@ -90,10 +91,14 @@ class Graphical extends React.Component {
                   className={`col cell ${
                       !dateFns.isSameMonth(day, monthStart)
                       ? "disabled"
-                      : pdays.includes(day) 
+                      : pdays.includes(dateFns.format(day, "YYYY-MM-DD")) 
                       ? "present" 
-                      : adays.includes(day)
-                      ? "absent" 
+                      : adays.includes(dateFns.format(day, "YYYY-MM-DD"))
+                      ? "absent"
+                      : hdays.includes(dateFns.format(day, "YYYY-MM-DD"))
+                      ? "half"
+                      : wodays.includes(dateFns.format(day, "YYYY-MM-DD"))
+                      ? "wOff"
                       : "x"
                   }`}
                   key={day}
@@ -132,7 +137,7 @@ class Graphical extends React.Component {
   render() {
     
     return (
-      <div className="calendar">
+      <div className="monthlycalendar">
         {this.renderHeader()}
         {this.renderDays()}
         {this.renderCells()}
@@ -162,10 +167,11 @@ export default withTracker(()=>{
   let presentDays = [];
   let absentDays = [];
   let halfDays = [];
+  let weekOffDays = [];
   
   for(var i=0; i<empRecord.length;i++){
       if(empRecord[i].Status == "P"){
-         presentDays.push(empRecord[i].Date);    
+         presentDays.push(empRecord[i].Date);
       }   
       if(empRecord[i].Status == "A"){
         absentDays.push(empRecord[i].Date);  
@@ -173,17 +179,19 @@ export default withTracker(()=>{
       if(empRecord[i].Status == "H"){
         halfDays.push(empRecord[i].Date);  
       }
+      if(empRecord[i].Status == ""){
+        weekOffDays.push(empRecord[i].Date);  
+      }
     }
-  // console.log("presentDays=",presentDays);
-  // console.log("absentDays=",absentDays);
-  // console.log("halfDays=",halfDays);
 
+console.log("weekOffDays",weekOffDays)
 
   return{
-      "loading" : !dataHandle.ready(),
+      "loading"         : !dataHandle.ready(),
       "finalAttendance" : finalAttendanceData,
-      "presentDays": presentDays,
-      "absentDays": absentDays,
-      "halfDays": halfDays,
+      "presentDays"     : presentDays,
+      "absentDays"      : absentDays,
+      "halfDays"        : halfDays,
+      "weekOffDays"     : weekOffDays,
   }
 })(Graphical);  

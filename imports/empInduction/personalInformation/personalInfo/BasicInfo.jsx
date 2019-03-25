@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import './BasicInfo.css'
 function BasicInfo(){
 
 
@@ -10,7 +10,7 @@ function BasicInfo(){
           <form className="col-lg-12">
           <div className=" col-md-12 col-sm-12 col-xs-12 ">
             <div className=" col-md-4 col-sm-6 col-xs-12 ">
-              <img src="/images/profile.png" className="img-responsive img-circle"/>
+              <img src="/images/profile.png" className="img-responsive img-circle imgProfile"/>
               <input type="file" placeholder="Upload profile photo" />
             </div>
           </div>
@@ -125,146 +125,8 @@ function BasicInfo(){
            </div>
         </div>
 	   
-	 
-
-	         
-        
-         <div className=" col-md-12 col-sm-6 col-xs-12 ">
-             <h2>Local Address</h2>
-                <label> Address Line1</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-              </div>
 
 
-         <div className=" col-md-12 col-sm-6 col-xs-12 ">
-                <label> Address Line2</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-         </div>
-
-          
-          <div className=" col-md-12 col-sm-6 col-xs-12 ">
-           <div className="row">
-             <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label> District</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-
-              </div>
-
-            <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label> Area/Suburb</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-              </div>
-
-
-            <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label> State</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-              </div>
-
-
-            <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Country</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-              </div>
-
-            <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Pin Code</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-              </div>
-
-
-            <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Resident Landline Number</label>
-                  <div className="form-group">
-                	 <input type="text" name1="text" className="form-control" placeholder="" />
-                  </div>
-            </div>
-
-
-
-           </div>
-        </div>
-
-
-        <div className=" col-md-12 col-sm-6 col-xs-12 ">
-          <h2>Contact Details</h2>
-             <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Mobile *</label>
-             <div className="form-group">
-               <input type="text" name1="text" className="form-control" placeholder="" />
-             </div>
-           </div>
-
-       <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Alternate Private Number *</label>
-             <div className="form-group">
-               <input type="text" name1="text" className="form-control" placeholder="" />
-             </div>
-           </div>
-
-
-       <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Fax Number</label>
-             <div className="form-group">
-               <input type="text" name1="text" className="form-control" placeholder="" />
-             </div>
-        </div>
-
-
-
-        <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Office Desk Direct Number</label>
-             <div className="form-group">
-               <input type="text" name1="text" className="form-control" placeholder="" />
-             </div>
-        </div>
-
-
-        <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Office Desk Extension</label>
-             <div className="form-group">
-               <input type="text" name1="text" className="form-control" placeholder="" />
-             </div>
-        </div>
-
-
-         <div className=" col-md-12 col-sm-6 col-xs-12 ">
-            <div className="row">
-              <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Official Mail ID</label>
-                 <div className="form-group">
-                  <input type="text" name1="text" className="form-control" placeholder="" />
-             </div>
-            </div>
-          
-
-
-            <div className="row">
-              <div className=" col-md-4 col-sm-6 col-xs-12 ">
-               <label>Official Mail ID</label>
-                 <div className="form-group">
-                  <input type="text" name1="text" className="form-control" placeholder="" />
-             </div>
-            </div>
-          </div>
-
-             </div>
-            </div> 
-           </div>
           
        <div className="col-lg-12" >
            <button className="submit  btn pull-right">Submit</button>

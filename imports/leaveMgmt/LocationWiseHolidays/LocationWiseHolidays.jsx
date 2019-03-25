@@ -17,7 +17,7 @@ import Calender from '/imports/leaveMgmt/LocationWiseHolidays/Calender/Calender.
 class LocationWiseHolidays extends Component{
 	constructor(props){
 	
-		var newDate = new Date();
+
 		super(props);
 		this.state = {
 				fields:{},
@@ -25,7 +25,7 @@ class LocationWiseHolidays extends Component{
 				year: "",
 				location:"",
 				holidays:[
-					{date: "", holidayName: ""},
+							{date: "", holidayName: ""},
 				],
 				createdAt: new Date(),
 				createdBy: "",
@@ -59,8 +59,11 @@ class LocationWiseHolidays extends Component{
 			year 	  : newYear1,
 			location  : this.refs.location.value.toUpperCase(),
 			holidays  : [
-					{date: this.refs.date.value, holidayName: this.refs.holidayName.value.toUpperCase()},
-				],
+							{
+								date: this.refs.date.value, 
+								holidayName: this.refs.holidayName.value.toUpperCase()
+							},
+						],
 			createdAt : this.state.createdAt,
 			createdBy : "Rushikesh Salunkhe",	
 		};
@@ -132,8 +135,11 @@ class LocationWiseHolidays extends Component{
 			year 	  : newYear1,
 			location  : this.refs.location.value,
 			holidays  : [
-					{date: this.refs.date.value}, {holidayName: this.refs.holidayName.value},
-				],
+							{
+								date: this.refs.date.value, 
+								holidayName: this.refs.holidayName.value
+							},
+						],
 			createdAt : this.state.createdAt,
 			createdBy : "Rushikesh Salunkhe",	        
     });

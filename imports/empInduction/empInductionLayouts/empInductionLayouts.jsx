@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 
-import Header from "/imports/common/Header/Header.jsx";
-import Footer from "/imports/common/Footer/Footer.jsx";
-import Sidebar from "/imports/common/Sidebar/Sidebar.jsx";
-
-
+import Header from "/imports/empInduction/common/Header/Header.jsx";
+import Footer from "/imports/empInduction/common/Footer/Footer.jsx";
+import Sidebar from "/imports/empInduction/common/Sidebar/Sidebar.jsx";
 
 export const empInductionLayouts = ({main})=>(
 	<div className="container-fluid">

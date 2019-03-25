@@ -6,7 +6,7 @@ import { Calendar, CalendarControls } from 'react-yearly-calendar';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Attendance } from '/imports/attendanceMgmt/attendanceSystem/MonthlyCalendar/apiGraphical.js';
 
-import '/imports/attendanceMgmt/attendanceSystem/src/style.css';
+
 import '/imports/attendanceMgmt/attendanceSystem/src/customStyle.css';
 
 class FinalYearCalendar extends React.Component {

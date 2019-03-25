@@ -480,7 +480,7 @@
 
    <div className="col-lg-12 ">
     <div className="col-lg-1 col-lg-offset-11">
-    <button className="btn submit pull-right"onClick={this.Submit.bind(this)}>Submit</button>
+    <button className="btn btn_mt submit pull-right"onClick={this.Submit.bind(this)}>Submit</button>
     </div>
    </div>  
  </form>

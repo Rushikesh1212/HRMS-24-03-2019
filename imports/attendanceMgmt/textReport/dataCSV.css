@@ -23,9 +23,14 @@
 	line-height: normal;
 }
 
-
+.t_head th{
+	text-align: center;
+}
 
 .upperpart{
 	padding-bottom: 20px;
 }
 
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #f2f2f2;
+}
