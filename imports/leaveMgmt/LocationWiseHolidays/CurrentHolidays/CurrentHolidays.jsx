@@ -1,3 +1,10 @@
+/*
+	Module Name     - 	LocationWise Holidays
+	Component Name  - 	Show Holidays Year And location wise to particular user
+	Developer Name  -   Rushikesh Dipak Salunkhe
+	Date            -   26/03/2019
+*/
+
 import React, {Component} from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 
@@ -72,7 +79,6 @@ class CurrentHolidays extends Component{
 
 export default withTracker((props)=>{
 	const yearSubHandle = Meteor.subscribe("allLwhData");
-	const allyearData = LwhMaster.find({}).fetch()||[{}];
 
 	//===================Fetech Year wise Data======================
 	var CurrentDate=new Date();
@@ -108,7 +114,6 @@ export default withTracker((props)=>{
 	var result =  {
 
 		"loading"					  : !yearSubHandle.ready(),
-		"allyear" 					  : allyearData,
 		"listOfHolidays"			  : listOfHolidays,
 
 	};

@@ -10,18 +10,6 @@ if(Meteor.isServer){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 Meteor.methods({
 	"insertleaveform" : function(leave){
 		console.log("=============",leave);

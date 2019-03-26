@@ -1,3 +1,10 @@
+/*
+  Module Name     -   LocationWise Holidays
+  Component Name  -   Calender to show holidays
+  Developer Name  -   Rushikesh Dipak Salunkhe
+  Date            -   26/03/2019
+*/
+
 import React, {Component} from 'react';
 import { LwhMaster } from '/imports/leaveMgmt/LocationWiseHolidays/lwhMaster.js';
 import { withTracker } from 'meteor/react-meteor-data';

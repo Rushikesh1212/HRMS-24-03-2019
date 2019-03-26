@@ -1,3 +1,10 @@
+/*
+	Module Name     - 	Location Wise Holidays
+	Component Name  - 	Holiday Added Form , React Table Component, Calender Componet 
+	Developer Name  -   Rushikesh Dipak Salunkhe
+	Date            -   26/03/2019
+*/
+
 import React, {Component} from 'react';
 import "/imports/leaveMgmt/LocationWiseHolidays/LocationWiseHolidays.css";
 import { withTracker } from 'meteor/react-meteor-data';
@@ -442,7 +449,6 @@ return (
 export default withTracker((props)=>{
 	const empSubHandle = Meteor.subscribe("allLwhData");
 	const allLwhData1 = LwhMaster.find({}).fetch()||[{}];
-	const oneLwhData=LwhMaster.findOne({})||{};
 	const allLwhData=allLwhData1.sort((a, b) => (b.createdAt - a.createdAt))
 	return {
 		"loading"		: !empSubHandle.ready(),

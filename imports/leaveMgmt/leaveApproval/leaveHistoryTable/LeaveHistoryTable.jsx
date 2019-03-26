@@ -7,9 +7,6 @@ import { LeaveApproval } from "/imports/leaveMgmt/leaveApproval/leaveapproval.js
 
 class LeaveHistoryTable extends Component{
 
-  
-
-
 
   render(){
 	// const data = [{

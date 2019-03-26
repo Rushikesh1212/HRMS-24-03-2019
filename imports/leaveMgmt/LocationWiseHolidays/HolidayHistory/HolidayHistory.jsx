@@ -1,3 +1,11 @@
+/*
+	Module Name     - 	LocationWise Holidays
+	Component Name  - 	Show Holidays year and location wise
+	Developer Name  -   Rushikesh Dipak Salunkhe
+	Date            -   26/03/2019
+*/
+
+
 import React, {Component} from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 

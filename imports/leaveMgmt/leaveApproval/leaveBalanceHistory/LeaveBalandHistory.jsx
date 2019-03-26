@@ -15,8 +15,6 @@ export default class LeaveBalandHistory extends Component{
 
   render(){
 
-		
-
 		return(
 
 			<div>
