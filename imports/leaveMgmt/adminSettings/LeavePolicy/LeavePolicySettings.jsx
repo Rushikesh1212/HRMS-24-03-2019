@@ -75,7 +75,8 @@ class LeavePolicySettings extends Component{
 			})
 
 		}
-		else{
+		else
+		{
 		this.setState({									// Emptying Textfield Values
 			"MaxLeavesPerYear" 				: '',
 			"NumOfTimesPerYear" 			: '',
@@ -107,7 +108,8 @@ class LeavePolicySettings extends Component{
 
 // ========================================== Operations On Data ====================================================
 
-	editModal(row){
+	editModal(row)
+	{
 		var rowId = row._id;
 		console.log("rowId",row);
 
@@ -124,7 +126,7 @@ class LeavePolicySettings extends Component{
 
 	handleChangeModal(event){
 		event.preventDefault();
-	this.setState({	
+		this.setState({	
 			"recordIdModal"						: this.state.recordIdModal,	
 			"MaxLeavesPerYearModal" 			: this.refs.MaxLeavesPerYearModal.value,
 			"NumOfTimesPerYearModal" 			: this.refs.NumOfTimesPerYearModal.value,
@@ -335,7 +337,7 @@ class LeavePolicySettings extends Component{
 													    	<div className="form-group col-lg-4 col-md-4 col-sm-6">
 													    		<label className="fz16">Max Leaves Allowed / Year</label>
 													    		<div className="input-group">
-														    		<input type="text" value={this.state.MaxLeavesPerYearModal} placeholder="Enter Here" ref="MaxLeavesPerYearModal" className="form-control inputBox" onChange={this.handleSelectionModal.bind(this)} />
+														    		<input type="text" value={this.state.MaxLeavesPerYearModal} placeholder="Enter Here" ref="MaxLeavesPerYearModal" className="form-control inputBox" onChange={this.handleChangeModal.bind(this)} />
 														    	</div>
 													    	</div>
 													    	<div className="form-group col-lg-8 col-md-4 col-sm-6">
@@ -366,7 +368,7 @@ class LeavePolicySettings extends Component{
 															<div className="col-lg-12 col-md-4 col-sm-6">	
 																
 																<button className="col-lg-2 col-md-4 col-sm-6 btn submitbtn btn-primary " onClick={this.updateData.bind(this)}>Update</button>
-															    <button type="button" className="btn btn-default col-lg-2 col-md-4 col-sm-6 " data-dismiss="modal">Close</button>
+															    <button type="button" className="btn btn-default col-lg-offset-1 col-lg-2 col-md-4 col-sm-6 " data-dismiss="modal">Close</button>
 
 															</div>
 														</div>
@@ -377,8 +379,7 @@ class LeavePolicySettings extends Component{
         							</div>
         							<div className="modal-footer">
       								</div>
-						      </div>
-						      
+						      </div>	      
 						    </div>
   						</div>
 					</div>				
@@ -471,7 +472,6 @@ class LeavePolicySettings extends Component{
  									/>
 
 								</div>
-
 							</div>
 						</div>
 			    	</div>
@@ -484,10 +484,10 @@ class LeavePolicySettings extends Component{
 export default withTracker(()=>{
 	
 
-	const empSubHandle = Meteor.subscribe("allEmpData");
-	const allEmpData = LeaveMgmt.find({}).fetch()||[{}];
-	console.log(allEmpData);
+	const empSubHandle = Meteor.subscribe("allLeaveData");
+	const allLeaveData = LeaveMgmt.find({}).fetch()||[{}];
+	console.log(allLeaveData);
 	return {
-		"allData" 		: allEmpData,
+		"allData" 		: allLeaveData,
 	}
 })(LeavePolicySettings);

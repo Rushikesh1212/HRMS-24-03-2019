@@ -3,12 +3,12 @@ import { Mongo } from 'meteor/mongo';
 export const LeaveMgmt = new Mongo.Collection('leaveMgmt');
 
 if(Meteor.isServer){
-	Meteor.publish("empData",function(recordid){
+	Meteor.publish("settingsLeaveData",function(recordid){
 		var empprof = LeaveMgmt.find({"_id":recordid});
 		return empprof;
 	});
 
-	Meteor.publish("allEmpData",function(){
+	Meteor.publish("allLeaveData",function(){
 		var allData = LeaveMgmt.find({});
 		return allData;
 	});

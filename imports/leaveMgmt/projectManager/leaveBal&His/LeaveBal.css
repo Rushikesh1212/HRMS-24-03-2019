@@ -1,0 +1,5 @@
+.pad10
+{
+	padding:80px;
+}
+.pad10 tr:nth-child(last) {background-color: #f2f2f2;}

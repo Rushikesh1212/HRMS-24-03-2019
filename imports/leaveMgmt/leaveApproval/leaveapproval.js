@@ -15,11 +15,14 @@ Meteor.methods({
 		console.log("=============",leave);
 
 		var leaveform = LeaveApproval.insert({
-									"lt"   : leave.lt,
-						  		"from" : leave.from,
-						  		"to"   : leave.to,
-						  		"nwd"  : leave.nwd,
-						  		"rsn"  : leave.rsn,
+								
+								"leaveType" : leave.leaveType,
+						  		"fromDate" 	: leave.fromDate,
+						  		"toDate"   	: leave.toDate,
+						  		"numOfDays" : leave.numOfDays,
+						  		"remark"  	: leave.remark,
+						  		"status"	: "Pending"
+
 								}, 
 
 								(error,result)=>{
@@ -41,7 +44,7 @@ Meteor.methods({
 		console.log("=============",leave1);
 
 		LeaveApproval.insert({
-									"date"   : leave1.date,
+								"date"   : leave1.date,
 						  		"intime" : leave1.intime,
 						  		"outitme": leave1.outtime,
 						  		"rsn1"   : leave1.rsn1,
@@ -65,7 +68,7 @@ Meteor.methods({
 		console.log("=============",leave2);
 
 		LeaveApproval.insert({
-									"date1"   : leave2.date1,
+								"date1"   : leave2.date1,
 						  		"intime1" : leave2.intime1,
 						  		"rsn2"   : leave2.rsn2,
 								}, 
@@ -82,5 +85,17 @@ Meteor.methods({
 							);
 
 		return;
-	}	
+	},
+	"deleteLeaveData" : function(recordid){
+		LeaveApproval.remove({"_id":recordid}, (error,result)=>{
+				if(error){
+					return error;
+					console.log(error);
+				}else{
+					return result;
+				}
+		});
+
+		return;
+	},	
 })

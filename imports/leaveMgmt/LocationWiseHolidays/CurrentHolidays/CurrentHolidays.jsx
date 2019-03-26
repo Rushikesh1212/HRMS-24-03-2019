@@ -84,7 +84,7 @@ export default withTracker((props)=>{
 	var CurrentDate=new Date();
 	var year=CurrentDate.getFullYear();
 
-	const yearData = LwhMaster.find({"year":year , "location":"MUMBAI"}).fetch()||[{}];
+	const yearData = LwhMaster.find({"year":year , "location":"PUNE"}).fetch()||[{}];
 	console.log("yearData",yearData);
 	//=========================================================================================================
 	                                       // Create dummy array

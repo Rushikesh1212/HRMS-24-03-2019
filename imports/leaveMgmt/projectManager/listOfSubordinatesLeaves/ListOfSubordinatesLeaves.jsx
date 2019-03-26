@@ -7,6 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import 'react-table/react-table.css';
 import "./ListOfSubordinatesLeaves.css";
 
+import { LeaveApproval } from "/imports/leaveMgmt/leaveApproval/leaveapproval.js";
 import { ListOfLeave } from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/listOfSubordinatesLeaves.js";
 import ListOfRejectedLeaves from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/ListOfRejectedLeaves/ListOfRejectedLeaves.jsx";
 import ListOfSubordinatesLeavesForm from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/ListOfSubordinatesLeavesForm/ListOfSubordinatesLeavesForm.jsx";
@@ -27,8 +28,8 @@ class ListOfSubordinatesLeaves extends Component{
 			"Designation"			: "Unknown",
 			"LeaveType"				: "",
 			"WorkingDays"			: "",
-			"From":"",
-			"To":"",
+			"From"					: "",
+			"To"					: "",
 			"ReasonForLeaveRemark"	: "",
     		"isHidden"				: false,
 		};			
@@ -38,7 +39,7 @@ class ListOfSubordinatesLeaves extends Component{
 	{
 		var checkId = this.state.rowId;
 		var rowId = row._id;
-		if(checkId==rowId)
+		if(checkId == rowId)
 		{
 			swal({
 			  title: "Can't Delete Open Record....",
@@ -57,7 +58,7 @@ class ListOfSubordinatesLeaves extends Component{
 			})
 			.then((willDelete) => {
 			  if (willDelete) {
-					Meteor.call("deleteRejectedData",rowId,
+					Meteor.call("deleteLeaveData",rowId,
 											(error,result)=>{
 												if(error){
 													console.log("Something went wrong! Error = ", error);
@@ -89,31 +90,31 @@ class ListOfSubordinatesLeaves extends Component{
   		const columns = [
 		  	{
 		    Header: 'Emp ID',
-		    accessor: 'empId',
+		    accessor: 'rsn',
 		  	},
 		  	{
 		    Header: 'Leave Type',
-		    accessor: 'leaveType',
+		    accessor: 'lt',
 		  	},
 		  	{
 		  	Header: 'From Date',
-		    accessor: 'fromDate', 
+		    accessor: 'from', 
 		  	},
 		  	{
 		  	Header: 'To Date',
-		    accessor: 'toDate', 
+		    accessor: 'to', 
 		  	},
 		  	{
 		  	Header: 'No. of Days',
-		    accessor: 'numOfDays', 
+		    accessor: 'nwd', 
 		  	},		  	
 		  	{
 		  	Header: 'Remark',
-		    accessor: 'remark', 
+		    accessor: 'rsn', 
 		  	},		  	
 		  	{
 		  	Header: 'Status',
-		    accessor: 'status', 
+		    accessor: 'rsn', 
 		  	},
 		  	{
 		  	Header: 'View',
@@ -183,8 +184,8 @@ class ListOfSubordinatesLeaves extends Component{
 export default withTracker(()=>{
 	
 
-	const empSubHandle = Meteor.subscribe("allRecordData");
-	const allEmpData = ListOfLeave.find({}).fetch()||[{}];
+	const empSubHandle = Meteor.subscribe("leaveData");
+	const allEmpData = LeaveApproval.find({}).fetch()||[{}];
 	console.log(allEmpData);
 	return {
 		"allData" 		: allEmpData,
