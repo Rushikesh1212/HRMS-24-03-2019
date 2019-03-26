@@ -21,8 +21,8 @@ class HolidayHistory extends Component{
 		super(props);
 	
 		this.state = {
-				yearValue:2020,				
-		};		
+				yearValue:this.props.activeYear,				
+		}	
 		this.yearvalue=this.yearvalue.bind(this);	
 	}
 
@@ -38,6 +38,14 @@ class HolidayHistory extends Component{
 	}
 
 
+componentWillReceiveProps(nextProps){
+		if(!nextProps.loading){
+      		if(nextProps.activeYear){
+		       	this.setState({yearValue: nextProps.activeYear,});
+		  }
+  		}
+	}
+
 	//=========================================================================================================
 	                                               // Get year value
 	// ========================================================================================================
@@ -50,10 +58,7 @@ class HolidayHistory extends Component{
 		this.setState({
 			yearValue : yearvalue,
 		},()=>{
-			// console.log()
 		
-		console.log("new yearValue="+this.state.yearValue);
-
 		})
 	}
 
@@ -112,7 +117,7 @@ export default withTracker((props)=>{
 		let year_without_duplicates1 = Array.from(new Set(year));
 		let year_without_duplicates =year_without_duplicates1.sort((a, b) => (b - a));
 
-
+		let activeYear =year_without_duplicates[0];
 //======================================================================
 	
 	var result =  {
@@ -120,7 +125,8 @@ export default withTracker((props)=>{
 		"loading"					  : !yearSubHandle.ready(),
 		"allyear" 					  : allyearData,
 		"year_without_duplicates"	  : year_without_duplicates,
+		"activeYear"						  : activeYear,
 	};
-	console.log('result:',result.allyear);
+
 	return result;
 })(HolidayHistory);

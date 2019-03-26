@@ -75,6 +75,9 @@ class LocationWiseHolidays extends Component{
 		};
 		if(formValues.holidays[0].date!="" && formValues.holidays[0].holidayName!="")
 		{
+
+		
+
 				Meteor.call("insertBasicInfo",formValues,
 											(error,result)=>{
 												if(error){
@@ -82,6 +85,8 @@ class LocationWiseHolidays extends Component{
 												}else{
 													swal("Congrats!","Your Information Submitted Successfully.","success");
 													console.log("latest id = ",result);
+
+												
 												}
 											});	
 			}
@@ -206,8 +211,8 @@ class LocationWiseHolidays extends Component{
 	handleChangeModal(event){
 		event.preventDefault();
 
-		var mholidayName = this.refs.mholidayName.value;
 		var mlocation = this.refs.mlocation.value;
+		var mholidayName = this.refs.mholidayName.value;
 		var mdate=this.refs.mdate.value;
 
 		this.setState({"mlocation" : mlocation});
@@ -310,45 +315,46 @@ return (
 			
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 lws-btn-mb">
 							<div className="row">
-						    <div className="box col-lg-6 col-md-6 col-sm-12 col-xs-12 lws-btn-mb ">
-						    <form onChange={this.validate.bind(this)} >
-				    			<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							      	<label htmlFor="sel1" className="formLable">Select Location</label>
-							      	<div className="input-group">
-								    	 <span className="input-group-addon inputIcon"><i className="fa fa-map-pin"></i></span>
-							    	 	<select value={this.state.location} ref="location" className="form-control inputBox" onChange={this.handleChange1.bind(this)} id="sel1">
-									        <option>Mumbai</option>
-									        <option>Pune</option>
-									        <option>Delhi</option>
-									        <option>Banglore</option>
-									     </select>
-								    </div>
-				    			</div>
-	
+							    <div className="box col-lg-6 col-md-6 col-sm-12 col-xs-12 lws-btn-mb ">
+							    <form onChange={this.validate.bind(this)} >
+					    			<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								      	<label htmlFor="sel1" className="formLable">Select Location</label>
+								      	<div className="input-group">
+									    	 <span className="input-group-addon inputIcon"><i className="fa fa-map-pin"></i></span>
+								    	 	<select value={this.state.location} ref="location" className="form-control inputBox" onChange={this.handleChange1.bind(this)} id="sel1">
+										        <option hidden selected>Select Location</option>
+										        <option>MUMBAI</option>
+										        <option>PUNE</option>
+										        <option>DELHI</option>
+										        <option>BANGLORE</option>
+										     </select>
+									    </div>
+					    			</div>
+		
 
-						    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						    	 	<label className="formLable">Holiday Date</label><span className="text-danger">*</span><span id="holidayDate" className="text-danger"></span>
-							    	 <div className="input-group ">
-							    		<span className="input-group-addon inputIcon"><i className="fa fa-table"></i></span>
-							    		<input type="date" value={this.state.holidays.date} ref="date" className="form-control inputBox" id="holidayDate1" onChange={this.handleChange1.bind(this)}/>
-							    	</div>
-								</div>
-
-						    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				    	 			<label className="formLable">Holiday Name</label><span className="text-danger">*</span><span id="holidayFor" className="text-danger"></span>
-						    		<div className="input-group">
-							    		<span className="input-group-addon inputIcon"><i className="fa fa-user"></i></span>
-							    		<input type="text" value={this.state.holidays.holidayName} ref="holidayName" className="form-control inputBox" id="holidayFor1" onChange={this.handleChange1.bind(this)} onKeyDown={this.isTextKey.bind(this)}/>
-							    	</div>
-							    </div>
-
-							    <div className="row">
-								    <div className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 "> 	
-										<button className="col-lg-3 col-md-3 col-sm-3 col-xs-3 pull-right btn submit lws-btn-mb "id="submit" value="Submit" onClick={this.submitBasicInfo.bind(this)}> Submit</button>
+							    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							    	 	<label className="formLable">Holiday Date</label><span className="text-danger">*</span><span id="holidayDate" className="text-danger"></span>
+								    	 <div className="input-group ">
+								    		<span className="input-group-addon inputIcon"><i className="fa fa-table"></i></span>
+								    		<input type="date"  value={this.state.holidays.date} ref="date" className="form-control inputBox" id="holidayDate1" onChange={this.handleChange1.bind(this)}/>
+								    	</div>
 									</div>
-								</div>	
-							</form>
-						 </div>
+
+							    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					    	 			<label className="formLable">Holiday Name</label><span className="text-danger">*</span><span id="holidayFor" className="text-danger"></span>
+							    		<div className="input-group">
+								    		<span className="input-group-addon inputIcon"><i className="fa fa-user"></i></span>
+								    		<input type="text" value={this.state.holidays.holidayName} placeholder="Enter Holiday Name" ref="holidayName" className="form-control inputBox" id="holidayFor1" onChange={this.handleChange1.bind(this)} onKeyDown={this.isTextKey.bind(this)}/>
+								    	</div>
+								    </div>
+
+								    <div className="row">
+									    <div className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 "> 	
+											<button className="col-lg-3 col-md-3 col-sm-3 col-xs-3 pull-right btn submit lws-btn-mb "id="submit" value="Submit" onClick={this.submitBasicInfo.bind(this)}> Submit</button>
+										</div>
+									</div>	
+								</form>
+							 </div>
 
 {/*	=========================================================================================================
 	                                               Calender Component
@@ -404,10 +410,10 @@ return (
 												    <div className="input-group">
 													 <span className="input-group-addon inputIcon"><i className="fa fa-map-pin"></i></span>
 											    	 	<select value={this.state.mlocation} ref="mlocation" className="form-control inputBox" onChange={this.handleChangeModal.bind(this)} >
-													        <option>Mumbai</option>
-													        <option>Pune</option>
-													        <option>Delhi</option>
-													        <option>Banglore</option>
+													            <option>MUMBAI</option>
+														        <option>PUNE</option>
+														        <option>DELHI</option>
+														        <option>BANGLORE</option>
 													     </select>
 													</div>  
 												    <br/>
@@ -435,7 +441,7 @@ return (
 									</div>						      
 							        <div className="modal-footer">
 							            <button type="button" className="btn btn-default clear" data-dismiss="modal">Close</button>
-							            <button className="col-lg-2 btn submit pull-right"  value="Validate Form" onClick={this.updateBasicInfo.bind(this)}>Update</button>
+							            <button className="col-lg-2 btn submit pull-right"   data-dismiss="modal" value="Validate Form" onClick={this.updateBasicInfo.bind(this)}>Update</button>
 							        </div>
 	          					</form>
 	      					</div>
@@ -449,7 +455,7 @@ return (
 export default withTracker((props)=>{
 	const empSubHandle = Meteor.subscribe("allLwhData");
 	const allLwhData1 = LwhMaster.find({}).fetch()||[{}];
-	const allLwhData=allLwhData1.sort((a, b) => (b.createdAt - a.createdAt))
+	const allLwhData=allLwhData1.sort((a, b) => (b.createdAt - a.createdAt));
 	return {
 		"loading"		: !empSubHandle.ready(),
 		"allLwh" 		: allLwhData,		

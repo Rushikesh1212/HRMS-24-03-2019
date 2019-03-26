@@ -130,13 +130,16 @@ export default class LeaveApprovalForm extends Component{
 				  	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					  	<div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 form-group">
 							  <label for="sel1" className="fz16 fontF">Select Leave Type</label>
-							  <select className="h40 inputBox form-control" ref="lt" id="sel1">
-							    <option>Privelge Leave</option>
-							    <option>Sick Leave</option>
-							    <option>Casual Leave</option>
-							    <option>Maternity Leave</option>
-							    <option>Leave Without Pay</option>
-							  </select>
+							  <div className="input-group">
+							  	<span className="input-group-addon inputIcon"><i className="fa fa-table"></i></span>
+								  <select className="h40 inputBox form-control" ref="lt" id="sel1">
+								    <option>Privelge Leave</option>
+								    <option>Sick Leave</option>
+								    <option>Casual Leave</option>
+								    <option>Maternity Leave</option>
+								    <option>Leave Without Pay</option>
+								  </select>
+								</div>  
 							</div>
 						</div>
 
@@ -145,7 +148,7 @@ export default class LeaveApprovalForm extends Component{
 								<div className="form-group">
 				          <label for="myInput" className="fz16 fontF">From Date</label>
 				          <div className="input-group datetimepicker h40">
-				             <span className="br97 brn input-group-addon"><i className="fa fa-calendar"></i></span>
+				             <span className="br97 brn input-group-addon inputIcon"><i className="fa fa-calendar"></i></span>
 				             <input name="idInput" ref="from" type="date" className="h40 br97 form-control"/>
 				           </div>
 				        </div>
@@ -155,7 +158,7 @@ export default class LeaveApprovalForm extends Component{
 								<div className="form-group">
 				          <label for="myInput" className="fz16 fontF">To Date</label>
 				          <div className="input-group datetime6picker h40">
-				             <span className="br97 brn input-group-addon"><i className="fa fa-calendar"></i></span>
+				             <span className="br97 brn input-group-addon inputIcon"><i className="fa fa-calendar"></i></span>
 				             <input name="idInput" id="toDate" ref="to" className="h40 br97 form-control" type="date"/>
 				           </div>
 				        </div>								

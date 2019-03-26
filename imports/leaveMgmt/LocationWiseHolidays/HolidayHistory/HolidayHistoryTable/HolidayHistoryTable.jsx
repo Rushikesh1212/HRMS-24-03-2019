@@ -42,19 +42,16 @@ class Holiday extends Component{
 	// ========================================================================================================
 
 	getHolidayExistData( holiday, location){
-		console.log('yearValue: ',this.props.year);	
-		console.log('holiday: ',holiday);	
-		console.log('location: ',location);	
+
 		
 		var filterData = this.props.allyear.filter((data, index)=>{
 			var holidayFound = data.holidays.filter((p, i)=>{
 				return p.holidayName == holiday;
 			});
-			console.log('holidayFound: ',holidayFound);
+		
 			return data.location == location && data.year === this.props.year && holidayFound.length>0;
 		});
-		console.log('filterData: ',filterData);	
-		console.log('-----------------------');
+
 		return filterData.length > 0 ? true : false;
 	}
 
@@ -71,6 +68,7 @@ class Holiday extends Component{
 				
 						<div className="tab-content">
 							<div className="tab-pane active" id="tab3">
+							<h1>{this.props.year}</h1>
 									
 {/*=========================================================================================================
 	                                      Location Wise Holidays table
