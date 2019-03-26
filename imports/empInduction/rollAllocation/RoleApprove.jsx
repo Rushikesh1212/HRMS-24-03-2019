@@ -111,7 +111,7 @@ export default withTracker(()=>{
 
 	for(var i=0;i<data.length;i++){
 		
-		if(data[i].status=="Allocated"){
+		if(data[i].status==="Allocate"){
 				ApproveData.push(data[i])
 				console.log("ApproveData",ApproveData);
 			}

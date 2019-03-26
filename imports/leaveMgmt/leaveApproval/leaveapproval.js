@@ -1,5 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 export const LeaveApproval = new Mongo.Collection('leaveAprroval');
+export const OutdoorDuty = new Mongo.Collection('outdoorDuty');
+export const ShortLeave = new Mongo.Collection('shortLeave');
 
 
 if(Meteor.isServer){
@@ -7,6 +9,18 @@ if(Meteor.isServer){
 		var leaves = LeaveApproval.find({});
 		return leaves;
 	});
+
+		Meteor.publish("odData",function(){
+		var odLeaves = OutdoorDuty.find({});
+		return odLeaves;
+	});
+
+
+		Meteor.publish("slData",function(){
+		var sLeaves = ShortLeave.find({});
+		return sLeaves;
+	});
+
 }
 
 
@@ -40,11 +54,11 @@ Meteor.methods({
 	"insertodleaveform" : function(leave1){
 		console.log("=============",leave1);
 
-		LeaveApproval.insert({
-									"date"   : leave1.date,
+		var odForm = OutdoorDuty.insert({
+								"date"   : leave1.date,
 						  		"intime" : leave1.intime,
-						  		"outitme": leave1.outtime,
-						  		"rsn1"   : leave1.rsn1,
+						  		"outtime": leave1.outtime,
+						  		"reason"   : leave1.rsn1,
 								}, 
 
 								(error,result)=>{
@@ -64,10 +78,10 @@ Meteor.methods({
 	"insertslleaveform" : function(leave2){
 		console.log("=============",leave2);
 
-		LeaveApproval.insert({
-									"date1"   : leave2.date1,
-						  		"intime1" : leave2.intime1,
-						  		"rsn2"   : leave2.rsn2,
+		var slForm = ShortLeave.insert({
+								"date"   : leave2.date1,
+						  		"intime" : leave2.intime1,
+						  		"reason"   : leave2.rsn2,
 								}, 
 
 								(error,result)=>{

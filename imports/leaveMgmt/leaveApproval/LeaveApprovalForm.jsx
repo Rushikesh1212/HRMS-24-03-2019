@@ -44,7 +44,8 @@ export default class LeaveApprovalForm extends Component{
   			if(error){
   				console.log("something went wrong", error);
   			}else{
-  				console.log("congratulations", result);
+  				swal("Congrats!","Your Information Submitted Successfully.","success");
+				console.log("latest id = ",result);
   			}
   		}
   	);
@@ -65,7 +66,8 @@ export default class LeaveApprovalForm extends Component{
   			if(error){
   				console.log("something went wrong", error);
   			}else{
-  				console.log("congratulations", result);
+  				swal("Congrats!","Your Information Submitted Successfully.","success");
+				console.log("latest id = ",result);
   			}
   		}
   	);
@@ -85,7 +87,8 @@ export default class LeaveApprovalForm extends Component{
   			if(error){
   				console.log("something went wrong", error);
   			}else{
-  				console.log("congratulations", result);
+  				swal("Congrats!","Your Information Submitted Successfully.","success");
+				console.log("latest id = ",result);
   			}
   		}
   	);
