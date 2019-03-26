@@ -10,6 +10,8 @@ import 'react-table/react-table.css'
 
 import { LeaveApproval } from "/imports/leaveMgmt/leaveApproval/leaveapproval.js";
 
+import  CurrentHolidays from "/imports/leaveMgmt/LocationWiseHolidays/CurrentHolidays/CurrentHolidays.jsx";
+
 export default class LeaveApprovalForm extends Component{
 
 
@@ -109,7 +111,7 @@ export default class LeaveApprovalForm extends Component{
 
 			<div>
 				<h3>Leave Forms</h3>
-			  <ul className="col-lg-9 col-md-9 col-sm-12 col-xs-12 nav nav-tabs">
+			  <ul className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nav nav-tabs">
 			    {/*<li className="active"><a href="#">Home</a></li>*/}
 			    <li className="col-lg-4 text-center fz14 fontF"><a data-toggle="tab" href="#leaveForm">Leave Form</a></li>
 			    <li className="col-lg-4 text-center fz14 fontF"><a data-toggle="tab" href="#ODForm">Outdoor Duty Form</a></li>
@@ -305,10 +307,11 @@ export default class LeaveApprovalForm extends Component{
 {/*-------------------------------------------------------------------------------------
 																	Company Holiday Block
 ---------------------------------------------------------------------------------------*/}			  
-			  <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 br1 mt30 h350 text-center">
-			  		<h3>Coming Soon Company Holidays</h3>
-			  	</div>	
+			  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			  <div className="row">
+			
+			  		<CurrentHolidays/>
+			  	</div>
 			 	</div>
 
 {/*-------------------------------------------------------------------------------------

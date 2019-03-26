@@ -9,7 +9,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { LwhMaster } from '/imports/leaveMgmt/LocationWiseHolidays/lwhMaster.js';
-import  HolidayHistory  from '/imports/leaveMgmt/LocationWiseHolidays/HolidayHistory/HolidayHistory.jsx';
 import Calender from '/imports/leaveMgmt/LocationWiseHolidays/Calender/Calender.jsx';
 
 

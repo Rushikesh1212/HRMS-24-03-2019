@@ -157,13 +157,13 @@ class RoleDesignation extends Component{
 		    					<div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 info1">
 		  								<div className="form-group">
 										    <label >Employment Start Date:</label>
-										    <input type="date" className="form-control" id=""  ref="employmentStartDate"/>
+										    <input type="date" className="form-control" id=""  ref="employmentStartDate" value={this.state.employmentStartDate} onChange={this.handleChange.bind(this)}/>
 										</div>
 									<div className="form-group">
 								    	<label >Allocate Department</label>
 								   
 										  <select className="custom-select form-control" id="inputGroupSelect01" ref="allocateDepartment">
-										    <option selected value={this.state.allocateDepartment}>Choose...</option>
+										    <option selected value={this.state.allocateDepartment} onChange={this.handleChange.bind(this)}> Choose...</option>
 										    <option value="1">One</option>
 										    <option value="2">Two</option>
 										    <option value="3">Three</option>
@@ -174,7 +174,7 @@ class RoleDesignation extends Component{
 									<div className="form-group">
 									    <label >Designation</label>
 									     <select className="custom-select form-control" id="inputGroupSelect01"  ref="designation">
-										    <option selected value={this.state.designation}>Choose...</option>
+										    <option selected value={this.state.designation} onChange={this.handleChange.bind(this)}>Choose...</option>
 										    <option value="1">One</option>
 										    <option value="2">Two</option>
 										    <option value="3">Three</option>
@@ -184,7 +184,7 @@ class RoleDesignation extends Component{
 									<div className="form-group">
 									    <label >Reporting Location</label>
 									     <select className="custom-select form-control" id="inputGroupSelect01"  ref="reportingLocation">
-										    <option selected value={this.state.reportingLocation}>Choose...</option>
+										    <option selected value={this.state.reportingLocation} onChange={this.handleChange.bind(this)}>Choose...</option>
 										    <option value="1">One</option>
 										    <option value="2">Two</option>
 										    <option value="3">Three</option>
@@ -200,7 +200,7 @@ class RoleDesignation extends Component{
 									   <div className="form-group">
 									    <label >Sub-Department</label>
 									     <select className="custom-select form-control" id="inputGroupSelect01"  ref="subDepartment">
-										    <option selected value={this.state.subDepartment}>Choose...</option>
+										    <option selected value={this.state.subDepartment} onChange={this.handleChange.bind(this)}>Choose...</option>
 										    <option value="1">One</option>
 										    <option value="2">Two</option>
 										    <option value="3">Three</option>
@@ -209,7 +209,7 @@ class RoleDesignation extends Component{
 									   <div className="form-group">
 									    <label >Grade / Band</label>
 									     <select className="custom-select form-control" id="inputGroupSelect01"  ref="gradeBand">
-										    <option selected value={this.state.gradeBand}>Choose...</option>
+										    <option selected value={this.state.gradeBand} onChange={this.handleChange.bind(this)}>Choose...</option>
 										    <option value="1">One</option>
 										    <option value="2">Two</option>
 										    <option value="3">Three</option>
@@ -218,7 +218,7 @@ class RoleDesignation extends Component{
 									   <div className="form-group">
 									    <label >Reporting Manager</label>
 									     <select className="custom-select form-control" id="inputGroupSelect01"  ref="reportingManager">
-										    <option selected value={this.state.reportingManager}>Choose...</option>
+										    <option selected value={this.state.reportingManager} onChange={this.handleChange.bind(this)}>Choose...</option>
 										    <option value="1">One</option>
 										    <option value="2">Two</option>
 										    <option value="3">Three</option>
@@ -231,11 +231,11 @@ class RoleDesignation extends Component{
 			    						<label >Employment Category</label>
 			    						<div>
 			    							<label className="radio-inline">
-									        <input type="radio" name="optradio"  value={this.state.regular} ref="regular"/>Regular
+									        <input type="radio" name="optradio"  value={this.state.regular} onChange={this.handleChange.bind(this)} ref="regular"/>Regular
 									    	</label>
 									   
 									    	<label className="radio-inline">
-									        <input type="radio" name="optradio" value={this.state.contract} ref="contract"/>Contract
+									        <input type="radio" name="optradio" value={this.state.contract} ref="contract" onChange={this.handleChange.bind(this)}/>Contract
 									    	</label>
 									    </div>
 									    <br/>
@@ -243,11 +243,11 @@ class RoleDesignation extends Component{
 									     <label >Full Time / Part time</label>
 									     <div>
 			    							<label className="radio-inline">
-									        <input type="radio" name="optradio1" value={this.state.fullTime} ref="fullTime"/>Full Time
+									        <input type="radio" name="optradio1" value={this.state.fullTime} ref="fullTime" onChange={this.handleChange.bind(this)}/>Full Time
 									    	</label>
 									   
 									    	<label className="radio-inline">
-									        <input type="radio" name="optradio1" value={this.state.partTime} ref="partTime"/>Part Time
+									        <input type="radio" name="optradio1" value={this.state.partTime} ref="partTime" onChange={this.handleChange.bind(this)}/>Part Time
 									    	</label>
 									    </div>
 			    					</div>
