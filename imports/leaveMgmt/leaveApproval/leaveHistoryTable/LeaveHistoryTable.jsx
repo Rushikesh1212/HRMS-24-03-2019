@@ -46,33 +46,24 @@ class LeaveHistoryTable extends Component{
 							 }
 							  const columns = [
 							  
-							    // Header: 'Employee ID',
-							    // accessor: 'emp_id' // String-based value accessors!
+					
 							  {
 							    Header: 'Leave Type',
-							    accessor: 'lt' // String-based value accessors!
+							    accessor: 'leaveType' // String-based value accessors!
 							  }, {
 							    Header: 'From Date',
-							    accessor: 'from'
+							    accessor: 'fromDate'
 							    /*Cell: props => <span className='number'>{props.value}</span> // Custom cell components!*/
 							  }, {
 							    Header: 'To Date',
-							    accessor:'to'  // Custom value accessors!
+							    accessor:'toDate'  // Custom value accessors!
 							  }, {
 							    Header: 'No. of Days', // Custom header components!
-							    accessor: 'nwd'
+							    accessor: 'numOfDays'
 							  }, {
 							    Header: 'Reason', // Custom header components!
-							    accessor: 'rsn'
-							  // }, {
-							  // 	Header: 'Status',
-							  // 	accessor: 'st' 
-							  // },{
-							  // 	Header: 'Edit',
-							  // 	accessor:'edit'
-							  // },{
-							  // 	Header:'Delete',
-							  // 	accessor:'dlt'
+							    accessor: 'remark'
+						
 							  }]
 
 			return(
