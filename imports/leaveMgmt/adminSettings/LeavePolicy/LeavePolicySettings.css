@@ -1,34 +1,6 @@
-/*---------Global Css---------*/
 
 /*---------Leave Policy Settings Css---------*/
 
-/*.ReactTable .rt-th{
-	font-family: Montserrat-Regular;
-	font-size: 14px;
-
-}
-
-.ReactTable .rt-td{
-	color: #111;
-	font-family: Montserrat-Regular;
-	font-size: 14px;
-	text-align: center !important;
-}
-.ReactTable .tr:nth-child(even){
-	background-color: #999 !important;
-	
-}
-
-.ReactTable .rt-tr {
-  flex: 1 0 auto;
-  padding: 10px;
-  display: inline-flex;
-}
-
-.ReactTable .rt-thead.-header {
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.15);
-/*  background-color: #17a2b8;
-*/}*/
 
 
 .centerText{

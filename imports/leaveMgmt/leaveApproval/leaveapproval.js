@@ -29,11 +29,14 @@ Meteor.methods({
 		console.log("=============",leave);
 
 		var leaveform = LeaveApproval.insert({
-									"lt"   : leave.lt,
-						  		"from" : leave.from,
-						  		"to"   : leave.to,
-						  		"nwd"  : leave.nwd,
-						  		"rsn"  : leave.rsn,
+								
+								"leaveType" : leave.leaveType,
+						  		"fromDate" 	: leave.fromDate,
+						  		"toDate"   	: leave.toDate,
+						  		"numOfDays" : leave.numOfDays,
+						  		"remark"  	: leave.remark,
+						  		"status"	: "Pending"
+
 								}, 
 
 								(error,result)=>{
@@ -55,6 +58,7 @@ Meteor.methods({
 		console.log("=============",leave1);
 
 		var odForm = OutdoorDuty.insert({
+
 								"date"   : leave1.date,
 						  		"intime" : leave1.intime,
 						  		"outtime": leave1.outtime,
@@ -78,10 +82,12 @@ Meteor.methods({
 	"insertslleaveform" : function(leave2){
 		console.log("=============",leave2);
 
+
 		var slForm = ShortLeave.insert({
 								"date"   : leave2.date1,
 						  		"intime" : leave2.intime1,
 						  		"reason"   : leave2.rsn2,
+
 								}, 
 
 								(error,result)=>{
@@ -96,5 +102,17 @@ Meteor.methods({
 							);
 
 		return;
-	}	
+	},
+	"deleteLeaveData" : function(recordid){
+		LeaveApproval.remove({"_id":recordid}, (error,result)=>{
+				if(error){
+					return error;
+					console.log(error);
+				}else{
+					return result;
+				}
+		});
+
+		return;
+	},	
 })

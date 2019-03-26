@@ -54,6 +54,33 @@ Meteor.methods({
 
 		return record_id;
 	},
+	"updateBalData" : function(formValues){
+
+		var record_id = ListOfLeave.update(
+								{"_id": formValues.recordIdModal},
+								{$set : 
+									{
+									leaveType 		: formValues.LeaveTypeModal,
+									numOfDays		: formValues.WorkingDaysModal,
+									fromDate		: formValues.FromModal,
+									toDate			: formValues.ToModal,
+									remark 			: formValues.ReasonForLeaveRemarkModal,										}
+														
+									},
+								(error,result)=>{
+									if(error){
+										console.log(error);
+										return;
+									}else{
+										console.log(result);
+										return;
+									}
+								}
+							);
+
+		return record_id;
+	},
+
 
 
 });

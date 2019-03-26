@@ -17,17 +17,17 @@ class ListOfRejectedLeavesForm extends Component{
 
 
 		this.state = {
-			"recordId" : recordId,
-			"EmployeeId" : "",	
-			"EmployeeName" : "Unknown",	
-			"Department":"Unknown",
-			"Designation":"Unknown",
-			"LeaveType":"",
-			"WorkingDays":"",
-			"From":"",
-			"To":"",
-			"ReasonForLeaveRemark":"",
-			"showReply"				:false,
+			"recordId" 					: recordId,
+			"EmployeeId" 				: "",	
+			"EmployeeName" 				: "Unknown",	
+			"Department"				: "Unknown",
+			"Designation"				: "Unknown",
+			"LeaveType"					: "",
+			"WorkingDays"				: "",
+			"From"						: "",
+			"To"						: "",
+			"ReasonForLeaveRemark"		: "",
+			"showReply"					: false,
 
 
 

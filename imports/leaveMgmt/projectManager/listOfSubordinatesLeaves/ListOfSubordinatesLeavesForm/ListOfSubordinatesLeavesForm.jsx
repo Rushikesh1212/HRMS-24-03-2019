@@ -6,6 +6,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import 'react-table/react-table.css';
 import "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/ListOfSubordinatesLeaves.css";
 
+import { LeaveApproval } from "/imports/leaveMgmt/leaveApproval/leaveapproval.js";
+
 import { ListOfLeave } from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/listOfSubordinatesLeaves.js";
 
 
@@ -35,6 +37,7 @@ class ListOfSubordinatesLeavesForm extends Component{
 	
 		
   		const data = this.props.allData;	// Getting all data in rows of table.	
+  		console.log("All data::",data);
 			
 		return (
 
@@ -47,45 +50,45 @@ class ListOfSubordinatesLeavesForm extends Component{
 								
 								<div className="form-group col-lg-5 col-md-4 col-sm-6 ">
 						    		<label className="fz16 col-lg-6 headLabel">Employee ID :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].empId} </label>
+						    		<label className="fz16 col-lg-6">{data[0]._id} </label>
 
 						    	</div>
 						    	<div className="form-group col-lg-5 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">Employee Name :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].EmployeeName}</label>
+						    		<label className="fz16 col-lg-6">{data[0].lt}</label>
 						    		
 						    	</div>
 								<div className="form-group col-lg-5 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">Department :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].Department} </label>
+						    		<label className="fz16 col-lg-6">{data[0].lt} </label>
 						    		
 						    	</div>
 						    	<div className="form-group col-lg-5 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">Designation :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].Designation}</label>
+						    		<label className="fz16 col-lg-6">{data[0].lt}</label>
 						    		
 						    	</div>
 						    	<div className="form-group col-lg-5 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">Leave Type :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].leaveType}</label>
+						    		<label className="fz16 col-lg-6">{data[0].lt}</label>
 						    		
 						    	</div>
 						    	<div className="form-group col-lg-5 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">Working Days :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].numOfDays} </label>
+						    		<label className="fz16 col-lg-6">{data[0].nwd} </label>
 						    		
 						    	</div>
 						    	<div className="form-group col-lg-5 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">From :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].fromDate}</label>
+						    		<label className="fz16 col-lg-6">{data[0].from}</label>
 						    	</div>
 						    	<div className="form-group col-lg-5 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">To :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].toDate} </label>
+						    		<label className="fz16 col-lg-6">{data[0].to} </label>
 						    	</div>
 						    	<div className="form-group col-lg-12 col-md-4 col-sm-6">
 						    		<label className="fz16 headLabel col-lg-6">Reason for Leave/ Remark :: </label>
-						    		<label className="fz16 col-lg-6">{data[0].remark} </label>
+						    		<label className="fz16 col-lg-6">{data[0].rsn} </label>
 						    	</div>
 							</form>
 						</div>
@@ -99,7 +102,7 @@ export default withTracker((event)=>{
 	
 	var getData = event.props;
 	const empSubHandle = Meteor.subscribe("allRecordData");
-	const allEmpData = ListOfLeave.find({"_id" : getData}).fetch()||[{}];
+	const allEmpData = LeaveApproval.find({"_id" : getData}).fetch()||[{}];
 	return {
 		"allData" 		: allEmpData,
 	}
