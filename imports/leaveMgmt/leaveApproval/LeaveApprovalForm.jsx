@@ -158,7 +158,7 @@ export default class LeaveApprovalForm extends Component{
 				  	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					  	<div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 form-group">
 							  <label for="sel1" className="fz16 fontF">Select Leave Type</label>
-							  <span className="br97 brn input-group-addon"><i className="fa fa-door-open"></i></span>
+							
 							  <select className="h40 inputBox form-control" ref="lt" id="sel1" onChange={this.handleChange1.bind(this)}>
 							    <option>Privelge Leave</option>
 							    <option>Sick Leave</option>
