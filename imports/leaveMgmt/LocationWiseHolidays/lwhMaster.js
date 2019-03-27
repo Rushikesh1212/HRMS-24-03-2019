@@ -45,8 +45,13 @@ Meteor.methods({
 									}
 								}
 							);	
+<<<<<<< Updated upstream
 		}else{								
 						return error;
+=======
+		}else{
+			return error;
+>>>>>>> Stashed changes
 		}
 		
 	return lwh_id;

@@ -158,7 +158,7 @@ export default class LeaveApprovalForm extends Component{
 				  	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					  	<div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 form-group">
 							  <label for="sel1" className="fz16 fontF">Select Leave Type</label>
-
+							  <span className="br97 brn input-group-addon"><i className="fa fa-door-open"></i></span>
 							  <select className="h40 inputBox form-control" ref="lt" id="sel1" onChange={this.handleChange1.bind(this)}>
 							    <option>Privelge Leave</option>
 							    <option>Sick Leave</option>
@@ -237,19 +237,7 @@ export default class LeaveApprovalForm extends Component{
 				        </div>
 							</div>
 							
-						{/*<div className="col-lg-4 col-md-6 col-sm-12 col-xs-12">							
-								<div className="form-group">
-				          <label for="myInput" className="fz14 fontF">To</label>
-				          <div className="input-group datetimepicker">
-				             <span className="br97 brn input-group-addon"><i className="fa fa-calendar"></i></span>
-				             <input name="idInput" id="idInput" className="inputBox set-due-date form-control" type="text"/>
-				           </div>
-				        </div>								
-							</div>
-						</div>*/}
-
-
-						{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">*/}
+					
 							<div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">							
 								<div className="form-group">
 				          <label for="myInput" className="fz16 fontF">In Time</label>
@@ -301,7 +289,7 @@ export default class LeaveApprovalForm extends Component{
 				        </div>
 							</div>
 
-				  	{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">*/}
+			
 							<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">							
 								<div className="form-group">
 				          <label for="myInput" className="fz16 fontF">In Time</label>
@@ -312,15 +300,7 @@ export default class LeaveApprovalForm extends Component{
 				        </div>
 							</div>
 							
-							{/*<div className="col-lg-4 col-md-6 col-sm-12 col-xs-12">							
-								<div className="form-group">
-				          <label for="myInput" className="fz14 fontF">Out Time</label>
-				          <div className="input-group datetimepicker">
-				             <span className="br97 brn input-group-addon"><i className="fa fa-calendar"></i></span>
-				             <input name="idInput" id="idInput" className="inputBox set-due-date form-control" type="text"/>
-				           </div>
-				        </div>								
-							</div>*/}
+				
 						</div>
 
 
