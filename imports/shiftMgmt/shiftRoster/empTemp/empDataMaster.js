@@ -1,15 +1,15 @@
 import { Mongo } from 'meteor/mongo';
 
-export const EmpMaster = new Mongo.Collection('empMaster');
+export const EmpDataMaster = new Mongo.Collection('empDataMaster');
 
 if(Meteor.isServer){
 	// Meteor.publish("empData",function(empid){
-	// 	var empprof = EmpMaster.find({"_id":empid});
+	// 	var empprof = EmpDataMaster.find({"_id":empid});
 	// 	return empprof;
 	// });
 
-	Meteor.publish("allEmpData1",function(){
-		var allEmp = EmpMaster.find({});
+	Meteor.publish("allEmpDetails",function(){
+		var allEmp = EmpDataMaster.find({});
 		return allEmp;
 	});
 }
@@ -18,7 +18,7 @@ Meteor.methods({
 	"insertBasicInfo2" : function(formValues){
 		console.log(formValues);
 
-		var emp_id = EmpMaster.insert({
+		var emp_id = EmpDataMaster.insert({
 										
 									"firstName" 	: formValues.firstName,	        
 							        "middleName" 	: formValues.middleName,	        
@@ -45,7 +45,7 @@ Meteor.methods({
 	"updateBasicInfo1" : function(formValues){
 		console.log(formValues);
 
-		var emp_id = EmpMaster.update(
+		var emp_id = EmpDataMaster.update(
 								{"_id": formValues._id},
 								{$set : {
 											"firstName" 	: formValues.firstName,	        
@@ -71,7 +71,7 @@ Meteor.methods({
 	},
 
 	"deleteAllotedShift1" : function(empid){
-		EmpMaster.remove({"_id":empid}, (error,result)=>{
+		EmpDataMaster.remove({"_id":empid}, (error,result)=>{
 				if(error){
 					return error;
 					console.log(error);

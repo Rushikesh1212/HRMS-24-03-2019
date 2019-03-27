@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import swal from 'sweetalert';
 
-import { EmpMaster } from '/imports/shiftMgmt/shiftRoster/empTemp/empMaster.js';
+import { EmpDataMaster } from '/imports/shiftMgmt/shiftRoster/empTemp/empDataMaster.js';
 
 class EmpBasicInfo extends Component{
 	constructor(props){
@@ -234,9 +234,9 @@ export default withTracker(()=>{
 	}else{
 		var urlEmpId = 0;
 	}
-	var empSub = Meteor.subscribe("allEmpData1");
+	var empSub = Meteor.subscribe("allEmpDetails");
 
-	const oneEmpData = EmpMaster.find({}).fetch()||[];
+	const oneEmpData = EmpDataMaster.find({}).fetch()||[];
 	console.log("oneEmpData = ",oneEmpData);
 
 	return {

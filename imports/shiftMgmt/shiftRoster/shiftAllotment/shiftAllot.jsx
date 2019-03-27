@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import swal from 'sweetalert';
 
-import { EmpMaster } from '/imports/shiftMgmt/shiftRoster/empTemp/empMaster.js';
+import { EmpDataMaster } from '/imports/shiftMgmt/shiftRoster/empTemp/empDataMaster.js';
 import { ShiftSetting } from '/imports/shiftMgmt/shiftRoster/shiftSetting/shiftSetting.js';
 import { ShiftAllocation } from '/imports/shiftMgmt/shiftRoster/shiftAllotment/shiftAllocation.js';
 import './shiftAllot.css';
@@ -19,7 +19,7 @@ class ShiftAllot extends Component{
 			var action = "Submit";
 		}
 
-	this.state = {
+		this.state = {
 			"empId" : urlEmpId,
 			"action" : action,
 			"shiftName": "",
@@ -92,37 +92,6 @@ class ShiftAllot extends Component{
     	});
 
 	}
-	
-	// deleteEmpProfile(event){
-	// 	event.preventDefault();
-	// 	var empId = event.currentTarget.id;
-		
-	// 	console.log("dd = ",empId);
-	// 	swal({
-	// 	  title     : "Are you sure you want to delete?",
-	// 	  text      : "Once deleted, you will not be able to recover this record!",
-	// 	  icon      : "warning",
-	// 	  buttons   : true,
-	// 	  dangerMode: true,
-	// 	})
-	// 	.then((willDelete) => {
-	// 	  if (willDelete) {
-	// 		Meteor.call("deleteEmpProfile",empId,
-	// 							(error,result) => {
-	// 								if(error){
-	// 									swal("Something is Wrong","Contact Your System Administrator","error");
-	// 									console.log(error);
-	// 								}else{
-	// 									swal("Great!","Delete is Successful!","success");
-	// 									// FlowRouter.go("/empInfo");
-	// 								}
-	// 							}
-	// 					);
-	// 	}else {
-	// 	    swal("This record is safe!");
-	// 	  }
-	// 	});
-	// }
 
 	passDate(event){
 		event.preventDefault();
@@ -164,20 +133,26 @@ class ShiftAllot extends Component{
 	// }
 
 	dateFromWeek(event){
-
-		var WeekFound = this.state.weekVal ? this.state.weekVal : this.state.weekValDefault;
+		var today = moment().format("MM-DD-YYYY");
+        var weeknumber = moment(today).week();
+        if(weeknumber<=9){
+          weeknumber="0"+weeknumber;
+        }
+        var yyyy = moment(today).format("YYYY");
+        var weekValDefault = yyyy+"-W"+weeknumber;
+        var weekVal = this.refs.dateFromWeek.value;
+		var WeekFound = weekVal ? weekVal : weekValDefault
 
 		console.log("WeekFound =",WeekFound);
 		var weekSplit = WeekFound.split('');
 		console.log("weekSplit",weekSplit)
-		// var WeekNum = moment(weekSplit[6]+weekSplit[7]).getDate().format('DD MM YYYY');
-		 // console.log("WeekNum",WeekNum)
-		var startDateOfWeek = moment(weekSplit[0]+weekSplit[1]+weekSplit[2]+weekSplit[3]).add((weekSplit[6]+weekSplit[7])-1, 'weeks').startOf('isoweek');
 		
-		var endDateOfWeek = moment(weekSplit[0]+weekSplit[1]+weekSplit[2]+weekSplit[3]).add((weekSplit[6]+weekSplit[7])-1, 'weeks').endOf('isoweek');
+		var startDateOfWeek = moment(weekSplit[0]+weekSplit[1]+weekSplit[2]+weekSplit[3]).add((weekSplit[6]+weekSplit[7])-2, 'weeks').startOf('isoweek');
+
+		var endDateOfWeek = moment(weekSplit[0]+weekSplit[1]+weekSplit[2]+weekSplit[3]).add((weekSplit[6]+weekSplit[7])-2, 'weeks').endOf('isoweek');
 
 		this.setState({
-			startDateOfWeek:startDateOfWeek,
+			startDateOfWeek:startDateOfWeek, 
 			endDateOfWeek:endDateOfWeek,
 		},()=>{
 			console.log("DatesOfWeek="+this.state.startDateOfWeek+" "+this.state.endDateOfWeek)
@@ -187,14 +162,19 @@ class ShiftAllot extends Component{
 			var startOfWeek = this.state.startDateOfWeek;
 			var endOfWeek   = this.state.endDateOfWeek;
 			console.log("startOfWeek :",startOfWeek);
+			console.log("endOfWeek :",endOfWeek);
 			var dates = [];
 		    var date = startOfWeek;
 
+
+		  //   	for(let i=1;i<=count;i++){
+				// 	tDates.push(i);
+				// }
 				while (date <= endOfWeek) {
 				    dates.push(date.toDate());
 				    console.log("dates",dates);
 				    date = date.add(1, 'd');
-				    console.log("date:",date);
+				    console.log("date:",date.toDate());
 				}
 				this.setState({
 					"dates" : dates,
@@ -230,8 +210,8 @@ class ShiftAllot extends Component{
 	getDayHeader(){
 		var MonthNum = this.state.Month ? this.state.Month : (new Date().getMonth())+1;
 		var YearNum = this.state.Year ? this.state.Year : (new Date().getFullYear());
-		console.log("M= "+ MonthNum)
-		console.log("Y= "+ YearNum)
+		// console.log("M= "+ MonthNum)
+		// console.log("Y= "+ YearNum)
 		var count = this.getDaysInMonth(MonthNum,YearNum);
 		var tDays = [];
 		var weekday = new Array(7);
@@ -282,7 +262,7 @@ class ShiftAllot extends Component{
 	    		checkedIndex:shiftCheck,
 	    		curTarget:event.target.checked,
 	    	},()=>{
-	    		console.log("curTarget====",this.state.curTarget);
+	    		// console.log("curTarget====",this.state.curTarget);
 	    	});
 
 		 	
@@ -301,6 +281,28 @@ class ShiftAllot extends Component{
     	}
 
 	}
+	datefromcheckbox(event){
+		var MonthNum = this.state.Month;
+		var YearNum = this.state.Year;
+		console.log("M= "+ MonthNum);
+		console.log("Y= "+ YearNum);
+
+    	var curCheckbox = event.target.getAttribute('data-index');
+	    console.log("curCheckbox",curCheckbox);
+    	if (curCheckbox) {
+          var splitval  = curCheckbox.split(' ');
+          var dateFromCurTarget = splitval[1].split(' ');
+
+	    	console.log("splitval",splitval);
+	    	console.log("dateFromCurTarget",dateFromCurTarget);
+			
+
+          }
+
+    	}
+
+	
+
 
 	getShiftValue(){
 		var getSvalue = event.target.getAttribute('data-index');
@@ -317,23 +319,24 @@ class ShiftAllot extends Component{
 		event.preventDefault();
 		
 		var shiftDetails = {
-
+			
     		shiftCheck      : this.state.checkedIndex,
 			allocatedShift  : this.state.shift,
-			// fromDate        : this.refs.fromDate.value,
-			// toDate          : this.refs.toDate.value,
-			// weeklyOff       : this.refs.weeklyOff.value,
-			createdAt      	   : this.state.createdAt,
-			// createdBy       : this.refs.createdBy.value,
 
-	
-
+			// fromDate     : this.refs.fromDate.value,
+			// toDate       : this.refs.toDate.value,
+			// weeklyOff    : this.refs.weeklyOff.value,
+			createdAt      	: this.state.createdAt,
+			// createdBy    	: this.state.createdBy,
+		
 		};
 		// var empShift = shiftCheck.concat(shift);
 		// console.log("empShift = ",empShift);
 
 
 		if(this.state.action == "Submit"){
+			if( shiftDetails.shiftCheck!=="" && shiftDetails.allocatedShift!=="" && shiftDetails.fromDate!=="" && shiftDetails.toDate!=="" && shiftDetails.weeklyOff!=="" && shiftDetails.createdAt!=="" && shiftDetails.createdBy!=="")
+			{
 				Meteor.call("insertShiftDetails",shiftDetails,
 											(error,result)=>{
 												if(error){
@@ -342,11 +345,14 @@ class ShiftAllot extends Component{
 													console.log("Something went wrong! Error = ", error);
 												}else{
 													
-													// swal("Congrats!","Your Information Submitted Successfully.","success");
+													swal("Congrats!","Your Shift allocated successfully.","success");
 													console.log("latest id = ",result);
-													// $(".modal-backdrop").remove();
+													$(".modal-backdrop").remove();
 												}
 											});
+			}else{
+				swal("No Field should be empty...!","Please fill the all fields carefully","warning");
+			}
 		}else{
 			shiftDetails._id = this.state.empId;
 			Meteor.call("updateShiftDetails",shiftDetails,
@@ -361,18 +367,13 @@ class ShiftAllot extends Component{
 		}
 
 	}
-	hideModal(event) {
-	  if (!event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
-
+	
 
 	render(){
 
 		var emp = this.state.empID;
 		// var userData = ShiftSetting.find({"_id":emp}).fetch();
-		var userData = EmpMaster.find({"_id":emp}).fetch();
+		var userData = EmpDataMaster.find({"_id":emp}).fetch();
 		var empHead = this.props.allEmp[0];
 		if(emp){
 			if(emp.effectiveFrom==""){
@@ -392,54 +393,129 @@ class ShiftAllot extends Component{
 						</div>
 
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row customMargin">
-				    		<p className="col-lg-2 col-md-3 col-sm-4 col-xs-4 row customMargin5"><b>Shift Planning for</b></p>
-				    		<div className=" col-lg-1 col-md-1 col-sm-1 col-xs-4 input-group">
-					    		<span className="input-group-addon"><i className="fa fa-calendar"></i></span>
-					    		<input className="form-control" type="Month" ref="passDate" onChange={this.passDate.bind(this)}/>
-							</div>
+				    		
+			    			<ul className="col-lg-4 col-md-6 col-sm-12 col-xs-12 nav nav-tabs pull-right">
+				    			<li className="col-lg-6 text-center fz14 fontF active"><a data-toggle="tab" href="#MonthTable" aria-expanded="false">Month</a></li>
+				    			<li className="col-lg-6 text-center fz14 fontF"><a data-toggle="tab" href="#WeekTable" aria-expanded="true">Week</a></li>
+			    			</ul>
+							
 						</div>
-						
-						<table id="table-to-xls" className="table table-bordered table-hovered table-condensed">
-							<thead>
-								<tr className="bg-primary"> 
-									<th className="text-center" rowSpan="3"> Sr </th> 
-									<th className="text-left" rowSpan="3"> Employee Name </th> 
-									<th className="text-center" rowSpan="3"> SA </th> 
-									{this.getDateHeader().map(
-										(i, index)=>{return (<th key={index}> {i} </th>)}
-									)}
-								</tr>
-								<tr className="bg-primary"> 
-									{this.getDayHeader().map(
-										(i, index)=>{return (<th key={index}> {i} </th>)}
-									)}
-								</tr>
-								<tr className="bg-primary"> 
-									{this.getDateHeader().map(
-										(i,index)=>{return (<th key={index} className=""> <input type="checkbox" id={"D"+i} data-index={"D"+i} onChange={this.checkAll.bind(this)} /><span className=" text-center"></span> </th>)}
-									)}
-								</tr>
-							</thead>
 
-							<tbody>
-								{this.props.allEmp.map((emp,index)=>{
-										function empid(){return index+1} ;
+						<div className="tab-content col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+							<div id="MonthTable" className="tab-pane fade in active">
+								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row customMargin">
+									<div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 row">
+						    			<p className="col-lg-4 col-md-3 col-sm-4 col-xs-4 row customMargin5"><b>Shift Planning for</b></p>
+							    		<div className="col-lg-3 col-md-1 col-sm-1 col-xs-4 input-group">
+								    		<span className="input-group-addon"><i className="fa fa-calendar"></i></span>
+								    		<input className="form-control" type="Month" ref="passDate" onChange={this.passDate.bind(this)}/>
+							    		</div>
+						    		</div>
+						    	</div>
+								<table className="table table-bordered table-hovered">					    	
+									<thead>
+										<tr className="bg-primary"> 
+											<th className="text-center valign" rowSpan="3"> Sr </th> 
+											<th className="text-center valign" rowSpan="3"> Employee Name </th> 
+											<th className="text-center valign" rowSpan="3"> SA </th> 
+											{this.getDateHeader().map(
+												(i, index)=>{return (<th key={index} className="text-center"> {i} </th>)}
+											)}
+										</tr>
+										<tr className="bg-primary"> 
+											{this.getDayHeader().map(
+												(i, index)=>{return (<th key={index} className="text-center"> {i} </th>)}
+											)}
+										</tr>
+										<tr className="bg-primary"> 
+											{this.getDateHeader().map(
+												(i,index)=>{return (<th key={index} className="text-center"> <input type="checkbox" id={"D"+i} data-index={"D"+i} onChange={this.checkAll.bind(this)} /><span className=" text-center"></span> </th>)}
+											)}
+										</tr>
+									</thead>
 
-										return(
-											<tr key={index}>
-												<td> {index+1} </td>
-												<td className="text-left" data-toggle="modal" data-target="#empShiftHistory"  data-index={"E"+(index+1)} onClick={this.displayEmpShiftHistory.bind(this)} > {emp.firstName} {emp.middleName} {emp.lastName} </td>
-												<td className="checkboxContainer"> <input type="checkbox" id={"E"+(index+1)} data-index={"E"+(index+1)} onChange={this.checkAll.bind(this)} /><span className="checkmark1 text-center"></span> </td>
-													{this.getDateHeader().map(
-														(index,dt)=>{return (<th key={dt} className="checkboxContainer"> <input type="checkbox" className={"E"+empid()+" D"+(dt+1)} align="center" name="check" data-index={"E"+empid()+" D"+(dt+1)} data-toggle="modal" data-target="#shiftChangeModal"  onChange={this.deselectCheckbox.bind(this)}/><span className={this.state.selectCheck}>{this.state.valOfShift}</span></th>)}
-													
-													)}
-											</tr>
-										);
-									})
-								}
-							</tbody>
-						</table>
+									<tbody>
+										{this.props.allEmp.map((emp,index)=>{
+												function empid(){return index+1} ;
+
+												return(
+													<tr key={index}>
+														<td> {index+1} </td>
+														<td className="text-left" data-toggle="modal" data-target="#empShiftHistory"  data-index={"E"+(index+1)} onClick={this.displayEmpShiftHistory.bind(this)} > {emp.firstName} {emp.middleName} {emp.lastName} </td>
+														<td className="checkboxContainer"> <input type="checkbox" id={"E"+(index+1)} data-index={"E"+(index+1)} onChange={this.checkAll.bind(this)} /><span className="checkmark1 text-center"></span> </td>
+															{this.getDateHeader().map(
+																(index,dt)=>{return (<th key={dt} className="checkboxContainer text-center"> <input type="checkbox" className={"E"+empid()+" D"+(dt+1)} align="center" name="check" data-index={"E"+empid()+" D"+(dt+1)} data-toggle="modal" data-target="#shiftChangeModal"  onChange={this.deselectCheckbox.bind(this)}/><span className={this.state.selectCheck}>{this.state.valOfShift}</span></th>)}
+															
+															)}
+													</tr>
+												);
+											})
+										}
+									</tbody>
+								</table>
+							</div>
+
+
+							<div id="WeekTable" className="tab-pane fade in">
+								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row customMargin">
+									<div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 row">
+						    			<p className="col-lg-4 col-md-3 col-sm-4 col-xs-4 row customMargin5"><b>Shift Planning for</b></p>
+							    		<div className="col-lg-3 col-md-1 col-sm-1 col-xs-4 input-group">
+								    		<span className="input-group-addon"><i className="fa fa-calendar"></i></span>
+								    		<input className="form-control" type="week" ref="dateFromWeek" onChange={this.dateFromWeek.bind(this)}/>
+							    		</div>
+						    		</div>
+						    	</div>
+								<table className ="table table-bordered table-hovered table-condensed">
+									<thead>
+										<tr className = "bg-primary"> 
+											<th className="text-center valign" rowSpan="3"> Sr </th> 
+											<th className="text-center valign" rowSpan="3"> Employee Name </th> 
+											<th className="text-center valign" rowSpan="3"> SA </th> 
+											{this.state.dates.map(
+												(date,i) => {return (<th key={i} className="text-center"> {moment(date).format('DD')} </th>)}
+											)}									
+										</tr>
+										<tr className="bg-primary"> 								
+												{this.state.dates.map(							
+												(date,i)=>{return (<th key={i} className="text-center"> {moment(date).format('dd') } </th>)}
+
+											)}
+											
+										</tr>
+										<tr className="bg-primary"> 
+											{this.state.dates.map(
+												(date,i)=>{return (<th key={i} className="text-center"> <input type="checkbox" id={"D"+i} data-index={"D"+i} onChange={this.checkAll.bind(this)} /><span className="checkmark1 text-center"></span> </th>)}
+											)}
+											
+										</tr>
+									</thead>
+
+									<tbody>
+										{this.props.allEmp.map((emp,index)=>{
+												function empid(){return index+1} ;
+
+												return(
+													<tr key={index}>
+														<td> {index+1} </td>
+														<td className="text-left" data-toggle="modal" data-target="#empShiftHistory" onClick={this.displayEmpShiftHistory.bind(this)} > {emp.firstName} {emp.middleName} {emp.lastName} </td>
+														<td className="checkboxContainer"> <input type="checkbox" id={"E"+(index+1)} data-index={"E"+(index+1)} onChange={this.checkAll.bind(this)} /><span className="checkmark1 text-center"></span> </td>
+															{this.state.dates.map(
+																(date,dt)=>{return (<th key={dt} className="checkboxContainer text-center"> <input type="checkbox" className={"E"+empid()+" D"+(dt)} align="center" name="check" data-index={"E"+empid()+" D"+(dt+1)} data-toggle="modal" data-target="#shiftChangeModal"  onChange={this.deselectCheckbox.bind(this)}/><span className="checkmark1 text-center"></span></th>)}
+															
+															)}
+													</tr>
+												);
+											})
+										}
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+
+
 
 
 						<div className="col-lg-12 row shiftText"><b>Change Shift</b><span className="mandatoryField">*</span></div>
@@ -599,8 +675,8 @@ class ShiftAllot extends Component{
 export default ShiftAllotContainer = withTracker(()=>{
 
 	
-	const shiftSubHandle2 = Meteor.subscribe("allEmpData1");
-	const allEmpData = EmpMaster.find({}).fetch()||[{}];
+	const shiftSubHandle2 = Meteor.subscribe("allEmpDetails");
+	const allEmpDetails = EmpDataMaster.find({}).fetch()||[{}];
 
 	const shiftSubHandle1 = Meteor.subscribe("allShiftData");
 	const allShiftData = ShiftSetting.find({}).fetch()||[];
@@ -608,14 +684,14 @@ export default ShiftAllotContainer = withTracker(()=>{
 	const shiftSubHandle = Meteor.subscribe("allShiftsData");
 	const allShiftsData = ShiftAllocation.find({}).fetch()||[];
 
-      console.log("allEmpData :",allEmpData);
+      console.log("allEmpDetails :",allEmpDetails);
       console.log("allShiftData :",allShiftData);
       console.log("allShiftsData :",allShiftsData);
 	return {
 		"loading2"		: !shiftSubHandle2.ready(),
 		"loading1"		: !shiftSubHandle1.ready(),
 		"loading"		: !shiftSubHandle.ready(),
-		"allEmp" 		: allEmpData,
+		"allEmp" 		: allEmpDetails,
 		"allShift" 		: allShiftData,
 		"allShifts" 	: allShiftsData,
 		

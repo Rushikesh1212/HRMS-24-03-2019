@@ -8,7 +8,7 @@ import "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/listOfSubordi
 
 
 // Shift Roster
-import "/imports/shiftMgmt/shiftRoster/empTemp/empMaster.js";
+import "/imports/shiftMgmt/shiftRoster/empTemp/empDataMaster.js";
 import "/imports/shiftMgmt/shiftRoster/shiftAllotment/shiftAllocation.js";
 import "/imports/shiftMgmt/shiftRoster/shiftSetting/shiftSetting.js";
 
