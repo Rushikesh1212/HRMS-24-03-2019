@@ -124,7 +124,7 @@ componentDidMount() {
 						Meteor.call("insertBasicInfo",formValues,
 													(error,result)=>{
 														if(error){
-																console.log("Something went wrong! Error = ", error);
+																swal("Something is Wrong","Record is already available","warning");
 														}else{
 															$("#holidaysMaster").validate().resetForm();
 															swal("Congrats!","Your Information Submitted Successfully.","success");

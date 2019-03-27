@@ -45,13 +45,8 @@ Meteor.methods({
 									}
 								}
 							);	
-		}else{
-			(error)=>{
-								
-						console.log(error);
-						return;
-								
-					}	
+		}else{								
+						return error;
 		}
 		
 	return lwh_id;
