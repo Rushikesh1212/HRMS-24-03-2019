@@ -184,7 +184,7 @@ export default class LeaveApprovalForm extends Component
 			  	<form id="leaveForm" className="tab-pane fade in active col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group mt30">
 				  	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					  	<div className="col-lg-4 col-md-6 col-sm-6 col-xs-12 form-group">
-<<<<<<< HEAD
+
 							<label for="sel1" className="fz16 fontF">Select Leave Type</label>
 
 							<select className="h40 inputBox form-control" ref="lt" id="sel1" onChange={this.handleChange1.bind(this)}>
@@ -196,17 +196,7 @@ export default class LeaveApprovalForm extends Component
 								<option value="Transfer Leave">Transfer Leave</option>
 								<option value="Special Leave">Special Leave</option>
 							</select>
-=======
-							  <label for="sel1" className="fz16 fontF">Select Leave Type</label>
-							
-							  <select className="h40 inputBox form-control" ref="lt" id="sel1" onChange={this.handleChange1.bind(this)}>
-							    <option>Privelge Leave</option>
-							    <option>Sick Leave</option>
-							    <option>Casual Leave</option>
-							    <option>Maternity Leave</option>
-							    <option>Leave Without Pay</option>
-							  </select>
->>>>>>> 4b87d63b99ce6586ae9d455d39fbfecbba6578e9
+
 
 							</div>
 						</div>
@@ -277,11 +267,7 @@ export default class LeaveApprovalForm extends Component
 				           </div>
 				        </div>
 							</div>
-<<<<<<< HEAD
-=======
-							
-					
->>>>>>> 4b87d63b99ce6586ae9d455d39fbfecbba6578e9
+
 							<div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">							
 								<div className="form-group">
 				          <label for="myInput" className="fz16 fontF">In Time</label>
@@ -343,11 +329,7 @@ export default class LeaveApprovalForm extends Component
 				           </div>
 				        </div>
 							</div>
-<<<<<<< HEAD
-=======
-							
-				
->>>>>>> 4b87d63b99ce6586ae9d455d39fbfecbba6578e9
+
 						</div>
 
 
