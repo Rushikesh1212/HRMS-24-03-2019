@@ -125,7 +125,10 @@ componentDidMount() {
 						Meteor.call("insertBasicInfo",formValues,
 													(error,result)=>{
 														if(error){
-																console.log("Something went wrong! Error = ", error);
+
+																swal("Something is Wrong","Record is already available","warning");
+
+
 														}else{
 															$("#holidaysMaster").validate().resetForm();
 															swal("Congrats!","Your Information Submitted Successfully.","success");
@@ -165,7 +168,7 @@ componentDidMount() {
 			Meteor.call("updateBasicInfo",formValues,
 										(error,result)=>{
 											if(error){
-												console.log("Something went wrong! Error = ", error);
+												swal("Congrats!","Employee Profile Updated Successfully.","success");
 											}else{
 												swal("Congrats!","Employee Profile Updated Successfully.","success");
 												console.log("latest id = ",result);
@@ -216,7 +219,7 @@ componentDidMount() {
 				Meteor.call("deleteLwh",lwhId,
 										(error,result) => {
 											if(error){
-												swal("Something is Wrong","Contact Your System Administrator","error");
+												swal("Something is Wrong","Contact Your System Administrator","warning");
 												console.log(error);
 											}else{
 												swal("Great!","Delete is Successful!","success");
@@ -281,32 +284,6 @@ componentDidMount() {
           }   
       }
 
-	validate(event)
-	{
-		event.preventDefault();
-
-		var fname = document.getElementById('holidayDate1').value;
-		if(fname==="")
-		{
-			document.getElementById('holidayDate').innerHTML="This field is required ";
-		}
-		else
-		{
-			document.getElementById('holidayDate').innerHTML="";
-		}
-
-
-		var lname = document.getElementById('holidayFor1').value;
-		if(lname==="")
-		{
-			document.getElementById('holidayFor').innerHTML="This field is required ";
-		}
-		else
-		{
-			document.getElementById('holidayFor').innerHTML="";
-		}
-
-	}
 
 
 render(){
@@ -374,7 +351,7 @@ return (
 							    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							    	 	<label className="formLable">Holiday Date</label>
 								    	 <div className="input-group " id="holidayDate">
-								    		<span className="input-group-addon inputIcon" ><i className="fa fa-table"></i></span>
+								    		<span className="input-group-addon inputIcon" ><i className="fa fa-calendar"></i></span>
 								    		<input type="date"  value={this.state.holidays.date} ref="date" className="form-control inputBox" onChange={this.handleChange1.bind(this)} name="holidayDate" required/>
 								    	</div>
 									</div>
@@ -383,7 +360,7 @@ return (
 					    	 			<label className="formLable">Holiday Name</label>
 							    		<div className="input-group" id="holidayName" >
 								    		<span className="input-group-addon inputIcon"><i className="fa fa-user"></i></span>
-								    		<input type="text" value={this.state.holidays.holidayName}  placeholder="Enter Holiday Name" ref="holidayName" className="form-control inputBox"  onChange={this.handleChange1.bind(this)} name="holidayName" required/>
+								    		<input type="text" value={this.state.holidays.holidayName}  placeholder="Enter Holiday Name" ref="holidayName" className="form-control inputBox"  onChange={this.handleChange1.bind(this)} onKeyDown={this.isTextKey.bind(this)} name="holidayName" required/>
 								    	</div>
 								    </div>
 

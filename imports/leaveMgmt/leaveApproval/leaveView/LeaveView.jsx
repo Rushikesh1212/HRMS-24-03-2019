@@ -14,8 +14,8 @@ export default class LeaveView extends Component{
 			<div className="row col-lg-10 col-lg-offset-1 col-md-10 col-sm-10 col-xs-12">
 
 					<table className="table table-bordered table-hover">
-						<h4 className="text-center bold"><b/> IPCA Laboratories Ltd.</h4>
-							<h6 className="text-center"> Kandevali [W] Mumbai-102312</h6>
+						<h4 className="text-center bold"><b/>iAssureIT technology pvt.Ltd.</h4>
+							<h6 className="text-center"> Amanora Chambers, Hadapsar-Pune-411038</h6>
 					
 							<div className="row col-lg-10  col-md-10 col-sm-10 col-xs-12 mt20">
 							<div className="ml20 bold">Leave Application No. :  123456</div>
