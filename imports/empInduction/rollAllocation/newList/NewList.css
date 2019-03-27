@@ -1,0 +1,60 @@
+/*.tableTitle{
+	height: 70px;
+	text-align: center;
+	background-color: #a4d8d6;
+	margin-bottom: 5px;
+}
+.table thead th{
+	text-align: center !important;
+	background-color: #a4d8d6;
+}*/
+
+
+
+/*                  roles and designation                    */
+
+.profileImg{
+	height: 120px;
+	margin-left: 15px;
+	border: 2px solid #111;
+}
+
+.profileImgInfo{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	
+
+}
+.personalInfo{
+	margin-top: 10px;
+	
+
+}
+.personalInfo img{
+	height: 30px;
+	
+
+} 
+
+/*  skills  and  certificates*/
+
+.boxSkills{
+	border: 1px solid #44a !important;
+	margin-top: 25px;
+	height: 150px;
+}
+
+.batchesLabel{
+	position: absolute;
+	padding: 15px;
+	background-color: #fff;
+	margin-top: -25px;
+}
+
+.mtop{
+	margin-top: 20px;
+}
+
+.pbottom{
+	padding-bottom: 5px;
+}

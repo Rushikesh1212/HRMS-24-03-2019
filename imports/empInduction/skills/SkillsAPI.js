@@ -21,7 +21,7 @@ Meteor.methods({
 	"insertSkillinfo":function(formValues){
 		console.log(formValues);
 
-		var s_id=BankMaster.insert({
+		var s_id=SkillMaster.insert({
 
 			"Skills" 	    : formValues.Skills,
 			"Description" 	: formValues.Description,

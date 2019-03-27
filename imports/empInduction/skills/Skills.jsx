@@ -3,93 +3,95 @@ import React, {Component} from 'react';
 import "/imports/empInduction/skills/skills.css";
 import { CertiMaster } from "/imports/empInduction/skills/SkillsAPI.js";
 
-class Skills extends Component {
-  constructor() {
+class Skills extends Component{
+
+   constructor(){
     super();
     this.state = {
-    
-      shareholders: [{ name: "" }],
-      share: [ {city:""}]
-    };
+      "Skills":"",
+      "Description":"",
+   
+    }
+   }
+  
+  loginPage(event){
+    FlowRouter.go("/Submit/");
   }
+
+  handleChange(event){
+    event.preventDefault();
+    this.setState({
+              
+      "Skills"        : this.refs.Skills.value,          
+      "Description"       : this.refs.Description.value,
+     
+  });
+  }
+
+
+  submitNewUser(event){
+    event.preventDefault();
+      var formValues={
+     
+
+      Skills             : this.refs.Skills.value,          
+      Description        : this.refs.Description.value,          
+      
+      };
+       
+
+        Meteor.call("insertSkillinfo",formValues,
+                      (error,result)=>{
+                        if(error){
+                          console.log("Something went wrong! Error = ", error);
+                        }else{
+                          swal("Congrats!","Your Information Submitted Successfully.","success");
+                          console.log("latest id = ",result);
+                          
+                          // this.setState({"inputValue":""});
+                        }
+
+        });
+      }   
+                     
 
   
 
-  handleShareholderNameChange = idx => evt => {
-    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
-      if (idx !== sidx) return shareholder;
-      return { ...shareholder, name: evt.target.value};
-    });
 
-    this.setState({ shareholders: newShareholders });
-  };
-  handleShareholderCityChange = idx => evt => {
-    const brandnewShareholders = this.state.share.map((share, sidx) => {
-      if (idx !== sidx) return shares;
-      return { ...share,city: evt.target.value };
-    });
 
-    this.setState({ share: brandnewShareholders });
-  };
+  render(){   
 
-  handleSubmit = evt => {
-    const { name, shareholders } = this.state;
-    alert(`Incorporated: ${name} with ${shareholders.length} shareholders`);
-  };
-
-  handleAddShareholder = () => {
-    this.setState({
-      shareholders: this.state.shareholders.concat([{ name: "" }]),
-      share: this.state.share.concat([{ city: "" }])
-    });
-  };
-
-  handleRemoveShareholder = idx => () => {
-    this.setState({
-      shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)
-    });
-  };
-
-  render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-
-        
-    
-
-        <h4>Skills</h4>
-
-        {this.state.shareholders.map((shareholder, idx) => (
-
-        <div className="shareholder">
-        <div className="col-lg-12">
-           <div className="col-lg-4">
-            <label>Skill</label>
+      <div className="row">
       
-            <input
+      <form>
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2>  Skills</h2>
+            
+      
+            <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 mtop">
 
-              type="text"
-              className="form-control"
-              placeholder="Skills"
-              value={shareholder.name}
-              onChange={this.handleShareholderNameChange(idx)}
-            />
+              <div className="form-group">
+                    <label >Skills</label>
+                    <input type="text"ref="Skills"value={this.state.Skills}className="form-control"onChange={this.handleChange.bind(this)} id=""/>
+                    <br/>
+                   {/* <input type="text"ref="Skills"value={this.state.Skills}className="form-control"onChange={this.handleChange.bind(this)} id=""/>*/}
+                </div>
+
             </div>
-             <div className="col-lg-4">
-               <label>Description</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Description"
-              value={shareholder.city}
-              onChange={this.handleShareholderCityChange(idx)}
-            />
+            <div className="col-lg-7 col-md-7 col-sm-4 col-xs-12 mtop">
+
+              <div className="form-group">
+                    <label >Description</label>
+                    <input type="text"ref="Description"value={this.state.Description} className="form-control"onChange={this.handleChange.bind(this)} id=""/>
+                    <br/>
+                    {/*<input type="text"ref="Description"value={this.state.Description} className="form-control" onChange={this.handleChange.bind(this)}id=""/>*/}
+                </div>
+
             </div>
-
-            <div className="col-lg-3">
-               <label>How Do you Rate yourself?</label>
-
-               <div>
+            <div className="col-lg-3 col-md-3 col-sm-4 col-xs-12 mtop">
+              <label >How Do you Rate yourself?</label>
+              <div>
                     
                  <div className="col-lg-1">
                       <i className="fa fa-star"></i>
@@ -115,36 +117,26 @@ class Skills extends Component {
                                   <div className="col-lg-1">
                                          <i className="fa fa-star"></i>
                                    </div>
-                                      
-                                 </div>
-                            </div>
+                                        
+                                        
 
+                      
+               </div>
+              <br/>
+             </div>
 
-                     <div className="col-lg-1">
-                      <button
-                    type="button"
-                    onClick={this.handleRemoveShareholder(idx)}
-                    className="small"
-                  >
-              -
-            </button>
-        </div>         
-    </div>
- </div>
-        ))}
+        
+            </div>
+            
+        </form> 
 
-
-         <div className="col-lg-12" ><img src="/images/plus1.png"  id="size" onClick={this.handleAddShareholder}/></div>
-         <div className="col-lg-12" >
-           <button className="submit  btn pull-right">Submit</button>
-         </div>
-         
-      
-      </form>
-
-
+         <div className="col-lg-12">
+              <button className="submit btn pull-right"onClick={this.submitNewUser.bind(this)}>Submit</button>
+             </div>
+      </div>
     );
-  }
+  };
 }
+
 
 export default Skills

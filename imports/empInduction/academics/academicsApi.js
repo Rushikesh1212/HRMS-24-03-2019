@@ -1,41 +1,44 @@
 import { Mongo } from 'meteor/mongo';
 
-export const EmpMaster = new Mongo.Collection('empMasterA');
 
 
+export const AcademicsMaster = new Mongo.Collection('Academicdata');
 
-if(Meteor.isServer){
-	Meteor.publish("empData",function(empid){
+ if(Meteor.isServer){
+	/*Meteor.publish("empData",function(empid){
 		var empprof = EmpMaster.find({"_id":empid});
 		return empprof;
 	});
-
-		Meteor.publish("allEmpData",function(){
-		var allEmp = EmpMaster.find({});
-		console.log("data",allEmp);
-		return allEmp;
+*/
+	Meteor.publish("Academicd",function(){
+		var alldata = AcademicsMaster.find({});
+		console.log("data",alldata);
+		return alldata;
 	});
 }
 
-
-
 Meteor.methods({
-	"insertAcademicsInfo" : function(formValues){
+	"insertAcademicsinfo":function(formValues){
 		console.log(formValues);
 
-		var emp_id = EmpMaster.insert({
-									"ssc":[{
-									"institute" 	: formValues.institute,
-									"passOut" 	: formValues.passOut,
-									"percentage" 		: formValues.percentage,
-										}],	
-										"hsc":[{
-									"instituteHsc" 	: formValues.instituteHsc,
-									"passOutHsc" 	: formValues.passOutHsc,
-									"percentageHsc" 		: formValues.percentageHsc,
-										}]	
-								}, 
-								(error,result)=>{
+		var Academic_id=AcademicsMaster.insert({
+	
+		 "QualificationLevel" 	     : formValues.QualificationLevel,
+		 "Qualification"      		 : formValues.Qualification,
+         "Specialization"    	     : formValues.Specialization,
+         "Mode"     			     : formValues.Mode,
+         "Grade"                     : formValues.Grade, 
+         "PassoutYear"     			 : formValues.PassoutYear,
+         "CollegeName"               : formValues.CollegeName, 
+         "UniversityName"     	     : formValues.UniversityName,
+         "City"                      : formValues.City,        
+         "State"     			     : formValues.State,
+         "ImageProof"                : formValues.ImageProof, 
+		},
+
+		
+		(error,result)=>{
+									
 									if(error){
 										console.log(error);
 										return;
@@ -46,86 +49,8 @@ Meteor.methods({
 								}
 							);
 
-		return emp_id;
-	},
+		return Academic_id;
 
-"submitRoleDesignationInfo" : function(formValues){
-		console.log("formValues",formValues);
-		let idExists =EmpMaster.findOne({"_id":formValues._id});
-		console.log("idExists",idExists);
-		if (!idExists) {
-		var Role_id = EmpMaster.insert({
-									
-									"employmentStartDate" 		: formValues.employmentStartDate,
-									"allocateDepartment" 	    : formValues.allocateDepartment,
-									"designation" 		        : formValues.designation,
-									"reportingLocation" 	    : formValues.reportingLocation,
-									"expectedRetirementDate" 	: formValues.expectedRetirementDate,
-									"subDepartment" 			: formValues.subDepartment,
-
-									"gradeBand" 				: formValues.gradeBand,
-									"reportingManager" 			: formValues.reportingManager,
-									"regular" 					: formValues.regular,
-									"contract" 					: formValues.contract,
-									"fullTime" 					: formValues.fullTime,
-									"partTime" 					: formValues.partTime,
-
-									"status" 					: formValues.status,
-
-
-		
-										
-								}, 
-								(error,result)=>{
-									if(error){
-										console.log(error);
-										return;
-									}else{
-										console.log(result);
-										return;
-									}
-								}
-							);
-	}else{
-		EmpMaster.insert({
-		
-									"employmentStartDate" 		: formValues.employmentStartDate,
-									"allocateDepartment" 	    : formValues.allocateDepartment,
-									"designation" 		        : formValues.designation,
-									"reportingLocation" 	    : formValues.reportingLocation,
-									"expectedRetirementDate" 	: formValues.expectedRetirementDate,
-									"subDepartment" 			: formValues.subDepartment,
-									"gradeBand" 				: formValues.gradeBand,
-									"reportingManager" 			: formValues.reportingManager,
-									"regular" 					: formValues.regular,
-									"contract" 					: formValues.contract,
-									"fullTime" 					: formValues.fullTime,
-									"partTime" 					: formValues.partTime,
-									"status" 					: formValues.status,
-
-									
-
-
-
-			}
-		)
-	}
-
-		return Role_id;
-	},
-
-
-"deleteEmpProfile" : function(empid){
-		EmpMaster.remove({"_id":empid}, (error,result)=>{
-				if(error){
-					return error;
-					console.log(error);
-				}else{
-					return result;
-				}
-		});
-
-		return;
 	}
 
 });

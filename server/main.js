@@ -19,6 +19,7 @@ import { Attendance } from '/imports/attendanceMgmt/employeeViewModule/graphical
 
 
 //emp Induction
+import "/imports/empInduction/rollAllocation/roleDesignation/rollAllocationApi.js";
 import "/imports/empInduction/bankDetails/BankDetailsAPI.js";
 import "/imports/empInduction/certificate/CertiAPI.js";
 import "/imports/empInduction/skills/SkillsAPI.js";
