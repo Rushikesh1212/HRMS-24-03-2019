@@ -52,55 +52,106 @@ class LocationWiseHolidays extends Component{
 	    this.handleEdit = this.handleEdit.bind(this);
 	}
 
-	//=========================================================================================================
-	                                               // Insert
-	// ========================================================================================================
-	submitBasicInfo(event){
-		event.preventDefault();
-		var year=this.refs.date.value;
-		var newYear=year.split("-");
-		var newYear1=parseInt(newYear[0],10);
-
-		var formValues = {
-			year 	  : newYear1,
-			location  : this.refs.location.value.toUpperCase(),
-			holidays  : [
-							{
-								date: this.refs.date.value, 
-								holidayName: this.refs.holidayName.value.toUpperCase()
-							},
-						],
-			createdAt : this.state.createdAt,
-			createdBy : "Rushikesh Salunkhe",	
-		};
-		if(formValues.holidays[0].date!="" && formValues.holidays[0].holidayName!="")
-		{
-
-		
-
-				Meteor.call("insertBasicInfo",formValues,
-											(error,result)=>{
-												if(error){
-														console.log("Something went wrong! Error = ", error);
-												}else{
-													swal("Congrats!","Your Information Submitted Successfully.","success");
-													console.log("latest id = ",result);
-
-												
-												}
-											});	
-			}
-			else{
-					swal({
-		  	title: "Something went wrong!",
-		  	text: "Please fill all records!",
-		  	icon: "warning",
-				})
 
 
-			}
+
+componentDidMount() {
+
+		$.validator.addMethod("regxholidayName", function(value, element, regexpr) {          
+        	return regexpr.test(value);
+	    }, "Please enter only characters");
+
+	
+
+	   
+	    jQuery.validator.setDefaults({
+	        debug: true,
+	        success: "valid"
+	    });
+	    $("#holidaysMaster").validate({
+	        rules: {
+	          holidayName: {
+	            required: true,
+	            regxholidayName: /^[^-\s][a-zA-Z0-9_\s-]+$/,
+	          },
+	           
+	           holidayDate: {
+	            required: true,     
+	          },
+	          
+	        },
+	        errorPlacement: function(error, element) {
+	        	
+	        	if (element.attr("name") == "holidayName"){
+                     error.insertAfter("#holidayName");
+                }
+                	
+           			if (element.attr("name") == "holidayDate"){
+                     error.insertAfter("#holidayDate");
+                }
+               }
+	    });
+	  	// this.getData();	
 }
+
+
+
+//Before Submit
+		submitBasicInfo(event){
+			event.preventDefault();
+			console.log('valid', $("#holidaysMaster").valid());
+			if($("#holidaysMaster").valid()){
+
+				var year=this.refs.date.value;
+				var newYear=year.split("-");
+				var newYear1=parseInt(newYear[0],10);
+
+				var formValues = {
+					year 	  : newYear1,
+					location  : this.refs.location.value.toUpperCase(),
+					holidays  : [
+									{
+										date: this.refs.date.value, 
+										holidayName: this.refs.holidayName.value.toUpperCase()
+									},
+								],
+					createdAt : this.state.createdAt,
+					createdBy : "Rushikesh Salunkhe",	
+				};
+			
+				
+
+						Meteor.call("insertBasicInfo",formValues,
+													(error,result)=>{
+														if(error){
+																console.log("Something went wrong! Error = ", error);
+														}else{
+															$("#holidaysMaster").validate().resetForm();
+															swal("Congrats!","Your Information Submitted Successfully.","success");
+															console.log("latest id = ",result);
+
+														
+														}
+													});	
+					
 		
+			}
+			
+		}
+
+//after submit to clear validation
+
+
+
+
+
+
+
+
+
+
+
+
 	//=========================================================================================================
 	                                               // Update 
 	// ========================================================================================================
@@ -316,13 +367,12 @@ return (
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 lws-btn-mb">
 							<div className="row">
 							    <div className="box col-lg-6 col-md-6 col-sm-12 col-xs-12 lws-btn-mb ">
-							    <form onChange={this.validate.bind(this)} >
+							    <form id="holidaysMaster">
 					    			<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								      	<label htmlFor="sel1" className="formLable">Select Location</label>
-								      	<div className="input-group">
+								      	<div className="input-group" >
 									    	 <span className="input-group-addon inputIcon"><i className="fa fa-map-pin"></i></span>
-								    	 	<select value={this.state.location} ref="location" className="form-control inputBox" onChange={this.handleChange1.bind(this)} id="sel1">
-										        <option hidden selected>Select Location</option>
+								    	 	<select value={this.state.location} ref="location" className="form-control inputBox" onChange={this.handleChange1.bind(this)} name="holidayLoc"  >
 										        <option>MUMBAI</option>
 										        <option>PUNE</option>
 										        <option>DELHI</option>
@@ -333,18 +383,18 @@ return (
 		
 
 							    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							    	 	<label className="formLable">Holiday Date</label><span className="text-danger">*</span><span id="holidayDate" className="text-danger"></span>
-								    	 <div className="input-group ">
-								    		<span className="input-group-addon inputIcon"><i className="fa fa-table"></i></span>
-								    		<input type="date"  value={this.state.holidays.date} ref="date" className="form-control inputBox" id="holidayDate1" onChange={this.handleChange1.bind(this)}/>
+							    	 	<label className="formLable">Holiday Date</label>
+								    	 <div className="input-group " id="holidayDate">
+								    		<span className="input-group-addon inputIcon" ><i className="fa fa-table"></i></span>
+								    		<input type="date"  value={this.state.holidays.date} ref="date" className="form-control inputBox" onChange={this.handleChange1.bind(this)} name="holidayDate" required/>
 								    	</div>
 									</div>
 
-							    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					    	 			<label className="formLable">Holiday Name</label><span className="text-danger">*</span><span id="holidayFor" className="text-danger"></span>
-							    		<div className="input-group">
+							    	<div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+					    	 			<label className="formLable">Holiday Name</label>
+							    		<div className="input-group" id="holidayName" >
 								    		<span className="input-group-addon inputIcon"><i className="fa fa-user"></i></span>
-								    		<input type="text" value={this.state.holidays.holidayName} placeholder="Enter Holiday Name" ref="holidayName" className="form-control inputBox" id="holidayFor1" onChange={this.handleChange1.bind(this)} onKeyDown={this.isTextKey.bind(this)}/>
+								    		<input type="text" value={this.state.holidays.holidayName}  placeholder="Enter Holiday Name" ref="holidayName" className="form-control inputBox"  onChange={this.handleChange1.bind(this)} name="holidayName" required/>
 								    	</div>
 								    </div>
 
@@ -359,7 +409,7 @@ return (
 {/*	=========================================================================================================
 	                                               Calender Component
 	========================================================================================================*/}
-						<div className="row">
+						<div className="row"> 
 						  <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  text-center">
 						   		<Calender/>
 							</div>

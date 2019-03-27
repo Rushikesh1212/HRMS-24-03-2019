@@ -1,51 +1,37 @@
+.text-center{
+	text-align: center;
+
+}
+.bold{
+	font-style: bold;
+	font-weight: 700;
+}
 .mt20{
 	margin-top: 20px;
 }
-.amhr{
+
+.mart10{
+	padding-left:10px;
+}
+.ml22{
+	margin-left: 40px;
+
+}
+
+.pdl{
+	padding: 5px;
+}
+
+.border1.border2{
 	border: 0.5px solid #aaa;
-	width: 30%;
-	margin-top: -10px;
-
-}
-.amhr1{
-	border: 0.5px solid #aaa;
-	width: 30%;
-	margin-top: 10px;
-}
-.btn1{
-	margin-top: -50px;
-	margin-left: 300px;
-	background-color: #f00;
-	cursor: pointer;
+	width: auto;
+	margin-right: 10px /*!important;*/
+	height: 140px;
 }
 
-.btn2{
-	margin-top: -50px;
-	margin-left:30px; 
-	background-color: #3f3;
-	cursor: pointer;
+.border2{
+	margin-left: 10px ;
 }
 
-.amcir{
-	border-radius: 100%;
-	border: 10px solid #686;
-	height: 120px;
-	width: 120px;
-}
-.mt100{
-	margin-top: 100px;
-}
 
-.amatext{
-	font-size:21px;
-	color: #686;
-	text-align: center;
-	margin-top: 35px;
-}
-.ml20{
-	margin-left: 20px;
-}
 
-.ml5{
-	margin-left: 5px;
-}

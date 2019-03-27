@@ -7,3 +7,6 @@ body {
   font-family:'Montserrat-Regular';
   src: url("/fonts/Montserrat-Regular.ttf");
 }
+.error{
+	color: red;
+}

@@ -10,70 +10,21 @@ export default class LeaveView extends Component{
 
 
 	render(){
-		return (<div>
+		return (<div >
 			<div className="row col-lg-10 col-lg-offset-1 col-md-10 col-sm-10 col-xs-12">
 
-					<table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								<th>Employee Id</th>
-								<th>Leave Type</th>
-								<th>From Date</th>
-								<th>To Date</th>
-								<th>No. of Days</th>
-								<th>Remark</th>
-								<th>Status</th>
-								<th>View details</th>
-								<th>Edit</th>
-								<th>Delete</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>536180</td>
-								<td>Sick</td>
-								<td>01/01/2019</td>
-								<td>05/01/2019</td>
-								<td>5</td>
-								<td>Aprooved</td>
-								<td>Ongoing</td>
-								<td>View</td>
-								<td>Na</td>
-								<td>Na</td>
-							</tr>
-							<tr>
-								<td>536181</td>
-								<td>Sick</td>
-								<td>01/01/2019</td>
-								<td>05/01/2019</td>
-								<td>5</td>
-								<td>Aprooved</td>
-								<td>Ongoing</td>
-								<td>View</td>
-								<td>Na</td>
-								<td>Na</td>
-							</tr>
-							<tr>
-								<td>536183</td>
-								<td>Sick</td>
-								<td>01/01/2019</td>
-								<td>05/01/2019</td>
-								<td>5</td>
-								<td>Aprooved</td>
-								<td>Ongoing</td>
-								<td>View</td>
-								<td>Na</td>
-								<td>Na</td>
-							</tr>
-						</tbody>
-					</table>
-    		</div>
-
-    		<div>
-    			<div className="row col-lg-8 col-lg-offset-1 col-md-10 col-sm-10 col-xs-12">
-					<h3>Leave Request</h3> 
-					<table class="table table-bordered table-hover">
+					<table className="table table-bordered table-hover">
+						<h4 className="text-center bold"><b/> IPCA Laboratories Ltd.</h4>
+							<h6 className="text-center"> Kandevali [W] Mumbai-102312</h6>
 					
+							<div className="row col-lg-10  col-md-10 col-sm-10 col-xs-12 mt20">
+							<div className="ml20 bold">Leave Application No. :  123456</div>
+							</div>
+
+							<div className="row col-lg-2  col-md-10 col-sm-10 col-xs-12 pull-right mt20">
+							<div>Date :  1-1-2019</div>
+							</div>
+
 							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
 							<div className="ml20">Employee Id :  E001</div>
 							</div>
@@ -87,40 +38,152 @@ export default class LeaveView extends Component{
 							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
 							<div>Designation :  Web Developer</div>
 							</div>
-							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
-							<div className="ml20">Leave Type :  Priveldged Leave </div>
-							</div>
-							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
-							<div>Working Days :  3</div>
-							</div>
-							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
-							<div className="ml20">From :  6-JUL-2019</div>
-							</div>
-							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
-							<div>To :  6-JUL-2019</div>
-							</div>
-							<div className="row col-lg-12  col-md-12 col-sm-12 col-xs-12 mt20">
-							<div className="ml20">Reason for leave/Remark : <hr className="amhr"/>
-							<hr className="amhr1"/>
-							</div>
-							</div>
 
-							<div className="row col-lg-12  col-md-12 col-sm-12 col-xs-12 ml5">
-							<input type="text" placeholder="Give reason if you reject the leave" />
-							</div>
-							<button className="btn btn1 bg-danger "> Reject</button>
-							<button className="btn btn2 bg-success"> Approve</button>
-						
 					</table>
     		</div>
-    			<div className="row col-lg-1 col-lg-offset-1 col-md-2 col-sm-2 col-xs-2 mt100 amcir">
-					
-						<div className="amatext">4/10</div>
-					
-    		</div>
-    		</div>
 
+
+    			<div className="row col-lg-10 col-lg-offset-1 col-md-10 col-sm-10 col-xs-12">
+
+					<table className="table table-bordered table-hover">
+						
+					
+							<div className="row col-lg-10  col-md-10 col-sm-10 col-xs-12 mt20">
+							<div className="ml20 bold">Leave Type :  XXXXXXXXX</div>
+							</div>
+
+
+						
+							<div className="row col-lg-4  col-md-10 col-sm-10 col-xs-12 mt20">
+							<div className="ml20 bold">From :  6-JUL-2019</div>
+							</div>
+							<div className="row col-lg-4  col-md-10 col-sm-10 col-xs-12 mt20 bold">
+							<div>To :  6-JUL-2019</div>
+							</div>
+
+							<div className="row col-lg-4  col-md-10 col-sm-10 col-xs-12 mt20 bold">
+							<div>Working Days :  3</div>
+								</div>
+
+									<div className="row col-lg-12  col-md-12 col-sm-12 col-xs-12 mt20">
+							<div className="ml20 bold">Remark :  XXXXX  XXXXXXX  XXXXXXX  XXXXXXX  XXXXXX  XXXXXXXXX 
+							
+							</div>
+							</div>
+
+							
+					</table>
+					<div className="row">
+			<div className=" col-lg-12  col-md-10 col-sm-10 col-xs-12">
+				<table class="table table-bordered table-hover">
+						<thead>
+							<tr className="table table-hover" >
+								<th>Leave Type</th>
+								<th>PL</th>
+								<th>SL</th>
+								<th>CL</th>
+								<th>ML</th>
+								<th>EL</th>
+								<th>TL</th>
+								<th>XL</th>
+								<th>LW</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Max Leaves</td>
+								<td>24</td>
+								<td>07</td>
+								<td>07</td>
+								<td>07</td>
+								<td>07</td>
+								<td>07</td>
+								<td>07</td>
+								<td>07</td>
+							</tr>
+							<tr>
+								<td>Taken Leaves</td>
+								<td>24</td>
+								<td>02</td>
+								<td>02</td>
+								<td>02</td>
+								<td>02</td>
+								<td>02</td>
+								<td>02</td>
+								<td>02</td>
+							</tr>
+							<tr>
+								<td>Leave Balance</td>
+								<td>14</td>
+								<td>05</td>
+								<td>05</td>
+								<td>05</td>
+								<td>05</td>
+								<td>05</td>
+								<td>05</td>
+								<td>05</td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+			</div>
+			<div className="row">
+				<div className=" col-lg-12  col-md-10 col-sm-10 col-xs-12">
+					<h4 className="mart10 bold bg-primary">Approval Section</h4>
+				</div>
     		</div>
+    		<div className="">
+    		<div className="col-lg-12  col-md-10 col-sm-10 col-xs-12">
+    	
+    				<div className="col-lg-6  col-md-10 col-sm-10 col-xs-12 row">
+    					<div className="border1">
+	    					<div className="col-lg-12  col-md-10 col-sm-10 col-xs-12">
+	    						<h5 className="bold">HR Aprooval</h5>
+			    			</div>
+				    		<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+									<div className="ml21">Name : XXXXX XXXXX </div>
+							</div>
+							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+										<div className="ml22">(Emp ID:123456)</div>
+							</div>
+							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+									<div className="ml21">Date: 05/04/1993</div>
+							</div>
+							<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+									<div className="ml22 ">Status:<span className="bold text-primary pdl">Approved</span>
+									</div>
+							</div>
+					</div>
+				</div>
+
+				<div className="col-lg-6  col-md-10 col-sm-10 col-xs-12 row ">
+				<div className="border2">
+    					<div className="col-lg-12  col-md-10 col-sm-10 col-xs-12">
+    						<h5 className="bold">Other Aprooval</h5>
+		    			</div>
+		    		<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+							<div className="ml21">Name : XXXXX XXXXX </div>
+							</div>
+					<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+							<div className="ml22">(Emp ID:123456)</div>
+					</div>
+					<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+							<div className="ml21">Date: 05/04/1993</div>
+					</div>
+					<div className="row col-lg-6  col-md-10 col-sm-10 col-xs-12 mt20">
+							<div className="ml22 ">Status:<span className="bold text-primary pdl">Approved</span>
+							</div>
+					</div>
+
+				</div>	
+				</div>
+  
+    	</div>
+    	</div>
+    	</div>
+    	
+    </div>
+   
 		);
 	};
 }
