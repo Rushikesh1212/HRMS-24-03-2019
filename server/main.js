@@ -15,7 +15,7 @@ import "/imports/shiftMgmt/shiftRoster/shiftSetting/shiftSetting.js";
 
 
 //Attendance Mgmt
-import { Attendance } from '/imports/attendanceMgmt/attendanceSystem/MonthlyCalendar/apiGraphical.js';
+import { Attendance } from '/imports/attendanceMgmt/employeeViewModule/graphicalReport/MonthlyCalendar/apiGraphical.js';
 
 
 //emp Induction
