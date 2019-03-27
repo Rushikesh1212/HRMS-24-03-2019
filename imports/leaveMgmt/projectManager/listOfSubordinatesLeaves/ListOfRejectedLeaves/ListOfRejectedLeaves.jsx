@@ -3,15 +3,16 @@ import ReactTable from "react-table";
 import swal from 'sweetalert';
 import { withTracker } from 'meteor/react-meteor-data';
 
-
 import 'react-table/react-table.css';
 import "./ListOfRejectedLeaves.css";
 
 import ListOfRejectedLeavesForm from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/ListOfRejectedLeaves/ListOfRejectedLeavesForm/ListOfRejectedLeavesForm.jsx";
 import { ListOfLeave } from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/listOfSubordinatesLeaves.js";
 
-class ListOfRejectedLeaves extends Component{
-	constructor(props){
+class ListOfRejectedLeaves extends Component
+{
+	constructor(props)
+	{
 		super(props);
 		this.state = {
 
@@ -28,8 +29,7 @@ class ListOfRejectedLeaves extends Component{
 			"rowId"					: "",
 			"isHidden"				: false,
 			"status"				: "",
-		};
-				
+		};			
 	}
 
 	deleteRejectedData(row)
@@ -89,11 +89,13 @@ class ListOfRejectedLeaves extends Component{
 
 		
   	}
-  	editModal(row){
+  	editModal(row)
+  	{
 		var rowId = row._id;
 		console.log("rowId",row);
 
-		this.setState({	
+		this.setState(
+		{	
 			"recordIdModal"				: row._id,	
 			"EmployeeId" 				: row.empId,
 			"EmployeeName" 				: row.leaveType,
@@ -104,7 +106,7 @@ class ListOfRejectedLeaves extends Component{
 			"From" 						: row.fromDate,
 			"To" 						: row.toDate,
 			"ReasonForLeaveRemark" 		: row.remark,
-		 });
+		});
 	}
 
 	// ================================Rendering Data========================
@@ -115,7 +117,6 @@ class ListOfRejectedLeaves extends Component{
   		console.log("Data::",data);
 
   		const columns = [
-
 		  	{
 		    Header: 'Emp ID',
 		    accessor: 'empId',
@@ -168,7 +169,8 @@ class ListOfRejectedLeaves extends Component{
 		          </div>
 		        </div>
 		        )
-        	}]
+        	}
+        ]
         	
 		return (
 
@@ -248,29 +250,24 @@ class ListOfRejectedLeaves extends Component{
   						</div>
 					</div>
 					<ReactTable
-						data={data}
-						columns={columns}
-						defaultPageSize={5}
-						showPagination={true}
+						data = {data}
+						columns = {columns}
+						defaultPageSize = {5}
+						showPagination = {true}
 					/>
 				</div>
 				<div className="col-lg-12">
- 				   { this.state.isHidden  ? <ListOfRejectedLeavesForm props={this.state.rowId}/> : null }
+ 				   { this.state.isHidden  ? <ListOfRejectedLeavesForm props = {this.state.rowId}/> : null }
 				</div>
 			</div>
 
 		);
 	};
-
-
 }
-export default withTracker(()=>{
-	
-
+export default withTracker(()=>
+{
 	const empSubHandle = Meteor.subscribe("allRejectedLeaves");
 	const allRejectedLeaves = ListOfLeave.find({ $or: [ { status : "Rejected" }, { status : "rejected" } ] }).fetch({});
-
-	console.log(allRejectedLeaves);
 	return {
 		"allRejectedData" 		: allRejectedLeaves,
 	}

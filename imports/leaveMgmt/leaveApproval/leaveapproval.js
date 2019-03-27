@@ -4,38 +4,45 @@ export const OutdoorDuty = new Mongo.Collection('outdoorDuty');
 export const ShortLeave = new Mongo.Collection('shortLeave');
 
 
-if(Meteor.isServer){
-	Meteor.publish("leaveData",function(){
+if(Meteor.isServer)
+{
+	Meteor.publish("leaveData",function()
+	{
 		var leaves = LeaveApproval.find({});
 		return leaves;
 	});
 
-		Meteor.publish("odData",function(){
+	Meteor.publish("odData",function()
+	{
 		var odLeaves = OutdoorDuty.find({});
 		return odLeaves;
 	});
 
-
-		Meteor.publish("slData",function(){
+	Meteor.publish("slData",function()
+	{
 		var sLeaves = ShortLeave.find({});
 		return sLeaves;
 	});
 
 }
 
-
+//===================================== Methods =====================================
 Meteor.methods({
-	"insertleaveform" : function(leave){
-		console.log("=============",leave);
 
+	"insertleaveform" : function(leave)					// Insertion in Leave Approval Collection
+	{
+		console.log("Applied leave Data ::",leave);
 		var leaveform = LeaveApproval.insert({
-								
-								"leaveType" : leave.leaveType,
-						  		"fromDate" 	: leave.fromDate,
-						  		"toDate"   	: leave.toDate,
-						  		"numOfDays" : leave.numOfDays,
-						  		"remark"  	: leave.remark,
-						  		"status"	: "Pending"
+
+								"empName"			: "Jyoti Dasai",
+								"empDepartment"		: "Development",
+								"empDesignation"	: "Jr Developer",
+								"leaveType"			: leave.leaveType,
+						  		"fromDate" 			: leave.fromDate,
+						  		"toDate"   			: leave.toDate,
+						  		"numOfDays" 		: leave.numOfDays,
+						  		"remark"  			: leave.remark,
+						  		"status"			: "Pending"
 
 								}, 
 
@@ -54,15 +61,20 @@ Meteor.methods({
 	},
 
 
-	"insertodleaveform" : function(leave1){
-		console.log("=============",leave1);
-
+	"insertodleaveform" : function(outDoor)				// Insertion in Out Door Duty Collection
+	{
+		console.log("Data of od leave :: ",outDoor);
 		var odForm = OutdoorDuty.insert({
 
-								"date"   : leave1.date,
-						  		"intime" : leave1.intime,
-						  		"outtime": leave1.outtime,
-						  		"reason"   : leave1.rsn1,
+								"empName"			: "Jyoti Dasai",
+								"empDepartment"		: "Development",
+								"empDesignation"	: "Jr Developer",
+								"date"   			: outDoor.outDoorDate,
+						  		"intime" 			: outDoor.outDoorIntime,
+						  		"outtime"			: outDoor.outDoorOuttime,
+						  		"reason"  			: outDoor.outDoorReason,
+						  		"status"			: "Pending",
+
 								}, 
 
 								(error,result)=>{
@@ -79,15 +91,18 @@ Meteor.methods({
 		return;
 	},
 
-	"insertslleaveform" : function(leave2){
-		console.log("=============",leave2);
-
-
+	"insertslleaveform" : function(shortLeave)				// Insertion in Short Leave Collection
+	{
+		console.log("Short leave Data :: ",shortLeave);
 		var slForm = ShortLeave.insert({
-								"date"   : leave2.date1,
-						  		"intime" : leave2.intime1,
-						  		"reason"   : leave2.rsn2,
 
+								"empName"			: "Priyanka Bhanvase",
+								"empDepartment"		: "Development",
+								"empDesignation"	: "Jr Developer",
+								"date"  			: shortLeave.shortLeaveDate,
+						  		"intime"			: shortLeave.shortLeaveIntime,
+						  		"reason"   			: shortLeave.shortLeaveReason,
+						  		"status"			: "Pending",
 								}, 
 
 								(error,result)=>{
@@ -103,8 +118,10 @@ Meteor.methods({
 
 		return;
 	},
-	"deleteLeaveData" : function(recordid){
-		LeaveApproval.remove({"_id":recordid}, (error,result)=>{
+
+	"deleteLeaveData" : function(recordid)	// Deletion of Data from Leave Approval Collection
+	{
+		LeaveApproval.remove( { "_id" : recordid }, (error,result)=>{
 				if(error){
 					return error;
 					console.log(error);

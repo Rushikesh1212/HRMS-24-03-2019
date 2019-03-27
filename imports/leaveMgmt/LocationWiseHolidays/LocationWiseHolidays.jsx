@@ -118,9 +118,10 @@ componentDidMount() {
 					createdAt : this.state.createdAt,
 					createdBy : "Rushikesh Salunkhe",	
 				};
-			
-				
-
+					var holidays = {...this.state.holidays}
+					holidays.date = "";
+					holidays.holidayName = "";
+					this.setState({holidays});
 						Meteor.call("insertBasicInfo",formValues,
 													(error,result)=>{
 														if(error){
@@ -138,18 +139,6 @@ componentDidMount() {
 			}
 			
 		}
-
-//after submit to clear validation
-
-
-
-
-
-
-
-
-
-
 
 
 	//=========================================================================================================

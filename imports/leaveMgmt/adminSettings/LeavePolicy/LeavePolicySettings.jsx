@@ -1,3 +1,12 @@
+/*==========================================================================================
+
+	Module Name    : Leave Management System.
+	Component Name : Leave Policy Settings ( admin )
+ 	Developer Name : Priyanka Lewade
+ 	Date           : 22-03-2019
+
+=============================================================================================*/
+
 import React, {Component} from 'react';
 import ReactTable from "react-table";
 import swal from 'sweetalert';
@@ -9,8 +18,10 @@ import { LeaveMgmt } from "/imports/leaveMgmt/adminSettings/LeavePolicy/leavePol
 import 'react-table/react-table.css';
 import "./LeavePolicySettings.css";
 
-class LeavePolicySettings extends Component{
-	constructor(props){
+class LeavePolicySettings extends Component
+{
+	constructor(props)
+	{
 		super(props);
 		var recordId = FlowRouter.getParam("recordid");
 		if(recordId){
@@ -18,10 +29,9 @@ class LeavePolicySettings extends Component{
 		}else{
 			var action = "Submit";
 		}
-		
 
-
-		this.state = {
+		this.state = 
+		{
 			"recordId" 							: recordId,
 			"action" 							: action,
 			"seletctedLocation" 				: "Mumbai",	
@@ -40,11 +50,7 @@ class LeavePolicySettings extends Component{
 			"LeavesDuringProbationPeriodModal"	: "",
 			"isHidden"							: false,
 			
-
-
-
 		};
-		console.log("seletctedLocationModal",this.state.seletctedLocationModal);
 	}
 	
 
@@ -85,7 +91,6 @@ class LeavePolicySettings extends Component{
 			"LeavesDuringProbationPeriod" 	: '',	
 		});
 	
-
 			if(this.state.action == "Submit")
 			{
 			
@@ -123,19 +128,6 @@ class LeavePolicySettings extends Component{
 		 });
 	}
 
-
-	handleChangeModal(event){
-		event.preventDefault();
-		this.setState({	
-			"recordIdModal"						: this.state.recordIdModal,	
-			"MaxLeavesPerYearModal" 			: this.refs.MaxLeavesPerYearModal.value,
-			"NumOfTimesPerYearModal" 			: this.refs.NumOfTimesPerYearModal.value,
-			"MaxLeavesataTimeModal" 			: this.refs.MaxLeavesataTimeModal.value,
-			"MinLeavesataTimeModal"				: this.refs.MinLeavesataTimeModal.value,
-			"LeavesDuringProbationPeriodModal" 	: this.refs.LeavesDuringProbationPeriodModal.value,
-		 });
-	
-	}
 	updateData(event)
 	{
 		event.preventDefault();
@@ -191,7 +183,8 @@ class LeavePolicySettings extends Component{
 
 // ====================================== Getting Data From the Form =====================================================
 
-	handleChange(event){
+	handleChange(event)
+	{
 		event.preventDefault();
 		var id = event.nativeEvent.target.selectedIndex;
 		var valueOfID = event.nativeEvent.target[id].text;
@@ -199,22 +192,8 @@ class LeavePolicySettings extends Component{
 			
 	}
 
-	handleSelectionModal(event){
-		event.preventDefault();
-		var id = event.nativeEvent.target.selectedIndex;
-		var valueOfID = event.nativeEvent.target[id].text;
-		this.setState({seletctedLocationModal : valueOfID });
-		console.log("Location in modal ::",this.state.seletctedLocationModal);
-		console.log("valueOfID",valueOfID);
-	}
-	handleChangeModal1(event){
-		event.preventDefault(); 
-		var id = event.nativeEvent.target.selectedIndex;
-		var valueOfID = event.nativeEvent.target[id].text;
-		this.setState({seletctedLeaveModal : valueOfID });
-			
-	}
-	handleSelection(event){
+	handleSelection(event)
+	{
 		event.preventDefault();
 		var id = event.nativeEvent.target.selectedIndex;
 		var valueOfID = event.nativeEvent.target[id].text;
@@ -222,6 +201,7 @@ class LeavePolicySettings extends Component{
 		console.log("Location in modal ::",this.state.seletctedLocation);
 
 	}
+
 	handleChange1(event)
 	{
 		this.setState({
@@ -234,16 +214,43 @@ class LeavePolicySettings extends Component{
 			
 	}
 	
+// =================================== Getting Modal Data =================================================
 
+	handleChangeModal(event)
+	{
+		event.preventDefault();
+		this.setState({	
+			"recordIdModal"						: this.state.recordIdModal,	
+			"MaxLeavesPerYearModal" 			: this.refs.MaxLeavesPerYearModal.value,
+			"NumOfTimesPerYearModal" 			: this.refs.NumOfTimesPerYearModal.value,
+			"MaxLeavesataTimeModal" 			: this.refs.MaxLeavesataTimeModal.value,
+			"MinLeavesataTimeModal"				: this.refs.MinLeavesataTimeModal.value,
+			"LeavesDuringProbationPeriodModal" 	: this.refs.LeavesDuringProbationPeriodModal.value,
+		 });
+	
+	}
+
+	handleSelectionModal(event)
+	{
+		event.preventDefault();
+		var id = event.nativeEvent.target.selectedIndex;
+		var valueOfID = event.nativeEvent.target[id].text;
+		this.setState({seletctedLocationModal : valueOfID });
+	}
+
+	handleChangeModal1(event)
+	{
+		event.preventDefault(); 
+		var id = event.nativeEvent.target.selectedIndex;
+		var valueOfID = event.nativeEvent.target[id].text;
+		this.setState({seletctedLeaveModal : valueOfID });
+			
+	}
 // ================================ Rendering Data ========================
 
 	render(){
  		const data = this.props.allData;	// Getting all data in rows of table.
-		if(data){
-			if(data.MaxLeavesPerYear==""){
-				data.MaxLeavesPerYear = " - ";
-			}
-		}
+		
   		const columns = [ 
 		  	{
 		    Header: 'Leave Type',
@@ -289,7 +296,7 @@ class LeavePolicySettings extends Component{
 
 		return (
 
-			<div className="col-lg-12  mainForm">
+			<div className="col-lg-12 mainForm">
 				<div className="row">
 					<div className="col-lg-12 modalContainer">
 						<div className="modal fade " id="myModal" role="dialog">
