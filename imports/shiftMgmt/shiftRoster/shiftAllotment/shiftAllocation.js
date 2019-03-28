@@ -20,13 +20,15 @@ Meteor.methods({
 
 		var emp_id = ShiftAllocation.insert({
 
-    								"shiftCheck"     : shiftDetails.shiftCheck,									
-									"allocatedShift" : shiftDetails.allocatedShift,
-									// "fromDate"   	 : shiftDetails.fromDate,
-									// "toDate" 		 : shiftDetails.toDate,
-									// "weeklyOff" 	 : shiftDetails.weeklyOff,
-									"createdAt" 	 : shiftDetails.createdAt,
-									"createdBy" 	 : shiftDetails.createdBy,
+    								"shiftCheck"     	: shiftDetails.shiftCheck,									
+									"allocatedShift" 	: shiftDetails.allocatedShift,
+									"dateFromCheckbox"	: this.state.dateFromCheckbox,
+
+									// "fromDate"   	: shiftDetails.fromDate,
+									// "toDate" 		: shiftDetails.toDate,
+									// "weeklyOff" 	 	: shiftDetails.weeklyOff,
+									"createdAt" 	 	: shiftDetails.createdAt,
+									"createdBy" 	 	: shiftDetails.createdBy,
 									
 								
 								}, 

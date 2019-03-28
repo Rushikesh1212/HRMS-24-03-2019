@@ -17,39 +17,35 @@ class shiftSetting extends Component{
 
 
 		this.state = {
-			"empId" : urlEmpId,
-			"action" : action,
-			"shiftName": "",
-			"startTime": "",
-			"startTimeAmPm": "",
-			"endTime": "",
-			"endTimeAmPm": "",
-			"effectiveFrom": "",
-			"tillDate": "",
+			"empId"    		: urlEmpId,
+			"action" 		: action,
+			"shiftName"		: "", 
+			"startTime"		: "",
+			"startTimeAmPm"	: "",
+			"endTime"  		: "",
+			"endTimeAmPm"	: "",
+			"effectiveFrom"	: "",
+			"tillDate"  	: "",
 		};		
 
 	}
 
-  componentWillReceiveProps(nextProps) {
-  	if(!nextProps.loading){
-      if(nextProps.oneShiftData){
-		    this.setState({
-		        "shiftName" 		: nextProps.oneShiftData.shiftName,	        
-		        "startTime" 		: nextProps.oneShiftData.startTime,	        
-		        "startTimeAmPm" 	: nextProps.oneShiftData.startTimeAmPm,	        
-		        "endTime" 			: nextProps.oneShiftData.endTime,	        
-		        "endTimeAmPm" 		: nextProps.oneShiftData.endTimeAmPm,	        
-		        "effectiveFrom" 	: nextProps.oneShiftData.effectiveFrom,	   
-		        "tillDate" 			: nextProps.oneShiftData.tillDate,	        
-		    });
-		  }
-		}
+  	componentWillReceiveProps(nextProps) {
+	  	if(!nextProps.loading){
+	        if(nextProps.oneShiftData){
+			    this.setState({
+			        "shiftName" 		: nextProps.oneShiftData.shiftName,	        
+			        "startTime" 		: nextProps.oneShiftData.startTime,	        
+			        "startTimeAmPm" 	: nextProps.oneShiftData.startTimeAmPm,	        
+			        "endTime" 			: nextProps.oneShiftData.endTime,	        
+			        "endTimeAmPm" 		: nextProps.oneShiftData.endTimeAmPm,	        
+			        "effectiveFrom" 	: nextProps.oneShiftData.effectiveFrom,	   
+			        "tillDate" 			: nextProps.oneShiftData.tillDate,	        
+			    });
+			  }
+			}
 	}
-
-	clockPicker(event) {
-		$('.clockpicker').clockpicker();
-	}
-
+	
 	submitBasicInfo(event){
 		event.preventDefault();
 		var formValues = {
@@ -65,23 +61,23 @@ class shiftSetting extends Component{
 		if(this.state.action == "Submit"){
 
 			if( formValues.shiftName!=="" && formValues.startime!=="" && formValues.startTimeAmPm!=="" && formValues.endTime!=="" && formValues.endTimeAmPm!=="" && formValues.effectiveFrom!=="" && formValues.tillDate!=="")
-	{
-
-				Meteor.call("insertBasicInfo4",formValues,
-											(error,result)=>{
-												if(error){
-													console.log("Something went wrong! Error = ", error);
-												}else{
-													swal("Congrats!","Your Information Submitted Successfully.","success");
-													console.log("latest id = ",result);
-													// FlowRouter.go("/empProfile/"+result);
-													// this.setState({"inputValue":""});
-												}
-											});	
-	}
+				{ Meteor.call("insertBasicInfo4",formValues,
+								(error,result)=>{
+									if(error){
+										console.log("Something went wrong! Error = ", error);
+									}else{
+										swal("Congrats!",
+											 "Your Information Submitted Successfully.",
+											 "success");
+										console.log("latest id = ",result);
+									}
+								});	
+				}
 				else{
-							swal("No Field should be empty...!","Please fill the all fields carefully","warning");
-						}
+						swal("No Field should be empty...!",
+							 "Please fill the all fields carefully",
+							 "warning");
+					}
 		}else{
 			formValues._id = this.state.empId;
 			Meteor.call("updateBasicInfo",formValues,
