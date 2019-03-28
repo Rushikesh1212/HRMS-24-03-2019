@@ -390,7 +390,7 @@ return (
 	                                               // React Table fetching all data
  ========================================================================================================*/}
 				 <br/>
-				  <br/>
+				 <br/>
 				 <h3>Recently Added Holidays</h3>
 			  		<ReactTable
 					    data={data}
@@ -436,6 +436,7 @@ return (
 									    		</div>
 									    	</div>
 									    </div>
+									    
 									    <div className="box col-lg-12 col-md-12 col-sm-12 col-xs-12 lws-btn-mb text-center">
 										    	<div className="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
 										    	 	<label className="formLable">Holiday date</label>

@@ -61,13 +61,13 @@ class Holiday extends Component{
 	render(){
 		return (
 			<div>				
-				<div className="tab-pane" id="tab2">
+				<div className="tab-pane" id="ta1">
 					<br/>
 					<br/>
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 tabbable"> 
 				
 						<div className="tab-content">
-							<div className="tab-pane active" id="tab3">
+							<div className="tab-pane active" id="tab1">
 							<h1>{this.props.year}</h1>
 									
 {/*=========================================================================================================

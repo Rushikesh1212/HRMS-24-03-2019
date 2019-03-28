@@ -77,7 +77,7 @@ componentWillReceiveProps(nextProps){
 				<br/>
 				<br/>
 					
-					<div className="tab-pane" id="tab2">
+					<div className="tab-pane active" id="tab2">
 						<br/>
 						<br/>
 						<div className="col-lg-12  col-md-12  col-sm-12  col-xs-12   tabbable"> 
