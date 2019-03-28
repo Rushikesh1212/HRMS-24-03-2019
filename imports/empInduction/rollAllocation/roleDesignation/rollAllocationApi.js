@@ -1,17 +1,17 @@
 import { Mongo } from 'meteor/mongo';
 
-export const EmpMaster = new Mongo.Collection('empMasterA');
+export const EmpMasterRoll = new Mongo.Collection('empMasterA');
 
 
 
 if(Meteor.isServer){
 	Meteor.publish("empData",function(empid){
-		var empprof = EmpMaster.find({"_id":empid});
+		var empprof = EmpMasterRoll.find({"_id":empid});
 		return empprof;
 	});
 
-		Meteor.publish("allEmpData",function(){
-		var allEmpRole = EmpMaster.find({});
+		Meteor.publish("allEmpDataRole",function(){
+		var allEmpRole = EmpMasterRoll.find({});
 		console.log("data",allEmpRole);
 		return allEmpRole;
 	});
@@ -23,10 +23,10 @@ Meteor.methods({
 	
 "submitRoleDesignationInfo" : function(formValues){
 		
-		let idExists =EmpMaster.findOne({"_id":formValues._id});
+		let idExists =EmpMasterRoll.findOne({"_id":formValues._id});
 		
 		if (!idExists) {
-		var Role_id = EmpMaster.insert({
+		var Role_id = EmpMasterRoll.insert({
 									
 									"employmentStartDate" 		: formValues.employmentStartDate,
 									"allocateDepartment" 	    : formValues.allocateDepartment,
@@ -59,7 +59,7 @@ Meteor.methods({
 								}
 							);
 	}else{
-		EmpMaster.update({"_id":formValues._id},{$set :
+		EmpMasterRoll.update({"_id":formValues._id},{$set :
 			
 				{
 									"employmentStartDate" 		: formValues.employmentStartDate,
@@ -85,7 +85,7 @@ Meteor.methods({
 
 
 "deleteEmpRoleProfile" : function(empid){
-		EmpMaster.remove({"_id":empid}, (error,result)=>{
+		EmpMasterRoll.remove({"_id":empid}, (error,result)=>{
 				if(error){
 					return error;
 					console.log(error);
