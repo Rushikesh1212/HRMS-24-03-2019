@@ -1,19 +1,26 @@
+/*==========================================================================================
+
+	Module Name    : Leave Management System.
+	Component Name : List of subordinates leaves ( Reporting Manager )
+ 	Developer Name : Priyanka Lewade
+ 	Date           : 22-03-2019
+
+=============================================================================================*/
+
 import React, {Component} from 'react';
 import ReactTable from "react-table";
 import swal from 'sweetalert';
 import { withTracker } from 'meteor/react-meteor-data';
 
-
 import 'react-table/react-table.css';
 import "./ListOfSubordinatesLeaves.css";
 
 import { LeaveApproval } from "/imports/leaveMgmt/leaveApproval/leaveapproval.js";
-import { ListOfLeave } from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/listOfSubordinatesLeaves.js";
 import ListOfRejectedLeaves from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/ListOfRejectedLeaves/ListOfRejectedLeaves.jsx";
 import ListOfSubordinatesLeavesForm from "/imports/leaveMgmt/projectManager/listOfSubordinatesLeaves/ListOfSubordinatesLeavesForm/ListOfSubordinatesLeavesForm.jsx";
 
-
-class ListOfSubordinatesLeaves extends Component{
+class ListOfSubordinatesLeaves extends Component
+{
 	constructor(props){
 		super(props);
 		var recordId = FlowRouter.getParam("recordid");
@@ -23,9 +30,9 @@ class ListOfSubordinatesLeaves extends Component{
 			"recordId"	 			: recordId,
 			"rowId"					: "",
 			"EmployeeId" 			: "",	
-			"EmployeeName"			: "Unknown",	
-			"Department"			: "Unknown",
-			"Designation"			: "Unknown",
+			"EmployeeName"			: "",	
+			"Department"			: "",
+			"Designation"			: "",
 			"LeaveType"				: "",
 			"WorkingDays"			: "",
 			"From"					: "",
@@ -39,39 +46,27 @@ class ListOfSubordinatesLeaves extends Component{
 	{
 		var checkId = this.state.rowId;
 		var rowId = row._id;
-		if(checkId == rowId)
-		{
-			swal({
-			  title: "Can't Delete Open Record....",
-			  icon: "warning",
-			  dangerMode: true,
-			})
-			
-		}	
-		else{
-			swal({
-			  title: "Are you sure you want to delete this Record?",
-			  text: "Once deleted, you will not be able to recover this record!",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-			  if (willDelete) {
-					Meteor.call("deleteLeaveData",rowId,
-											(error,result)=>{
-												if(error){
-													console.log("Something went wrong! Error = ", error);
-												}else{
-													swal("Congrats!","Settings Deleted Successfully.","success");
-													console.log("latest id = ",result);
-												
-												}
-											});
-							} 
-			});
-
-		}		
+		swal({
+		  title: "Are you sure you want to delete this Record?",
+		  text: "Once deleted, you will not be able to recover this record!",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+				Meteor.call("deleteLeaveData",rowId,
+										(error,result)=>{
+											if(error){
+												console.log("Something went wrong! Error = ", error);
+											}else{
+												swal("Congrats!","Settings Deleted Successfully.","success");
+												console.log("latest id = ",result);
+											
+											}
+										});
+						} 
+		});	
 	}
 	
 	toggleHidden (row) 
@@ -82,39 +77,44 @@ class ListOfSubordinatesLeaves extends Component{
 
 	    })
   	}	
+
 // ================================Rendering Data========================
 
-	render(){
-		
+	render()
+	{
   		const data = this.props.allData;	// Getting all data in rows of table.
   		const columns = [
 		  	{
 		    Header: 'Emp ID',
-		    accessor: 'rsn',
+		    accessor: '_id',
+		  	},
+		  	{
+		    Header: 'Emp Name',
+		    accessor: 'empName',
 		  	},
 		  	{
 		    Header: 'Leave Type',
-		    accessor: 'lt',
+		    accessor: 'leaveType',
 		  	},
 		  	{
 		  	Header: 'From Date',
-		    accessor: 'from', 
+		    accessor: 'fromDate', 
 		  	},
 		  	{
 		  	Header: 'To Date',
-		    accessor: 'to', 
+		    accessor: 'toDate', 
 		  	},
 		  	{
 		  	Header: 'No. of Days',
-		    accessor: 'nwd', 
+		    accessor: 'numOfDays', 
 		  	},		  	
 		  	{
 		  	Header: 'Remark',
-		    accessor: 'rsn', 
+		    accessor: 'remark', 
 		  	},		  	
 		  	{
 		  	Header: 'Status',
-		    accessor: 'rsn', 
+		    accessor: 'status', 
 		  	},
 		  	{
 		  	Header: 'View',
@@ -138,10 +138,11 @@ class ListOfSubordinatesLeaves extends Component{
 	          </div>
 	        </div>
 		    )
-        	}]
+        	}
+        ]
         	
 		return (
-
+		
 			<div className="col-lg-12">
 				<div className="row">
 
@@ -181,9 +182,8 @@ class ListOfSubordinatesLeaves extends Component{
 		);
 	};
 }
-export default withTracker(()=>{
-	
-
+export default withTracker(()=>
+{	
 	const empSubHandle = Meteor.subscribe("leaveData");
 	const allEmpData = LeaveApproval.find({}).fetch()||[{}];
 	console.log(allEmpData);
