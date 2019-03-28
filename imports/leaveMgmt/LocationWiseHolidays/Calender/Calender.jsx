@@ -40,8 +40,9 @@ class Calender extends Component{
                 .DayPicker {
                   display: inline-block;
                   font-size: 2.75vmin;
-                  border: 1px solid black;
+                  border: 1px solid #eee;
                   box-shadow: 10px 5px 5px #eee;
+                  padding-top: 0.68em;
                 }
 
                 .DayPicker-Day--today {
