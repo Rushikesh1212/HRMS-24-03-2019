@@ -1,0 +1,59 @@
+.bulkEmployeePadding{border:1px solid #aaa; padding: 1%;}
+.bulkEmployeeContent{margin-bottom: 50px;margin-top: 30px;background-color: #f6f6f7;padding-top: 20px;padding-bottom: 15px;}
+@media screen and (max-width: 619px) and (min-width: 320px){
+  .employeeVerifTable button{
+    width: 100% !important;
+  }
+  .bulkEmployeeImg{
+    margin-bottom: 9%;
+  }
+}
+.bulkEmployeeVerif ul li{text-align: left;list-style: disc;}
+.bulkEmployeeFile p span, .bulkEmployeeFile p span:hover, .bulkEmployeeFile p span:focus,
+.bulkEmployeeFile p span:active{background-color: #00b8ff;color: #fff;padding: 10px 50px;margin-left: 10px;cursor: pointer;border-radius: 0px;}
+.inputFiles{
+  height: 0px;
+  width: 0px;
+  opacity: 0;
+  margin: 0px;
+  padding: 0px;
+}
+.userInfo > div > .progress > .progress-bar, .proofDocsProgress > .progress > .progress-bar{
+  background-color: #4888a1;
+  background-image: linear-gradient(45deg, rgba(0, 184, 255, .15) 25%, #00b8ff 25%, #00b8ff 50%, rgba(0, 184, 255, .15) 50%, rgba(0, 184, 255, .15) 75%, #00b8ff 75%, #00b8ff);
+}
+.bulkEmployeeContent{margin-bottom: 50px;margin-top: 30px;background-color: #f6f6f7;padding-top: 20px;padding-bottom: 15px;}
+.bulkEmployeeFile p span, .bulkEmployeeFile p span:hover, .bulkEmployeeFile p span:focus,
+.bulkEmployeeFile p span:active{background-color: #00b8ff;color: #fff;padding: 10px 50px;margin-left: 10px;cursor: pointer;border-radius: 0px;}
+.employeeVerifTable table tbody tr td i.fa-plus{cursor: pointer;}
+.empVerifListTable{margin-top: 15px;font-size: 13px;}
+.empVerifListTable thead tr{background-color: #00b8ff;color: #fff;}
+/*.errorTable{margin-top: 15px;font-size: 13px;}
+.errorTable thead tr{background-color: #00b8ff; color: #444;}
+*//*.bulkEmployeePadding{padding-left: 30px;padding-right: 30px;}*/
+.bulkEmployeePadding{border:1px solid #aaa; padding: 1%;}
+.companyVerifColor{background-color: #fff;}
+.bulkEmpButton{border-radius: 0px!important;width: 180px;margin-top: 20px;}
+.manualEmpVerif{text-align: left;}
+.uniqueCursorPointer{cursor: pointer;}
+.bulkEmployeeImg{height: 90px;}
+.bulkEmployeeImg img{max-height: 100%;margin-bottom: 1px;}
+.bulkEmployeeImg a{font-size: 13px;color: #00b8ff!important}
+.uploadBtn{
+    background: linear-gradient(to right,#45b7ff 0%,#31a3ff 50%,#31a3ff 50%,#45b7ff 100%) no-repeat scroll right bottom / 210% 100% #31a3ff !important;
+    color: #fff;
+    height: 35px;
+    border-radius: 0px;
+    line-height: 1.6;
+    letter-spacing: 0.025em;
+}
+.uploadBtn:hover{
+  background: linear-gradient(to left,#31a3ff 0%,#45b7ff 50%,#45b7ff 50%,#31a3ff 100%) no-repeat scroll right bottom / 210% 100% #31a3ff !important;
+  color: #fff;
+  line-height: 1.6;
+  letter-spacing: 0.025em;
+}
+.uploadBtn:focus, .uploadBtn:active, .uploadBtn:visited{
+  outline: none;
+  color: #fff;
+}
