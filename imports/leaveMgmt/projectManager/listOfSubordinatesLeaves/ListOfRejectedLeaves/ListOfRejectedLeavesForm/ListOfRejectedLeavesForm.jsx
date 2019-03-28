@@ -92,7 +92,8 @@ class ListOfRejectedLeavesForm extends Component{
 
 	render(){
 		
-  		const data = this.props.allData;	// Getting all data in rows of table.		
+  		const data = this.props.allData;	// Getting all data in rows of table.	
+  		console.log("Data:::::",data);	
 		return (
 
 			<div className="col-lg-12">

@@ -24,6 +24,7 @@ if(Meteor.isServer)
 		return sLeaves;
 	});
 
+
 }
 
 //===================================== Methods =====================================
@@ -42,7 +43,7 @@ Meteor.methods({
 						  		"toDate"   			: leave.toDate,
 						  		"numOfDays" 		: leave.numOfDays,
 						  		"remark"  			: leave.remark,
-						  		"status"			: "Pending"
+						  		"status"			: "PENDING"
 
 								}, 
 
@@ -59,6 +60,54 @@ Meteor.methods({
 
 		return leaveform;
 	},
+	"updateBalData" : function(formValues){
+
+		var record_id = LeaveApproval.update(
+								{"_id": formValues.recordIdModal},
+								{$set : 
+									{
+									leaveType 		: formValues.LeaveTypeModal,
+									numOfDays		: formValues.WorkingDaysModal,
+									fromDate		: formValues.FromModal,
+									toDate			: formValues.ToModal,
+									remark 			: formValues.ReasonForLeaveRemarkModal,										}
+														
+									},
+								(error,result)=>{
+									if(error){
+										console.log(error);
+										return;
+									}else{
+										console.log(result);
+										return;
+									}
+								}
+							);
+
+		return record_id;
+	},
+
+	"updateStatusData" : function(formValues){
+
+		var record_id = LeaveApproval.update(
+								{"_id": formValues.row_id},
+								{$set : {
+											status 	: formValues.status,				
+										}
+								},
+								(error,result)=>{
+									if(error){
+										console.log(error);
+										return;
+									}else{
+										console.log(result);
+										return;
+									}
+								}
+							);
+
+		return record_id;
+	},
 
 
 	"insertodleaveform" : function(outDoor)				// Insertion in Out Door Duty Collection
@@ -73,7 +122,7 @@ Meteor.methods({
 						  		"intime" 			: outDoor.outDoorIntime,
 						  		"outtime"			: outDoor.outDoorOuttime,
 						  		"reason"  			: outDoor.outDoorReason,
-						  		"status"			: "Pending",
+						  		"status"			: "PENDING",
 
 								}, 
 
@@ -102,7 +151,7 @@ Meteor.methods({
 								"date"  			: shortLeave.shortLeaveDate,
 						  		"intime"			: shortLeave.shortLeaveIntime,
 						  		"reason"   			: shortLeave.shortLeaveReason,
-						  		"status"			: "Pending",
+						  		"status"			: "PENDING",
 								}, 
 
 								(error,result)=>{

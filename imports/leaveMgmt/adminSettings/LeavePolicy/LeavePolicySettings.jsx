@@ -386,15 +386,11 @@ class LeavePolicySettings extends Component
         							</div>
         							<div className="modal-footer">
       								</div>
-						      </div>	      
+						      	</div>	      
 						    </div>
   						</div>
 					</div>				
 		    		<div className="col-lg-12 tabs">
-			    		<ul className="nav nav-tabs">
-					    	<li className="active"><a data-toggle="tab" href="#home">Leave Policy Settings</a></li>
-					  	</ul>
-					  	
 					  	<div className="tab-content">
 					  		<h3 className="centerText"> Leave Policy Settings </h3> 
 						    <div id="home" className="tab-pane fade in active">
@@ -495,6 +491,6 @@ export default withTracker(()=>{
 	const allLeaveData = LeaveMgmt.find({}).fetch()||[{}];
 	console.log(allLeaveData);
 	return {
-		"allData" 		: allLeaveData,
+		"allData" 	: allLeaveData,
 	}
 })(LeavePolicySettings);
