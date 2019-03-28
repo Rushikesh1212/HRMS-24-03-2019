@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import swal from 'sweetalert';
 import { CertiMaster } from "/imports/empInduction/certificate/CertiAPI.js";
+import { withTracker } from 'meteor/react-meteor-data';
 
 
-export default class  Certi extends Component{
+ class  Certi extends Component{
 
 
   constructor(){
@@ -19,6 +20,43 @@ export default class  Certi extends Component{
     }
   }
 
+
+  componentDidMount() {
+
+    $.validator.addMethod("regxCertificationName", function(value, element, regexpr) {          
+          return regexpr.test(value);
+      }, "Please enter only characters");
+
+  
+
+     
+      jQuery.validator.setDefaults({
+          debug: true,
+          success: "valid"
+      });
+      $("#certificate").validate({
+          rules: {
+            CertificationName: {
+              required: true,
+              regxCertificationName: /^[^-\s][a-zA-Z0-9_\s-]+$/,
+            }
+             
+             
+            
+          },
+          errorPlacement: function(error, element) {
+            
+            if (element.attr("name") == "CertificationName"){
+                     error.insertAfter("#CertificationName");
+                }
+                  
+               
+               }
+      });
+      // this.getData();  
+}
+
+
   loginPage(event){
     FlowRouter.go("/Submit/");
   }
@@ -28,16 +66,18 @@ export default class  Certi extends Component{
  
     this.setState({
         "CertificationName"         : this.refs.Name.value,          
-        "IssuedBy"     : this.refs.IssuedBy.value,          
-        "CertifiedOn"  : this.refs.CertifiedOn.value,
-        "Validtill"    : this.refs.Validtill.value, 
-        "Grade"        : this.refs.Grade.value,
+        "IssuedBy"                  : this.refs.IssuedBy.value,          
+        "CertifiedOn"               : this.refs.CertifiedOn.value,
+        "Validtill"                 : this.refs.Validtill.value, 
+        "Grade"                     : this.refs.Grade.value,
     });
   }
 
   Submit(event){
     event.preventDefault();
-      var formValues={
+
+    if($("#certificate").valid()){
+      var CertiValues={
 
         Name         :this.refs.Name.value,
         IssuedBy     :this.refs.IssuedBy.value,
@@ -46,122 +86,51 @@ export default class  Certi extends Component{
         Grade        : this.refs.Grade.value,
       };
 
-   if(formValues.Name[0]!="" && formValues.IssuedBy[0]!="" && formValues.CertifiedOn[0]!="" && formValues.Validtill[0]!="" && formValues.Grade) 
+   // if(CertiValues.Name[0]!="" && CertiValues.IssuedBy[0]!="" && CertiValues.CertifiedOn[0]!="" && CertiValues.Validtill[0]!="" && CertiValues.Grade) 
         
 
-        Meteor.call("insertCertiinfo",formValues,
+        Meteor.call("insertCertiinfo",CertiValues,
                       (error,result)=>{
                         if(error){
                           console.log("Something went wrong! Error = ", error);
                         }else{
                           swal("Congrats!","Your Information Submitted Successfully.","success");
-                          console.log("latest id = ",result);
-                          
-                          // this.setState({"inputValue":""});
+                          console.log("latest id = ",result); 
                         }
                       }); 
+
   
-    else{
-      swal({
+
+
+  
+    }
+
+     else{
+     swal({
         title:"Something went wrong!",
         text:"please fill all records!",
         icon:"warning",
       })
-    }
-  } 
 
-  validate(event)
-    {
-       event.preventDefault();
+    
+      }
 
-         var fname = document.getElementById('fname').value;
-         if(fname==="")
-         {
-           document.getElementById('fnamemsg').innerHTML="This field is required ";
-         }
-         else
-         {
-           document.getElementById('fnamemsg').innerHTML="";
-         }
+ } 
 
-
-      
-         var iname = document.getElementById('iname').value;
-         if(iname==="")
-         {
-           document.getElementById('inamemsg').innerHTML="This field is required ";
-         }
-         else
-         {
-           document.getElementById('inamemsg').innerHTML="";
-         }
-         
-
-  
-         var cname = document.getElementById('cname').value;
-         if(cname==="")
-         {
-           document.getElementById('cnamemsg').innerHTML="This field is required ";
-         }
-         else
-         {
-           document.getElementById('cnamemsg').innerHTML="";
-         }
-
-
-
-      
-         var vname = document.getElementById('vname').value;
-         if(vname==="")
-         {
-           document.getElementById('vnamemsg').innerHTML="This field is required ";
-         }
-         else
-         {
-           document.getElementById('vnamemsg').innerHTML="";
-         }
-
-
-
-         var gname = document.getElementById('gname').value;
-         if(gname==="")
-         {
-           document.getElementById('gnamemsg').innerHTML="This field is required ";
-         }
-         else
-         {
-           document.getElementById('gnamemsg').innerHTML="";
-         }
-
-
-
-
-        
-
-}
-
-
-   
 
 
  render(){
   return(
 
       <div>
-
-      {/*<div className="col-lg-12">
-  
-          <button className="submit  btn pull-right">Prev</button>
-          <button className="submit btn pull-right">Next</button>
-      </div>  
-*/}
-       <form className="col-lg-12" action="" onClick={this.validate.bind(this)}>
+ 
+       <form className="col-lg-12" action="" id="certificate">
         <h1>Certification</h1>
         <div className="col-lg-12">
          <div className=" col-md-4 col-sm-6 col-xs-12  ">
               <div className="form-group">
                <label>Certification Name</label><span className="danger">*</span><span id="fnamemsg" className="danger"></span>
-                <input type="text" value={this.state.CertificationName} ref="Name" id="fname" name1="text" className="form-control" onChange={this.handleChange.bind(this)} />
+                <input type="text" value={this.state.CertificationName} title="please Enter certificate name"ref="Name" id="CertificationName" name="CertificationName" id="fname" name1="text" className="form-control" onChange={this.handleChange.bind(this)} required />
               </div>
             </div>
 
@@ -195,7 +164,7 @@ export default class  Certi extends Component{
 
           <div className=" col-md-4 col-sm-6 col-xs-12  ">
               <div className="form-group">
-               <label>Grade/Percentage</label><span className="danger">*</span><span id="gnamemsg" className="danger"></span>
+               <label>Grade</label><span className="danger">*</span><span id="gnamemsg" className="danger"></span>
                 <input type="text" ref="Grade" name1="text" value={this.state.Grade} className="form-control" onChange={this.handleChange.bind(this)}  />
               </div>
             </div>
@@ -206,10 +175,91 @@ export default class  Certi extends Component{
         <div className="col-lg-1 col-lg-offset-11">
           <button className="btn submit pull-right"onClick={this.Submit.bind(this)}>Submit</button>
        </div>
-      </div>   
+      </div>  
+
+
     </form>
+
+
+
+     
+
+
+
+       {this.props.allcerti.map((certi,index)=>{
+         return(
+
+        <div>
+      <div className="col-lg-12">
+         <div className=" col-md-4 col-sm-6 col-xs-12  ">
+              <div>
+               <label>Certification Name</label>
+                <div type="text"  name1="text">{certi.CertificationName} </div>
+              </div>
+            </div>
+
+
+          <div className=" col-md-4 col-sm-6 col-xs-12  ">
+              <div>
+               <label>Issued By</label>
+                <div type="text" name1="text">{certi.IssuedBy}</div>
+              </div>
+            </div>
+
+         <div className=" col-md-4 col-sm-6 col-xs-12  ">
+              <div>
+               <label>Certified ON</label>
+                <div type="text" name1="text">{certi.CertifiedOn}</div>
+              </div>
+            </div>
+      </div>
+           
+
+
+          <div className="col-lg-12">
+          <div className=" col-md-4 col-sm-6 col-xs-12  ">
+              <div>
+               <label>Valid till</label>
+                <div type="Date"  name1="text">{certi.Validtill}</div>
+              </div>
+            </div>
+
+
+          <div className=" col-md-4 col-sm-6 col-xs-12  ">
+              <div>
+               <label>Grade/Percentage</label>
+                <div type="text"  name1="text">{certi.Grade} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+
+
+                 );
+                })
+              }
   </div>
 
       )
    }
 }
+
+
+
+export default certiContainer= withTracker(()=>{
+ 
+  
+  var CertiData = Meteor.subscribe("Certid");
+
+  const Certid = CertiMaster.find({}).fetch()||[];
+  console.log("Certid ",Certid);
+
+
+  return {
+    "allcerti"    : Certid,
+    "loading"     : !CertiData.ready(),
+  
+  }
+
+})(Certi);

@@ -5,29 +5,24 @@ import { Mongo } from 'meteor/mongo';
 export const CertiMaster = new Mongo.Collection('Certidata');
 
  if(Meteor.isServer){
-	/*Meteor.publish("empData",function(empid){
-		var empprof = EmpMaster.find({"_id":empid});
-		return empprof;
-	});
-*/
 	Meteor.publish("Certid",function(){
-		var allEmp = CertiMaster.find({});
-		console.log("data",allEmp);
-		return allEmp;
+		var allcerti = CertiMaster.find({});
+		console.log("data",allcerti);
+		return allcerti;
 	});
 }
 
 Meteor.methods({
-	"insertCertiinfo":function(formValues){
-		console.log(formValues);
+	"insertCertiinfo":function(CertiValues){
+		console.log(CertiValues);
 
 		var c_id=CertiMaster.insert({
 	
-		 "CertificationName" 	     : formValues.Name,
-		 "IssuedBy"      : formValues.IssuedBy,
-         "CertifiedOn"   : formValues.CertifiedOn,
-         "Validtill"     : formValues.Validtill,
-         "Grade"         : formValues.Grade,        
+		 "CertificationName" : CertiValues.Name,
+		 "IssuedBy"          : CertiValues.IssuedBy,
+         "CertifiedOn"       : CertiValues.CertifiedOn,
+         "Validtill"         : CertiValues.Validtill,
+         "Grade"             : CertiValues.Grade,        
 		},
 
 		

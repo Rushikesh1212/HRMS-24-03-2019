@@ -34,18 +34,12 @@ Meteor.methods({
 									"reportingLocation" 	    : formValues.reportingLocation,
 									"expectedRetirementDate" 	: formValues.expectedRetirementDate,
 									"subDepartment" 			: formValues.subDepartment,
-
 									"gradeBand" 				: formValues.gradeBand,
 									"reportingManager" 			: formValues.reportingManager,
-									"regular" 					: formValues.regular,
-									"contract" 					: formValues.contract,
-									"fullTime" 					: formValues.fullTime,
-									"partTime" 					: formValues.partTime,
+									"selectedEmploymentCategory": formValues.selectedEmploymentCategory,
+									"selectedEmploymentType"	: formValues.selectedEmploymentType,
 
 									"status" 					: formValues.status,
-
-
-		
 										
 								}, 
 								(error,result)=>{
@@ -70,10 +64,8 @@ Meteor.methods({
 									"subDepartment" 			: formValues.subDepartment,
 									"gradeBand" 				: formValues.gradeBand,
 									"reportingManager" 			: formValues.reportingManager,
-									"regular" 					: formValues.regular,
-									"contract" 					: formValues.contract,
-									"fullTime" 					: formValues.fullTime,
-									"partTime" 					: formValues.partTime,
+									"selectedEmploymentCategory": formValues.selectedEmploymentCategory,
+									"selectedEmploymentType"	: formValues.selectedEmploymentType,
 									"status" 					: formValues.status,
 				}
 

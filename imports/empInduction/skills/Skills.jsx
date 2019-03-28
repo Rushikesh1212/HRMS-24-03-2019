@@ -14,6 +14,52 @@ class Skills extends Component{
    
     }
    }
+
+
+
+   componentDidMount() {
+
+    $.validator.addMethod("regxSkills", function(value, element, regexpr) {          
+          return regexpr.test(value);
+      }, "Please enter only characters");
+
+  
+
+     
+      jQuery.validator.setDefaults({
+          debug: true,
+          success: "valid"
+      });
+      $("#holidaysMaster").validate({
+          rules: {
+            holidayName: {
+              required: true,
+              regxholidayName: /^[^-\s][a-zA-Z0-9_\s-]+$/,
+            },
+             
+             holidayDate: {
+              required: true,     
+            },
+            
+          },
+          errorPlacement: function(error, element) {
+            
+            if (element.attr("name") == "holidayName"){
+                     error.insertAfter("#holidayName");
+                }
+                  
+                if (element.attr("name") == "holidayDate"){
+                     error.insertAfter("#holidayDate");
+                }
+               }
+      });
+      // this.getData();  
+}
+
+
+
+
+
   
   loginPage(event){
     FlowRouter.go("/Submit/");
