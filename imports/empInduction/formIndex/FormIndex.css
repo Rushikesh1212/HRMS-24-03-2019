@@ -41,14 +41,17 @@ a:hover,a:focus{
     width: 150px;
     text-align: center;
     margin-top: 20px;
+    color: #fff;
 }
 .tab .nav-tabs li a:hover,
 .tab .nav-tabs li a:focus,
 .tab .nav-tabs li.active a{
     background: transparent;
     border: 2px solid #3a506b;
-    color: #fff;
+   color: #fff !important ;
 }
+
+
 .tab .nav-tabs li a:before{
     content: "";
     width: 520%;
@@ -66,6 +69,7 @@ a:hover,a:focus{
 .tab .nav-tabs li.active a:before{
     height: 233%;
     opacity: 1;
+    
 }
 .tab .tab-content{
     padding: 20px 30px;

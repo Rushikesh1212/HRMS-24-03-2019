@@ -36,7 +36,7 @@ function FormIndex(){
 
                     <div className="tab" role="tabpanel">
                         
-                        <ul className="nav nav-tabs" role="tablist">
+                        <ul className="nav nav-tabs " role="tablist">
                             <li role="presentation" className="active"><a href="#" aria-controls="home" role="tab" data-toggle="tab" data-target="#myCarousel" data-slide-to="0">Basic Info</a></li>
                             
                             <li role="presentation"><a href="#"  aria-controls="profile" role="tab" data-toggle="tab" data-target="#myCarousel" data-slide-to="1">Address </a></li>

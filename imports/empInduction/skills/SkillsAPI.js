@@ -11,20 +11,20 @@ export const SkillMaster = new Mongo.Collection('Skilldata');
 	});
 */
 	Meteor.publish("Skilld",function(){
-		var allEmp = SkillMaster.find({});
-		console.log("data",allEmp);
-		return allEmp;
+		var allSkills = SkillMaster.find({});
+		console.log("data",allSkills);
+		return allSkills;
 	});
 }
 
 Meteor.methods({
-	"insertSkillinfo":function(formValues){
-		console.log(formValues);
+	"insertSkillinfo":function(skillValues){
+		console.log(skillValues);
 
 		var s_id=SkillMaster.insert({
 
-			"Skills" 	    : formValues.Skills,
-			"Description" 	: formValues.Description,
+			"Skills" 	    : skillValues.Skills,
+			"Description" 	: skillValues.Description,
 			
 		},
 		(error,result)=>{

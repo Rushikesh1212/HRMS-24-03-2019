@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import swal from 'sweetalert';
 
-import  { EmpMaster } from '/imports/empInduction/rollAllocation/roleDesignation/rollAllocationApi.js';
+import  { EmpMasterRoll } from '/imports/empInduction/rollAllocation/roleDesignation/rollAllocationApi.js';
 import "/imports/empInduction/rollAllocation/newList/NewList.css";
 
 class RoleDesignation extends Component{
@@ -303,8 +303,8 @@ export default withTracker(()=>{
 	Meteor.subscribe("empData",empIdCont);
 
 	
-	const empSubHandle = Meteor.subscribe("allEmpData");
-	const EmpData = EmpMaster.find({}).fetch()||[{}];
+	const empSubHandle = Meteor.subscribe("allEmpDataRole");
+	const EmpData = EmpMasterRoll.find({}).fetch()||[{}];
 	
 
 
@@ -324,9 +324,10 @@ export default withTracker(()=>{
 
 
 	return {
-		"allEmpDesignation" 			: EmpData,
+		"allEmpDesignation" : EmpData,
 		"new"				: New,
 		"empid"				: empIdCont,
+		
 	}
 	
 

@@ -195,7 +195,12 @@ export default class LeaveApprovalForm extends Component
 								<option value="Transfer Leave">Transfer Leave</option>
 								<option value="Special Leave">Special Leave</option>
 							</select>
+<<<<<<< HEAD
 					
+=======
+
+
+>>>>>>> 9eb494997de2766cc2b8ddb464684ce95cee9f01
 							</div>
 						</div>
 
@@ -265,8 +270,12 @@ export default class LeaveApprovalForm extends Component
 				           </div>
 				        </div>
 							</div>
+<<<<<<< HEAD
 							
 					
+=======
+
+>>>>>>> 9eb494997de2766cc2b8ddb464684ce95cee9f01
 							<div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">							
 								<div className="form-group">
 				          <label for="myInput" className="fz16 fontF">In Time</label>
