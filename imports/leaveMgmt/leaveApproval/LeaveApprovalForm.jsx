@@ -226,7 +226,7 @@ export default class LeaveApprovalForm extends Component
 								<label for="usr" className="formLable">Number of woking days</label>
 								<div className="input-group  ">
 									<span className="input-group-addon inputIcon"><i className="fa fa-calendar"></i></span>
-	  								<input type="text" className="form-control inputBox" ref="nwd"  value={this.state.numOfDays} id="usr" onChange={this.handleChange1.bind(this)}/>
+	  								<input type="number" className="form-control inputBox" ref="nwd"  value={this.state.numOfDays} id="usr" onChange={this.handleChange1.bind(this)}/>
 								</div>
 							 </div>
 						</div>

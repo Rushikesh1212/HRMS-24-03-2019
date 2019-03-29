@@ -32,7 +32,40 @@ Meteor.methods({
 
 	"insertleaveform" : function(leave)					// Insertion in Leave Approval Collection
 	{
-		console.log("Applied leave Data ::",leave);
+		let leaveType = LeaveApproval.findOne({"leaveType":leave.leaveType});
+		console.log("leaveType",leaveType);
+
+		
+		let leaveDates=parseInt(leave.numOfDays);
+			// console.log("leaveDates=====11111=======",leaveDates);
+		if(leaveType)
+		{
+				
+			let noOfDays=parseInt(leaveType.numOfDays);
+			console.log("noOfDays-------------",noOfDays);
+
+			leaveDates+=noOfDays;
+			console.log("leaveDates=====2222=======",leaveDates);
+
+			LeaveApproval.update(
+								{"_id": leaveType._id},
+								{$set : {
+									  		"numOfDays" : leaveDates,					
+										}
+								},
+								(error,result)=>{
+									if(error){
+										console.log(error);
+										return;
+									}else{
+										console.log(result);
+										return;
+									}
+								}
+							);
+		}
+
+		else{
 		var leaveform = LeaveApproval.insert({
 
 								"empName"			: "Jyoti Dasai",
@@ -57,6 +90,7 @@ Meteor.methods({
 									}
 								}
 							);
+	}
 
 		return leaveform;
 	},

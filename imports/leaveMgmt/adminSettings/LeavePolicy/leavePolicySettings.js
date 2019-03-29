@@ -27,31 +27,43 @@ Meteor.methods(
 {
 	"insertBasicInfo1" : function(formValues)
 	{
-		var Count = LeaveMgmt.find({}).count({});
-		Count++;
-		var keyValues = Object.keys(formValues);
-		var record_id = LeaveMgmt.insert({
-									SelectedLocation				: formValues.SelectedLocation,
-									SelectedLeave					: formValues.SelectedLeave,
-									MaxLeavesPerYear 				: formValues.MaxLeavesPerYear,
-									NumOfTimesPerYear 				: formValues.NumOfTimesPerYear,
-									MaxLeavesataTime 				: formValues.MinLeavesataTime,
-									MinLeavesataTime 				: formValues.currentMinLeavesataTime,
-									LeavesDuringProbationPeriod 	: formValues.LeavesDuringProbationPeriod,
-									}, 
-								(error,result)=>{
-									if(error){
-										console.log(error);
-										return;
-									}else{
 
-										console.log(result);
-										return;
+		let leaveType = LeaveMgmt.findOne({"SelectedLeave":formValues.SelectedLeave});
+		console.log("leaveType",leaveType);
+
+		if(!leaveType)
+		{
+			var Count = LeaveMgmt.find({}).count({});
+			Count++;
+			var keyValues = Object.keys(formValues);
+			var record_id = LeaveMgmt.insert({
+										SelectedLocation				: formValues.SelectedLocation,
+										SelectedLeave					: formValues.SelectedLeave,
+										MaxLeavesPerYear 				: formValues.MaxLeavesPerYear,
+										NumOfTimesPerYear 				: formValues.NumOfTimesPerYear,
+										MaxLeavesataTime 				: formValues.MinLeavesataTime,
+										MinLeavesataTime 				: formValues.currentMinLeavesataTime,
+										LeavesDuringProbationPeriod 	: formValues.LeavesDuringProbationPeriod,
+										}, 
+									(error,result)=>{
+										if(error){
+											console.log(error);
+											return;
+										}else{
+
+											console.log(result);
+											return;
+										}
 									}
-								}
-							);
+								);
 
+			}
+			else{
+				return error;
+			}
+			
 		return record_id;
+			
 	},
 
 	"updateData" : function(formValues)

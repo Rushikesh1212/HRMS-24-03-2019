@@ -133,14 +133,16 @@ class LeaveBalTable extends Component
 
 		const leavedata = this.props.maxLeaves;	// Getting all data in rows of table.
 		var MaxLeavesPerYear = [];
-		var LeavesTaken = ["10","10","6","6","0","0","5"];
+		var LeavesTaken = this.props.leaveTaken;
+		console.log("leaveTaken===============================",LeavesTaken);
 		var LeavesBalance = [];
+
 
 		for (var i = 0; i < leavedata.length; i++) 
 		{
 			MaxLeavesPerYear[i] = leavedata[i].MaxLeavesPerYear;
 		}
-
+		
 		for (var i = 0; i < leavedata.length; i++) 
 		{
 			LeavesBalance[i] = MaxLeavesPerYear[i] - LeavesTaken[i];
@@ -156,7 +158,7 @@ class LeaveBalTable extends Component
 		    el: MaxLeavesPerYear[4],
 		    tl: MaxLeavesPerYear[5],
 		    xl: MaxLeavesPerYear[6],
-		    lw: MaxLeavesPerYear[1],
+		    lw: MaxLeavesPerYear[7],
 		  }, 
 		  {
 			lt:'Leaves Taken',
@@ -167,7 +169,7 @@ class LeaveBalTable extends Component
 		    el: LeavesTaken[4],
 		    tl: LeavesTaken[5],
 		    xl: LeavesTaken[6],
-		    lw: LeavesTaken[1],
+		    lw: LeavesTaken[7],
 		  }, 
 		  {
 			lt:'Leave Balance',
@@ -178,7 +180,7 @@ class LeaveBalTable extends Component
 		    el: LeavesBalance[4],
 		    tl: LeavesBalance[5],
 		    xl: LeavesBalance[6],
-		    lw: LeavesBalance[1],
+		    lw: LeavesBalance[7],
 		  }
 		]
 		const columns = [
@@ -192,7 +194,7 @@ class LeaveBalTable extends Component
 		  }, 
 		  {
 		    Header: 'SL',
-		    accessor: 'cl',
+		    accessor: 'sl',
 		    /*Cell: props => <span className='number'>{props.value}</span> // Custom cell components!*/
 		  }, 
 		  {
@@ -363,10 +365,21 @@ export default withTracker(()=>
 	const empSubHandle = Meteor.subscribe("maxLeaves");
 	const maxLeaves = LeaveMgmt.find({}).fetch()||[{}];
 
+
+	console.log("allLeaveData",allLeaveData);
+	var leaveTaken=[]; 
+		for (var i = 0; i < allLeaveData.length; i++) {
+			leaveTaken[i]=allLeaveData[i].numOfDays;
+		}
+	
+	console.log("leaveTaken**********",leaveTaken);
+	
+
 	return {
 
 		"allData" 		: allLeaveData,
 		"maxLeaves"		: maxLeaves,	
+		"leaveTaken"	:leaveTaken,
 	}
 })(LeaveBalTable);
 

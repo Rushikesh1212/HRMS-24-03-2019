@@ -62,7 +62,7 @@ class LeavePolicySettings extends Component
 		event.preventDefault();
 		var formValues = {
 			SelectedLocation				: this.state.seletctedLocation,
-			SelectedLeave					: this.state.seletctedLeave,
+			SelectedLeave					: this.refs.selectLeave.value,
 			MaxLeavesPerYear 				: this.refs.MaxLeavesPerYear.value,
 			NumOfTimesPerYear 				: this.refs.NumOfTimesPerYear.value,
 			MaxLeavesataTime 				: this.refs.MaxLeavesataTime.value,
@@ -97,7 +97,8 @@ class LeavePolicySettings extends Component
 			Meteor.call("insertBasicInfo1",formValues,
 												(error,result)=>{
 														if(error){
-															console.log("Something went wrong! Error = ", error);
+															swal("Something is Wrong","Record is already available","warning");
+
 														}
 														else{
 															swal("Congrats!","Your Information Submitted Successfully.","success");
@@ -330,7 +331,7 @@ class LeavePolicySettings extends Component
 													    	<div className="form-group col-lg-12 col-md-4 col-sm-6">
 													    		<label className="fz16">Select Leave Type</label>
 													    		<div className="dropdown">
-																   <select className="selectLeave" ref="selectLeave" onChange={this.handleChangeModal1.bind(this)}>
+																   <select className="selectLeave" value={this.state.selectedLeave} ref="selectLeave" onChange={this.handleChangeModal1.bind(this)}>
 																	  <option value="Privilege Leave">Privilege Leave</option>
 																	  <option value="Sick Leave">Sick Leave</option>
 																	  <option value="Casual Leave">Casual Leave</option>
