@@ -10,7 +10,7 @@ import 'react-table/react-table.css'
 
 import { LeaveApproval } from "/imports/leaveMgmt/leaveApproval/leaveapproval.js";
 import LeaveBalTable from "/imports/leaveMgmt/leaveApproval/leaveBalTable/LeaveBalTable.jsx"
-import  CurrentHolidays from "/imports/leaveMgmt/LocationWiseHolidays/CurrentHolidays/CurrentHolidays.jsx";
+import  CurrentHolidays from "/imports/leaveMgmt/CurrentHolidays/CurrentHolidays.jsx";
 
 export default class LeaveApprovalForm extends Component
 {

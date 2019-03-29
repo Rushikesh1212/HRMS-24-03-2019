@@ -4,7 +4,7 @@ import LeaveApprovalForm from "/imports/leaveMgmt/leaveApproval/LeaveApprovalFor
 import LeaveBalandHistory from "/imports/leaveMgmt/leaveApproval/leaveBalanceHistory/LeaveBalandHistory.jsx";
 
 import LocationWiseHolidays from "/imports/leaveMgmt/LocationWiseHolidays/LocationWiseHolidays.jsx";
-import HolidayHistory from "/imports/leaveMgmt/LocationWiseHolidays/HolidayHistory/HolidayHistory.jsx";
+import HolidayHistory from "/imports/leaveMgmt/HolidayHistory/HolidayHistory.jsx";
 
 
 

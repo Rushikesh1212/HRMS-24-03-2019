@@ -9,10 +9,9 @@
 import React, {Component} from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import "/imports/leaveMgmt/LocationWiseHolidays/HolidayHistory/HolidayHistory.css";
 import { LwhMaster } from '/imports/leaveMgmt/LocationWiseHolidays/lwhMaster.js';
 import Holiday from './HolidayHistoryTable/HolidayHistoryTable.jsx'
-
+import "/imports/leaveMgmt/HolidayHistory/HolidayHistory.css";
 
 
 class HolidayHistory extends Component{

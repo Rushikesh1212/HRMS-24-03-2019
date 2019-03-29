@@ -23,10 +23,6 @@ class CurrentHolidays extends Component{
 	}
 
 
-
-
-
-
 	render(){
 
 		return (

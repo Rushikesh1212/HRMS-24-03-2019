@@ -8,9 +8,8 @@
 import React, {Component} from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import "/imports/leaveMgmt/LocationWiseHolidays/HolidayHistory/HolidayHistoryTable/HolidayHistoryTable.css";
 import { LwhMaster } from '/imports/leaveMgmt/LocationWiseHolidays/lwhMaster.js';
-
+import "/imports/leaveMgmt/HolidayHistory/HolidayHistoryTable/HolidayHistoryTable.css";
 
 
 

@@ -6,19 +6,18 @@
 */
 
 import React, {Component} from 'react';
-import "/imports/leaveMgmt/LocationWiseHolidays/LocationWiseHolidays.css";
 import { withTracker } from 'meteor/react-meteor-data';
-
 import ReactTable from "react-table";
-import 'react-table/react-table.css'
 import swal from 'sweetalert';
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 
 import { LwhMaster } from '/imports/leaveMgmt/LocationWiseHolidays/lwhMaster.js';
 import Calender from '/imports/leaveMgmt/LocationWiseHolidays/Calender/Calender.jsx';
 
-
+import 'react-table/react-table.css'
+import "react-datepicker/dist/react-datepicker.css";
+import "/imports/leaveMgmt/LocationWiseHolidays/LocationWiseHolidays.css";
 
 class LocationWiseHolidays extends Component{
 	constructor(props){
